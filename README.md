@@ -10,5 +10,6 @@ Frontend & Concept References :
 - https://preview.themeforest.net/item/homeid-real-estate-wordpress-theme/full_screen_preview/30203159?_ga=2.111640643.694251961.1623680163-1787504979.1614307227 ( landing page & dashboard site )
 - https://dribbble.com/search/real%20estate%20web ( landing page )
 
-React Technical References : 
+React Technical References :
+- Make A Skeleton Loading 
 - https://github.com/Mediumtutorial/sass-react-medium
