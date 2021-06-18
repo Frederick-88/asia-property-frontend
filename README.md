@@ -11,5 +11,7 @@ Frontend & Concept References :
 - https://dribbble.com/search/real%20estate%20web ( landing page )
 
 React Technical References :
-- Make A Skeleton Loading 
+
+- Make A Skeleton Loading
 - https://github.com/Mediumtutorial/sass-react-medium
+- React Class Component https://reactjs.org/docs/handling-events.html
