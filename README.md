@@ -1,5 +1,11 @@
 ## asia-property-frontend
 
+Backend Updates Needed :
+
+- Featured Field when Get Real Estate
+- GET Featured Real-Estates ( can update the booking list table/collection )
+- Search by Keyword (name) API Call. ( Since API power is limited, in FE can limit for max 2-3 times / session )
+
 Frontend & Concept References :
 
 - http://demos.ui-lib.com/gull/html/layout2/dashboard1.html (admin 2 roles, viewer & admin)
