@@ -18,6 +18,7 @@ Frontend & Concept References :
 
 React Technical References :
 
-- Make A Skeleton Loading
-- https://github.com/Mediumtutorial/sass-react-medium
-- React Class Component https://reactjs.org/docs/handling-events.html
+- React Class & Functional Component, Lifecycle & Docs https://reactjs.org
+- Skeleton Loader CSS Example https://codepen.io/Ba5nanas/pen/yLeJXGG
+- Setting up SCSS Github https://github.com/Mediumtutorial/sass-react-medium
+- Pug HTML with React ( if needed ) https://stackoverflow.com/questions/56513346/how-to-use-pug-templating-engine-with-reactjs
