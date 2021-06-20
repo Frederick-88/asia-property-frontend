@@ -1,0 +1,41 @@
+@import "variables.scss";
+$icomoon-font-path: "~@/assets/icomoon/fonts";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $baseFont;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    margin: 0;
+  }
+
+  // -------------------------------------
+  // scroll customization styling soon
+  // &::-webkit-scrollbar-track {
+  //   background-color: var(--background-color);
+  //   width: 10px;
+  // }
+
+  // &::-webkit-scrollbar {
+  //   border-radius: 4px;
+  //   width: 6px;
+  //   background-color: var(--background-color);
+  // }
+
+  // &::-webkit-scrollbar-thumb {
+  //   border-radius: 4px;
+  //   background-color: var(--scroll-color);
+  // }
+}
