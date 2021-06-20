@@ -28,6 +28,9 @@ export default class Index extends Component {
     return (
       <div>
         <h1 className="sample-title">Hello, world!</h1>
+        <p>Supposely icon show below</p>
+        <i className="icon-earth" />
+        <i className="icon-language" />
         <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
       </div>
     );

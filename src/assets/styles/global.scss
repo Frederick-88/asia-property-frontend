@@ -1,5 +1,6 @@
 @import "variables.scss";
-$icomoon-font-path: "~@/assets/icomoon/fonts";
+@import "../icomoon/style.scss";
+@import "../icomoon/variables.scss";
 
 html {
   scroll-behavior: smooth;
