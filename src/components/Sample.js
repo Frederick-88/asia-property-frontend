@@ -11,14 +11,14 @@ export default class Index extends Component {
   }
 
   componentDidMount() {
-    this.timerID = setInterval(() => this.tick(), 1000);
+    this.timerID = setInterval(() => this.updateTime(), 1000);
   }
 
   componentWillUnmount() {
     clearInterval(this.timerID);
   }
-
-  tick = () => {
+  // https://github.com/alvianzf/ecommerce-shopping-cart/blob/master/src/App.js
+  updateTime = () => {
     this.setState({
       date: new Date(),
     });
@@ -27,7 +27,7 @@ export default class Index extends Component {
   render() {
     return (
       <div>
-        <h1>Hello, world!</h1>
+        <h1 className="sample-title">Hello, world!</h1>
         <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
       </div>
     );

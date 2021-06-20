@@ -1,7 +1,9 @@
 import React from "react";
 import { BrowserView, MobileView } from "react-device-detect";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import InitialPage from "./components/index";
+
+import "./assets/styles/global.scss";
+import Home from "./pages/Home";
 
 function App() {
   return (
@@ -10,7 +12,7 @@ function App() {
         <Router>
           <Switch>
             <Route exact path="/">
-              <InitialPage />
+              <Home />
             </Route>
           </Switch>
         </Router>
