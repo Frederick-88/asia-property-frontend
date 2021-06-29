@@ -1,0 +1,30 @@
+@import "variables.scss";
+
+.navigation__bar {
+  padding: 40px 130px 0;
+  position: fixed;
+  display: flex;
+
+  .nav__item {
+    display: block;
+    font-weight: 500;
+    color: $lightGrey2;
+    text-decoration: none;
+    margin-right: 30px;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+
+    &.main-nav {
+      color: $lightGrey2;
+      font-size: 1rem;
+      margin-right: 45px;
+      text-transform: uppercase;
+    }
+  }
+
+  .nav__line {
+    width: 60px;
+    margin-left: 0;
+    border-color: $lightGrey2;
+  }
+}

@@ -23,6 +23,13 @@ body {
   }
 
   // -------------------------------------
+  .main-section {
+    height: 100vh;
+    background-attachment: static;
+    background-repeat: no-repeat;
+    width: 100%;
+  }
+
   // scroll customization styling soon
   // &::-webkit-scrollbar-track {
   //   background-color: var(--background-color);
