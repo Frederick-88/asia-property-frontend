@@ -2,19 +2,35 @@ import React from "react";
 import { BrowserView, MobileView } from "react-device-detect";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+import mainBackground from "./assets/images/home_bg.jpg";
 import "./assets/styles/global.scss";
 import Home from "./pages/Home";
+import Navbar from "./components/Navbar";
 
-function App() {
+const App = () => {
+  const backgroundStyle = (image) => {
+    return {
+      backgroundImage: `linear-gradient(to bottom, rgba(29,41,62,0.6) 0%,rgba(29,41,62,0.6) 100%), url("${image}")`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    };
+  };
+
   return (
-    <div>
+    <main>
       <BrowserView>
         <Router>
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-          </Switch>
+          <main
+            className="main-section"
+            style={backgroundStyle(mainBackground)}
+          >
+            <Navbar />
+            <Switch>
+              <Route exact path="/">
+                <Home />
+              </Route>
+            </Switch>
+          </main>
         </Router>
       </BrowserView>
       <MobileView>
@@ -22,8 +38,8 @@ function App() {
           Not Rendered on Mobile, please visit from desktop/bigger screen.
         </h2>
       </MobileView>
-    </div>
+    </main>
   );
-}
+};
 
 export default App;
