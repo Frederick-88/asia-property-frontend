@@ -1,12 +1,12 @@
 import React from "react";
 
-import Sample from "../components/Sample";
-import "../assets/styles/sample.scss";
+import HomeBanner from "../components/Home/HomeBanner";
+import "../assets/styles/home.scss";
 
 const Home = () => {
   return (
     <div>
-      <Sample />
+      <HomeBanner />
     </div>
   );
 };

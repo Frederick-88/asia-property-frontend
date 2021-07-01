@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "@/assets/styles/sample.scss";
 
 export default class Index extends Component {
   constructor(props) {
