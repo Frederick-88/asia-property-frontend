@@ -1,9 +1,45 @@
 @import "variables.scss";
 
 .navigation__bar {
-  padding: 40px 130px 0;
+  padding: 40px 75px 0;
   position: fixed;
   display: flex;
+  justify-content: space-between;
+  width: 100%;
+  letter-spacing: 3px;
+
+  .navigation__list,
+  .auth-button__list {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-image__wrapper {
+    display: flex;
+    align-items: center;
+    margin-right: 70px;
+    cursor: pointer;
+
+    &:hover {
+      .nav__logo-title {
+        color: $white;
+      }
+    }
+
+    .nav__image {
+      width: 35px;
+      height: 100%;
+    }
+
+    .nav__logo-title {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-left: 10px;
+      text-transform: uppercase;
+      color: $lightGrey2;
+      transition: color 0.3s;
+    }
+  }
 
   .nav__item {
     display: block;
@@ -11,20 +47,52 @@
     color: $lightGrey2;
     text-decoration: none;
     margin-right: 30px;
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
     text-transform: uppercase;
+    transition: color 0.3s;
 
-    &.main-nav {
-      color: $lightGrey2;
-      font-size: 1rem;
-      margin-right: 45px;
-      text-transform: uppercase;
+    &:hover {
+      color: $white;
     }
   }
 
-  .nav__line {
-    width: 60px;
-    margin-left: 0;
-    border-color: $lightGrey2;
+  .nav__auth-button {
+    display: flex;
+    align-items: center;
+    padding: 10px 25px;
+    border: 1px solid $lightGrey2;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 4px;
+    color: $lightGrey2;
+    text-transform: uppercase;
+    outline: 0;
+    transition: background 0.3s, color 0.3s;
+
+    &:hover {
+      border-color: $white;
+      background: $white;
+      color: $blue;
+    }
+
+    &.auth--admin {
+      margin-left: 10px;
+
+      .icon {
+        margin-right: 0;
+        margin-left: 8px;
+      }
+    }
+
+    .icon {
+      font-size: 0.875rem;
+      margin-right: 8px;
+    }
+
+    .title {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+    }
   }
 }
