@@ -2,8 +2,9 @@ import React from "react";
 import { BrowserView, MobileView } from "react-device-detect";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import mainBackground from "./assets/images/home_bg.jpg";
 import "./assets/styles/global.scss";
+
+import mainBackground from "./assets/images/home_bg.jpg";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 
