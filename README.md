@@ -1,10 +1,36 @@
 ## asia-property-frontend
 
-Backend Updates Needed :
+Content Structure :
 
-- Featured Field when Get Real Estate
-- GET Featured Real-Estates ( can update the booking list table/collection )
-- Search by Keyword (name) API Call. ( Since API power is limited, in FE can limit for max 2-3 times / session )
+1. Homepage :
+
+- home banner
+- real estate listing preview
+- explore by property type
+- real estate renting preview
+- explore by country
+- developers featured
+- agents featured
+- footer
+
+2. Listing :
+
+- Map ( Right Side )
+- search with for rent/sale options & title ( fixed position )
+- listing like airbnb but 2 grids
+- see more
+
+3. Wishlists:
+
+- standard listing with 3 grids
+
+4. Our Agents
+
+- standard listing with 3 grids
+
+5. About Us
+
+- standard about us page
 
 Frontend & Concept References :
 
@@ -14,6 +40,7 @@ Frontend & Concept References :
 - https://www.airbnb.com/ ( landing page & dashboard site )
 - https://preview.themeforest.net/item/wp-residence-real-estate-wordpress-theme/full_screen_preview/7896392?_ga=2.113331008.694251961.1623680163-1787504979.1614307227 ( landing page & dashboard site )
 - https://preview.themeforest.net/item/homeid-real-estate-wordpress-theme/full_screen_preview/30203159?_ga=2.111640643.694251961.1623680163-1787504979.1614307227 ( landing page & dashboard site )
+- https://preview.themeforest.net/item/homeid-real-estate-wordpress-theme/full_screen_preview/30203159?_ga=2.111640643.694251961.1623680163-1787504979.1614307227 ( listing card )
 - https://dribbble.com/search/real%20estate%20web ( landing page )
 
 React Technical References :
