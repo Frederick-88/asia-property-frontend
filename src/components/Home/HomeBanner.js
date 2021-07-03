@@ -27,7 +27,7 @@ const HomeBanner = () => {
           className={navbarClass("all-real-estate")}
           onClick={() => setNavigation("all-real-estate")}
         >
-          All Real Estates
+          All Types
         </button>
         <button
           type="button"
@@ -46,11 +46,9 @@ const HomeBanner = () => {
       </div>
 
       <div className="search-bar">
-        <input
-          className="search-input"
-          placeholder="Enter Search Keyword Here ..."
-        />
         <i className="icon-search search-icon" />
+        <input className="search-input" placeholder="Enter Keyword ..." />
+        <p className="search-text">Search</p>
       </div>
     </section>
   );
