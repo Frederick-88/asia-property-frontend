@@ -1,12 +1,20 @@
 @import "variables.scss";
 
 .navigation__bar {
-  padding: 40px 75px 0;
+  margin-top: 20px;
+  padding: 20px 75px 20px;
   position: fixed;
   display: flex;
   justify-content: space-between;
   width: 100%;
   letter-spacing: 3px;
+  transition: margin-top 0.3s;
+  z-index: 100;
+
+  &.nav--scrolled {
+    background: $darkBlue2;
+    margin-top: 0;
+  }
 
   .navigation__list,
   .auth-button__list {
