@@ -8,7 +8,6 @@ Content Structure :
 - real estate listing preview
 - explore by property type
 - real estate renting preview
-- explore by country
 - developers featured
 - agents featured
 - footer
@@ -18,15 +17,18 @@ Content Structure :
 - Map ( Right Side )
 - search with for rent/sale options & title ( fixed position )
 - listing like airbnb but 2 grids
+- skeleton loader
 - see more
 
 3. Wishlists:
 
 - standard listing with 3 grids
+- skeleton loader
 
 4. Our Agents
 
 - standard listing with 3 grids
+- skeleton loader
 
 5. About Us
 
