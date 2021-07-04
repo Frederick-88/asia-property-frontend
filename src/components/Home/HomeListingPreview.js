@@ -15,56 +15,81 @@ const HomeListingPreview = (props) => {
     slidesToShow: 4,
     slidesToScroll: 4,
   };
-
   const isRentListingType = props.type && props.type === "rent";
   const propertyText = isRentListingType ? "Apartment" : "House";
 
-  const sampleData = [
+  /* TODO : 
+  - later after receive api call, for "is_wishlist" field can get from cookie & check whether the id is wishlisted/not
+  - filter to only show real estate with available status
+  */
+  const listingData = [
     {
       name: `${propertyText} Boulevard`,
-      price: "100.000",
+      price: "150,000",
       status: "available",
+      address: "393 Lewis Ave, Brooklyn, New York",
       is_renting: isRentListingType,
+      bathroom_count: 3,
+      bedroom_count: 3,
+      square_feet_size: 900,
       type: "apartment",
     },
     {
       name: `${propertyText} Promax`,
-      price: "100.000",
+      price: "180,000",
       status: "available",
+      address: "393 Lewis Ave, Brooklyn, New York",
       is_renting: isRentListingType,
+      bathroom_count: 2,
+      bedroom_count: 3,
+      square_feet_size: 1100,
       type: "house",
     },
     {
       name: `${propertyText} Boulevard`,
-      price: "100.000",
+      price: "130,000",
       status: "available",
+      address: "393 Lewis Ave, Brooklyn, New York",
       is_renting: isRentListingType,
+      bathroom_count: 3,
+      bedroom_count: 2,
+      square_feet_size: 600,
       type: "apartment",
     },
     {
       name: `${propertyText} Promax`,
-      price: "100.000",
+      price: "250,000",
       status: "available",
+      address: "393 Lewis Ave, Brooklyn, New York",
       is_renting: isRentListingType,
+      bathroom_count: 3,
+      bedroom_count: 3,
+      square_feet_size: 1800,
       type: "house",
     },
     {
       name: `${propertyText} Boulevard`,
-      price: "100.000",
+      price: "150,000",
       status: "available",
+      address: "393 Lewis Ave, Brooklyn, New York",
       is_renting: isRentListingType,
+      bathroom_count: 3,
+      bedroom_count: 4,
+      square_feet_size: 1000,
       type: "apartment",
     },
     {
       name: `${propertyText} Promax`,
-      price: "100.000",
+      price: "120,000",
       status: "available",
+      address: "393 Lewis Ave, Brooklyn, New York",
       is_renting: isRentListingType,
+      bathroom_count: 3,
+      bedroom_count: 3,
+      square_feet_size: 900,
       type: "house",
     },
   ];
-
-  const listingData = isRentListingType ? sampleData : sampleData;
 
   const setPrevCarousel = () => {
     customSlider.current.slickPrev();
@@ -78,7 +103,9 @@ const HomeListingPreview = (props) => {
     <section className="home__listing-preview">
       <div className="list__header-wrapper">
         <div className="list-header">
-          <h4 className="list-title">Best Properties for Sale</h4>
+          <h4 className="list-title">
+            Best Properties for {isRentListingType ? "Rent" : "Sale"}
+          </h4>
           <hr className="list__line-decoration" />
           <p className="list-subtitle">
             Lorem ipsum dolor sit amet, consec tetur cing elit. Suspe ndisse
