@@ -40,20 +40,20 @@ export default class Navbar extends Component {
     return (
       <section className={navClass}>
         <div className="navigation__list">
-          <div className="nav-image__wrapper">
+          <Link to="/" className="nav-image__wrapper">
             <img className="nav__image" src={Logo} alt="logo" />
             <h4 className="nav__logo-title">Asia Property</h4>
-          </div>
-          <Link to="/" className="nav__item">
+          </Link>
+          <Link to="/listings" className="nav__item">
             Listing
           </Link>
-          <Link to="/" className="nav__item">
+          <Link to="/wishlists" className="nav__item">
             Wishlists
           </Link>
-          <Link to="/" className="nav__item">
+          <Link to="/our-agents" className="nav__item">
             Our Agents
           </Link>
-          <Link to="/" className="nav__item">
+          <Link to="/about-us" className="nav__item">
             About Us
           </Link>
         </div>
