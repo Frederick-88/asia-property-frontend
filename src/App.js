@@ -7,6 +7,7 @@ import "./assets/styles/global.scss";
 import mainBackground from "./assets/images/home_bg.jpg";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 const App = () => {
   const backgroundStyle = (image) => {
@@ -31,6 +32,7 @@ const App = () => {
                 <Home />
               </Route>
             </Switch>
+            <Footer />
           </main>
         </Router>
       </BrowserView>

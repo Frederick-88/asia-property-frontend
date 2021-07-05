@@ -1,0 +1,106 @@
+@import "variables.scss";
+
+.footer {
+  margin-top: 100px;
+  background: $darkBlue2;
+  padding: 40px 75px;
+  display: flex;
+  color: $lightGrey2;
+
+  .footer-section {
+    width: 30%;
+    margin: 0 20px;
+    margin-top: 20px;
+
+    &.section--main {
+      margin-top: 0;
+    }
+
+    &.section--large {
+      width: 40%;
+      display: flex;
+    }
+
+    .footer__section-child {
+      width: 50%;
+    }
+
+    .footer-title {
+      font-weight: 600;
+      font-size: 1.125rem;
+      margin-bottom: 20px;
+    }
+
+    .footer-text {
+      font-weight: 300;
+      font-size: 0.875rem;
+      margin-bottom: 10px;
+      color: $lightGrey4;
+
+      &.text--copyright {
+        margin-top: 50px;
+        font-weight: 600;
+        color: $lightGrey2;
+      }
+    }
+
+    .image__wrapper {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+
+      .image {
+        width: 60px;
+        height: 100%;
+      }
+
+      .image-title {
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin-left: 15px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+      }
+    }
+  }
+
+  .subscribe-section {
+    display: flex;
+    height: 50px;
+    margin-top: 30px;
+
+    .subscribe-input {
+      display: block;
+      padding: 0 20px;
+      font-weight: 500;
+      height: 100%;
+      outline: 0;
+      border: 0;
+      width: 65%;
+      background: $white;
+      border-radius: 4px 0 0 4px;
+      letter-spacing: 1.5px;
+    }
+
+    .subscribe-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      width: 35%;
+      height: 100%;
+      outline: 0;
+      border: 0;
+      background: $blue;
+      color: $white;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+      transition: background 0.3s;
+
+      &:hover {
+        background: $darkBlue;
+      }
+    }
+  }
+}
