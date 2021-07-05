@@ -48,7 +48,9 @@ const HomeBanner = () => {
       <div className="search-bar">
         <i className="icon-search search-icon" />
         <input className="search-input" placeholder="Enter Keyword ..." />
-        <p className="search-text">Search</p>
+        <button type="button" className="search-button">
+          Search
+        </button>
       </div>
     </section>
   );
