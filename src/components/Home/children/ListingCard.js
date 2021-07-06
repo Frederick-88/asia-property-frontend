@@ -13,9 +13,9 @@ const ListingCard = (props) => {
   const wishlistButtonClass = () => {
     const classArray = ["card__wishlist-button"];
     if (props.data.is_wishlist) {
-      classArray.push("icon-favorite-line");
+      classArray.push("icon-favourite-solid");
     } else {
-      classArray.push("icon-favorite-solid");
+      classArray.push("icon-favourite-line");
     }
 
     return classArray.join(" ");
@@ -29,7 +29,7 @@ const ListingCard = (props) => {
         </button>
         <span className="card-tag tag--featured">Featured</span>
         <span className="card__image-count">
-          <i className="icon-film" />
+          <i className="icon-pictures" />
           <p className="count-text">8</p>
         </span>
         <button type="button" className={wishlistButtonClass()} />
@@ -41,15 +41,15 @@ const ListingCard = (props) => {
           <p className="description">{props.data.address}</p>
           <div className="card-detail__wrapper">
             <div className="card-detail">
-              <i className="icon-travel detail-icon" />
+              <i className="icon-bedroom detail-icon" />
               <p className="detail-text">{props.data.bedroom_count} Br</p>
             </div>
             <div className="card-detail">
-              <i className="icon-travel detail-icon" />
+              <i className="icon-bathroom detail-icon" />
               <p className="detail-text">{props.data.bathroom_count} Ba</p>
             </div>
             <div className="card-detail">
-              <i className="icon-travel detail-icon" />
+              <i className="icon-size detail-icon" />
               <p className="detail-text">{props.data.square_feet_size} SqFt</p>
             </div>
           </div>
