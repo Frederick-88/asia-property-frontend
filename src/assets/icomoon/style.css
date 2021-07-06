@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?entm41');
-  src:  url('fonts/icomoon.eot?entm41#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?entm41') format('truetype'),
-    url('fonts/icomoon.woff?entm41') format('woff'),
-    url('fonts/icomoon.svg?entm41#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?mytphz');
+  src:  url('fonts/icomoon.eot?mytphz#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?mytphz') format('truetype'),
+    url('fonts/icomoon.woff?mytphz') format('woff'),
+    url('fonts/icomoon.svg?mytphz#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,8 +25,17 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-sport:before {
-  content: "\e929";
+.icon-pictures:before {
+  content: "\e900";
+}
+.icon-size:before {
+  content: "\e901";
+}
+.icon-bathroom:before {
+  content: "\e902";
+}
+.icon-bedroom:before {
+  content: "\e903";
 }
 .icon-chevron-right:before {
   content: "\e90d";
@@ -40,80 +49,8 @@
 .icon-chevron-down:before {
   content: "\e923";
 }
-.icon-language:before {
-  content: "\e904";
-}
 .icon-earth:before {
   content: "\e909";
-}
-.icon-database:before {
-  content: "\e90a";
-}
-.icon-css:before {
-  content: "\e90b";
-}
-.icon-design:before {
-  content: "\e90c";
-}
-.icon-earth2:before {
-  content: "\e90e";
-}
-.icon-photoshop:before {
-  content: "\e90f";
-}
-.icon-mysql:before {
-  content: "\e910";
-}
-.icon-php:before {
-  content: "\e911";
-}
-.icon-node-js:before {
-  content: "\e913";
-}
-.icon-javascript:before {
-  content: "\e914";
-}
-.icon-mongodb:before {
-  content: "\e915";
-}
-.icon-cloudflare:before {
-  content: "\e916";
-}
-.icon-amazonaws:before {
-  content: "\e917";
-}
-.icon-bitbucket:before {
-  content: "\e919";
-}
-.icon-redux:before {
-  content: "\e91a";
-}
-.icon-react:before {
-  content: "\e91b";
-}
-.icon-nuxt:before {
-  content: "\e91d";
-}
-.icon-vue:before {
-  content: "\e91e";
-}
-.icon-sun-solid:before {
-  content: "\e900";
-}
-.icon-sun-line:before {
-  content: "\e901";
-}
-.icon-moon-solid:before {
-  content: "\e902";
-}
-.icon-moon-line:before {
-  content: "\e903";
-}
-.icon-email:before {
-  content: "\e91c";
-}
-.icon-designer-background:before {
-  content: "\e95e";
 }
 .icon-eye-slash:before {
   content: "\e912";
@@ -124,26 +61,23 @@
 .icon-lightbulb:before {
   content: "\e97f";
 }
-.icon-duplicate:before {
-  content: "\e9b4";
-}
-.icon-responsive:before {
-  content: "\e958";
-}
 .icon-team:before {
   content: "\e972";
 }
-.icon-code:before {
-  content: "\ea80";
-}
-.icon-linux:before {
-  content: "\eabd";
-}
-.icon-information-solid:before {
+.icon-information-line:before {
   content: "\ea0c";
 }
 .icon-user:before {
   content: "\e971";
+}
+.icon-phone:before {
+  content: "\e942";
+}
+.icon-mail:before {
+  content: "\e945";
+}
+.icon-location:before {
+  content: "\e948";
 }
 .icon-home:before {
   content: "\e95b";
@@ -153,9 +87,6 @@
 }
 .icon-search:before {
   content: "\e954";
-}
-.icon-calendar:before {
-  content: "\e94f";
 }
 .icon-whatsapp:before {
   content: "\e951";
@@ -178,47 +109,17 @@
 .icon-arrow-up:before {
   content: "\e908";
 }
-.icon-time:before {
-  content: "\e918";
-}
-.icon-favorite-line:before {
+.icon-favourite-solid:before {
   content: "\e920";
 }
-.icon-favorite-solid:before {
+.icon-favourite-line:before {
   content: "\e921";
 }
 .icon-google:before {
   content: "\e925";
 }
-.icon-help:before {
-  content: "\e926";
-}
-.icon-instagram:before {
-  content: "\e928";
-}
-.icon-folder-line:before {
-  content: "\e92c";
-}
-.icon-replay:before {
-  content: "\e933";
-}
-.icon-share:before {
-  content: "\e935";
-}
 .icon-shift:before {
   content: "\e936";
-}
-.icon-star:before {
-  content: "\e937";
-}
-.icon-thumbs-up:before {
-  content: "\e93a";
-}
-.icon-tick-circle:before {
-  content: "\e93b";
-}
-.icon-twitter:before {
-  content: "\e941";
 }
 .icon-github:before {
   content: "\eab0";
@@ -226,18 +127,6 @@
 .icon-linkedin-solid:before {
   content: "\eac9";
 }
-.icon-linkedin-line:before {
+.icon-linkedin-text:before {
   content: "\eaca";
-}
-.icon-music:before {
-  content: "\e924";
-}
-.icon-film:before {
-  content: "\e927";
-}
-.icon-phone:before {
-  content: "\e942";
-}
-.icon-travel:before {
-  content: "\e9af";
 }
