@@ -44,6 +44,7 @@ Frontend & Concept References :
 - https://preview.themeforest.net/item/homeid-real-estate-wordpress-theme/full_screen_preview/30203159?_ga=2.111640643.694251961.1623680163-1787504979.1614307227 ( landing page & dashboard site )
 - https://preview.themeforest.net/item/homeid-real-estate-wordpress-theme/full_screen_preview/30203159?_ga=2.111640643.694251961.1623680163-1787504979.1614307227 ( listing card )
 - https://dribbble.com/search/real%20estate%20web ( landing page )
+- https://dribbble.com/shots/11369570--Log-in-Exploration ( auth modal )
 
 React Technical References :
 
@@ -51,3 +52,4 @@ React Technical References :
 - Skeleton Loader CSS Example https://codepen.io/Ba5nanas/pen/yLeJXGG
 - Setting up SCSS Github https://github.com/Mediumtutorial/sass-react-medium
 - Pug HTML with React ( if needed ) https://stackoverflow.com/questions/56513346/how-to-use-pug-templating-engine-with-reactjs
+- Creating Reusable Component similar to Vue Slots in React https://medium.com/@srph/react-imitating-vue-slots-eab8393f96fd
