@@ -1,8 +1,8 @@
 import React from "react";
-import ApartmentImage from "../../../src/assets/images/sample-apartment.jpg";
-import HouseImage from "../../../src/assets/images/sample-house.jpg";
-import HomeClusterImage from "../../../src/assets/images/sample-home-cluster.jpg";
-import VillaImage from "../../../src/assets/images/sample-villa.jpg";
+import ApartmentImage from "../../assets/images/sample-apartment.jpg";
+import HouseImage from "../../assets/images/sample-house.jpg";
+import HomeClusterImage from "../../assets/images/sample-home-cluster.jpg";
+import VillaImage from "../../assets/images/sample-villa.jpg";
 
 const HomeListingOptions = () => {
   const options = [
