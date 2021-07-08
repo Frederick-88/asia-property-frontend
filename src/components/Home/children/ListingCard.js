@@ -1,6 +1,6 @@
 import React from "react";
-import SampleSaleImage from "../../../../src/assets/images/sample-real-estate.jpg";
-import SampleRentImage from "../../../../src/assets/images/sample-real-estate-rent.jpg";
+import SampleSaleImage from "../../../assets/images/sample-real-estate.jpg";
+import SampleRentImage from "../../../assets/images/sample-real-estate-rent.jpg";
 
 const ListingCard = (props) => {
   const isRentListingType = props.data.is_renting;
