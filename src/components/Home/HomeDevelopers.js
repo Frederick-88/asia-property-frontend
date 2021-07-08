@@ -1,11 +1,11 @@
 import React from "react";
 import Slider from "react-slick";
-import DeveloperImage01 from "../../../src/assets/images/developer-01.png";
-import DeveloperImage02 from "../../../src/assets/images/developer-02.png";
-import DeveloperImage03 from "../../../src/assets/images/developer-03.png";
-import DeveloperImage04 from "../../../src/assets/images/developer-04.png";
-import DeveloperImage05 from "../../../src/assets/images/developer-05.png";
-import DeveloperImage06 from "../../../src/assets/images/developer-06.png";
+import DeveloperImage01 from "../../assets/images/developer-01.png";
+import DeveloperImage02 from "../../assets/images/developer-02.png";
+import DeveloperImage03 from "../../assets/images/developer-03.png";
+import DeveloperImage04 from "../../assets/images/developer-04.png";
+import DeveloperImage05 from "../../assets/images/developer-05.png";
+import DeveloperImage06 from "../../assets/images/developer-06.png";
 
 const HomeDevelopers = () => {
   const settings = {
