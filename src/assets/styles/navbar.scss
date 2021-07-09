@@ -7,7 +7,6 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  letter-spacing: 3px;
   transition: margin-top 0.3s;
   z-index: 100;
 
@@ -20,6 +19,7 @@
   .auth-button__list {
     display: flex;
     align-items: center;
+    letter-spacing: 3px;
   }
 
   .nav-image__wrapper {
@@ -58,6 +58,11 @@
     margin-right: 30px;
     font-size: 0.8125rem;
     text-transform: uppercase;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    letter-spacing: 3px;
+    cursor: pointer;
     transition: color 0.3s;
 
     &:hover {
