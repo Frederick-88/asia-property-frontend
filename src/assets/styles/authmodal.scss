@@ -1,0 +1,203 @@
+@import "variables.scss";
+
+.auth-modal {
+  display: flex;
+  align-items: center;
+
+  .auth-modal__section {
+    width: 55%;
+
+    &.section--left {
+      width: 45%;
+      padding: 60px;
+    }
+
+    &.section--right {
+      height: 550px;
+    }
+
+    &.section--register {
+      height: 675px;
+    }
+
+    .banner-title {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: $darkGrey;
+    }
+
+    .banner-description {
+      margin-top: 10px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: $textGrey;
+      width: 320px;
+      line-height: 1.6;
+    }
+
+    .input-list {
+      margin-top: 30px;
+      color: $textGrey;
+
+      .input-title {
+        display: block;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        margin-bottom: 5px;
+      }
+
+      .input-wrapper {
+        position: relative;
+        margin-bottom: 20px;
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+
+        .icon {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 8px;
+          font-size: 1rem;
+        }
+
+        .input {
+          padding: 10px 20px 10px 35px;
+          width: 100%;
+          outline: 0;
+          border: 1px solid $grey;
+          border-radius: 4px;
+
+          &.input--password {
+            padding-right: 35px;
+          }
+
+          &:focus {
+            border-color: $blue;
+          }
+        }
+
+        .pass-icon {
+          position: absolute;
+          font-size: 1rem;
+          top: 50%;
+          transform: translateY(-50%);
+          right: 8px;
+          border: 0;
+          outline: 0;
+          background: transparent;
+          color: $textGrey;
+          cursor: pointer;
+          transition: color 0.3s;
+
+          &:hover {
+            color: $blue;
+          }
+        }
+      }
+    }
+
+    .auth-addons {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .signed-in__wrapper {
+        display: flex;
+        align-items: center;
+
+        .text {
+          font-size: 0.8125rem;
+          font-weight: 400;
+          color: $darkGrey;
+          margin-left: 5px;
+        }
+      }
+
+      .auth__forgot-pass-button {
+        font-size: 0.8125rem;
+        font-weight: 500;
+        color: $blue;
+        background: transparent;
+        text-decoration: underline;
+        cursor: pointer;
+        border: 0;
+        outline: 0;
+        transition: color 0.3s;
+
+        &:hover {
+          color: $darkBlue;
+        }
+      }
+    }
+
+    .auth-button {
+      width: 100%;
+      background: $blue;
+      color: $white;
+      padding: 10px 25px;
+      text-align: center;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 30px;
+      outline: 0;
+      border: 0;
+      transition: background 0.3s, color 0.3s;
+
+      &:hover {
+        background: $lightGrey2;
+        color: $blue;
+      }
+    }
+
+    .auth-toggle {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+
+      .text {
+        font-size: 0.8125rem;
+        font-weight: 500;
+        color: $textGrey;
+      }
+
+      .toggle {
+        font-size: 0.8125rem;
+        font-weight: 500;
+        color: $blue;
+        background: transparent;
+        text-decoration: underline;
+        cursor: pointer;
+        border: 0;
+        outline: 0;
+        transition: color 0.3s;
+
+        &:hover {
+          color: $darkBlue;
+        }
+      }
+    }
+  }
+
+  .section--right {
+    height: 550px;
+
+    &.section--register {
+      .preview-image {
+        height: 675px;
+      }
+    }
+
+    .preview-image {
+      display: block !important;
+      width: 100%;
+      height: 550px;
+      object-fit: cover;
+      border-radius: 0 4px 4px 0;
+    }
+  }
+}
