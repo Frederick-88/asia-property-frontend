@@ -1,0 +1,62 @@
+@import "variables.scss";
+
+.about-us__modal {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 60px;
+
+  .developer-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .developer-title {
+    color: $darkGrey;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin: 30px 0 5px;
+  }
+
+  .developer-subtitle {
+    color: $lightGrey3;
+    font-weight: 500;
+    font-size: 0.875rem;
+  }
+
+  .social-buttons {
+    margin: 30px 0;
+
+    .social-icon {
+      text-decoration: transparent;
+
+      .icon {
+        padding: 10px;
+        margin: 0 5px;
+        border: 1px solid $blue;
+        color: $blue;
+        font-size: 1.125rem;
+        border-radius: 50%;
+        transition: background 0.3s, color 0.3s;
+
+        &:hover {
+          background: $blue;
+          color: $white;
+        }
+      }
+    }
+  }
+
+  .developer-description {
+    color: $lightGrey3;
+    line-height: 1.8;
+    font-size: 0.875rem;
+    margin-bottom: 15px;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}
