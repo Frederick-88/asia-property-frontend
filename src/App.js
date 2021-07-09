@@ -5,9 +5,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./assets/styles/global.scss";
 
 import mainBackground from "./assets/images/home_bg.jpg";
-import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Home from "./pages/Home";
 
 const App = () => {
   const backgroundStyle = (image) => {
