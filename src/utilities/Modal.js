@@ -26,6 +26,19 @@ class Modal extends React.Component {
   static Body = Body;
   static Footer = Footer;
 
+  modalClass = () => {
+    const classArray = ["global-dialog-modal"];
+    if (this.props.isShow) {
+      classArray.push("is-show");
+    }
+
+    return classArray.join(" "); // creating result like `navigation__bar nav--scrolled` so usable in react's className
+  };
+
+  maxWidthStyle = () => {
+    return { maxWidth: this.props.maxWidth ? this.props.maxWidth : "1000px" };
+  };
+
   hideModal = () => {
     this.props.hideModal();
   };
@@ -36,15 +49,17 @@ class Modal extends React.Component {
     const body = children.find((child) => child.type === Body);
     const footer = children.find((child) => child.type === Footer);
 
+    const modalClass = this.modalClass();
+    const maxWidthStyle = this.maxWidthStyle();
+
     return (
-      <div className="global-dialog-modal is-show">
+      <div className={modalClass}>
         <div
           className="global-dialog-modal__overlay"
           onClick={() => this.hideModal()}
         />
         <header>{header ? header.props.children : null}</header>
-        <div className="global-dialog-modal__content">
-          <i className="global-dialog-modal__icon icon-information-line"></i>
+        <div className="global-dialog-modal__content" style={maxWidthStyle}>
           {body ? body.props.children : null}
         </div>
         <footer>{footer ? footer.props.children : null}</footer>
