@@ -1,24 +1,46 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import Logo from "../assets/images/logo.png";
 
 import "../assets/styles/navbar.scss";
 import AuthModal from "./AuthModal";
 import AboutUsModal from "./AboutUsModal";
 
-export default class Navbar extends Component {
+class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isScrolled: false,
+      withBg: false,
       isAboutUsModalShow: false,
       isAuthModalShow: false,
       selectedAuthType: "login",
+      currentRoute: "",
     };
   }
 
   componentDidMount() {
+    this.setState({ currentRoute: this.props.location.pathname });
     window.addEventListener("scroll", this.handleScroll);
+
+    if (this.state.currentRoute !== "/") {
+      this.setState({ withBg: true });
+    }
+  }
+
+  componentDidUpdate(previousProps, previousState) {
+    const currentPath = this.props.location.pathname;
+    // catch changes in url/route, added if() to avoid maximum stack error
+    // read this for detail -> https://stackoverflow.com/questions/30528348/setstate-inside-of-componentdidupdate
+    if (previousState.currentRoute !== currentPath) {
+      this.setState({ currentRoute: currentPath });
+
+      if (this.state.currentRoute !== "/") {
+        this.setState({ withBg: true });
+      } else {
+        this.setState({ withBg: false });
+      }
+    }
   }
 
   componentWillUnmount() {
@@ -33,7 +55,8 @@ export default class Navbar extends Component {
 
   navClass = () => {
     const classArray = ["navigation__bar"];
-    if (this.state.isScrolled) {
+    // 'withBg' gonna be 'true' when user access into other page that is not a home page
+    if (this.state.isScrolled || this.state.withBg) {
       classArray.push("nav--scrolled");
     }
 
@@ -55,9 +78,10 @@ export default class Navbar extends Component {
   render() {
     const { isAboutUsModalShow, isAuthModalShow, selectedAuthType } =
       this.state;
+
     // some react functions doesn't use "()" to avoid error -> read this: https://stackoverflow.com/questions/48497358/reactjs-maximum-update-depth-exceeded-error
     const { toggleAboutUsModal, showAuthModal, hideAuthModal } = this;
-    const navClass = this.navClass(); // for class binding must use "()" so can call the function & get the return
+    const navClass = this.navClass(); // for function that returns must use "()" so can call the function & get the return
 
     return (
       <section className={navClass}>
@@ -119,3 +143,5 @@ export default class Navbar extends Component {
     );
   }
 }
+
+export default withRouter(Navbar);
