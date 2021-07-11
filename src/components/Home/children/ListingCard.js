@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import SampleSaleImage from "../../../assets/images/sample-real-estate.jpg";
 import SampleRentImage from "../../../assets/images/sample-real-estate-rent.jpg";
 
@@ -21,12 +22,16 @@ const ListingCard = (props) => {
     return classArray.join(" ");
   };
 
+  const listingRoute = () => {
+    return `/listing/${props.data.id}`;
+  };
+
   return (
     <div className="listing-card">
       <div className="card__image-wrapper">
-        <button type="button" className="card__image">
+        <Link to={listingRoute()} className="card__image">
           <img className="image" src={sampleImage} alt="real-estate" />
-        </button>
+        </Link>
         <span className="card-tag tag--featured">Featured</span>
         <span className="card__image-count">
           <i className="icon-pictures" />
