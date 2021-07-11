@@ -21,7 +21,6 @@
     opacity: 1;
 
     .global-dialog-modal__content {
-      visibility: visible;
       opacity: 1;
       transform: translateY(0);
     }
@@ -48,7 +47,6 @@
     0px 0px 1px rgba(10, 31, 68, 0.1);
   line-height: 1.4;
   opacity: 0;
-  visibility: hidden;
   transform: translateY(-40px);
   transition: opacity 0.5s, transform 0.5s;
 }

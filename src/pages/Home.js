@@ -12,14 +12,14 @@ import "slick-carousel/slick/slick-theme.css";
 
 const Home = () => {
   return (
-    <div>
+    <section>
       <HomeBanner />
       <HomeListingPreview />
       <HomeListingOptions />
       <HomeListingPreview type="rent" />
       <HomeDevelopers />
       <HomeAgents />
-    </div>
+    </section>
   );
 };
 

@@ -21,6 +21,7 @@ const HomeListingPreview = (props) => {
   */
   const listingData = [
     {
+      id: 1001,
       name: `${propertyText} Boulevard`,
       price: "150,000",
       status: "available",
@@ -32,6 +33,7 @@ const HomeListingPreview = (props) => {
       type: "apartment",
     },
     {
+      id: 1002,
       name: `${propertyText} Promax`,
       price: "180,000",
       status: "available",
@@ -43,6 +45,7 @@ const HomeListingPreview = (props) => {
       type: "house",
     },
     {
+      id: 1003,
       name: `${propertyText} Boulevard`,
       price: "130,000",
       status: "available",
@@ -54,6 +57,7 @@ const HomeListingPreview = (props) => {
       type: "apartment",
     },
     {
+      id: 1004,
       name: `${propertyText} Promax`,
       price: "250,000",
       status: "available",
@@ -65,6 +69,7 @@ const HomeListingPreview = (props) => {
       type: "house",
     },
     {
+      id: 1005,
       name: `${propertyText} Boulevard`,
       price: "150,000",
       status: "available",
@@ -76,6 +81,7 @@ const HomeListingPreview = (props) => {
       type: "apartment",
     },
     {
+      id: 1006,
       name: `${propertyText} Promax`,
       price: "120,000",
       status: "available",
