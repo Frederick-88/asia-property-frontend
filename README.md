@@ -42,7 +42,6 @@ Frontend & Concept References :
 - https://www.airbnb.com/ ( landing page & dashboard site )
 - https://preview.themeforest.net/item/wp-residence-real-estate-wordpress-theme/full_screen_preview/7896392?_ga=2.113331008.694251961.1623680163-1787504979.1614307227 ( landing page & dashboard site )
 - https://preview.themeforest.net/item/homeid-real-estate-wordpress-theme/full_screen_preview/30203159?_ga=2.111640643.694251961.1623680163-1787504979.1614307227 ( landing page & dashboard site )
-- https://preview.themeforest.net/item/homeid-real-estate-wordpress-theme/full_screen_preview/30203159?_ga=2.111640643.694251961.1623680163-1787504979.1614307227 ( listing card )
 - https://dribbble.com/search/real%20estate%20web ( landing page )
 - https://dribbble.com/shots/14608177-Socialup-Web-App ( auth modal )
 
