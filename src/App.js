@@ -8,6 +8,8 @@ import mainBackground from "./assets/images/home_bg.jpg";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
+import Listings from "./pages/Listings";
+import ListingDetail from "./pages/ListingDetail";
 
 const App = () => {
   const backgroundStyle = (image) => {
@@ -30,6 +32,12 @@ const App = () => {
             <Switch>
               <Route exact path="/">
                 <Home />
+              </Route>
+              <Route exact path="/listings">
+                <Listings />
+              </Route>
+              <Route exact path="/listing/:id">
+                <ListingDetail />
               </Route>
             </Switch>
             <Footer />
