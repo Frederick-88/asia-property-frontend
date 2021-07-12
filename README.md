@@ -1,8 +1,8 @@
-## asia-property-frontend
+## Asia-Property-Frontend
 
 Content Structure :
 
-1. Homepage :
+1. Homepage
 
 - home banner
 - real estate listing preview
@@ -12,7 +12,7 @@ Content Structure :
 - agents featured
 - footer
 
-2. Listing :
+2. Listing
 
 - Map ( Right Side )
 - search with for rent/sale options & title ( fixed position )
@@ -20,7 +20,7 @@ Content Structure :
 - skeleton loader
 - see more
 
-3. Wishlists:
+3. Wishlists
 
 - standard listing with 3 grids
 - skeleton loader
