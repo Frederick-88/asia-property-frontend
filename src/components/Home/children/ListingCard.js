@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import SampleSaleImage from "../../../assets/images/sample-real-estate.jpg";
 import SampleRentImage from "../../../assets/images/sample-real-estate-rent.jpg";
 
