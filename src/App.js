@@ -10,6 +10,8 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Listings from "./pages/Listings";
 import ListingDetail from "./pages/ListingDetail";
+import Wishlist from "./pages/Wishlist";
+import OurAgents from "./pages/OurAgents";
 
 const App = () => {
   const backgroundStyle = (image) => {
@@ -38,6 +40,12 @@ const App = () => {
               </Route>
               <Route exact path="/listing/:id">
                 <ListingDetail />
+              </Route>
+              <Route exact path="/wishlists">
+                <Wishlist />
+              </Route>
+              <Route exact path="/our-agents">
+                <OurAgents />
               </Route>
             </Switch>
             <Footer />
