@@ -1,0 +1,8 @@
+@import "variables.scss";
+
+.wishlist__container {
+  padding: 100px 75px 40px;
+  display: flex;
+  flex-wrap: wrap;
+  background: $white;
+}
