@@ -237,7 +237,7 @@ const ListingDetailComponent = (props) => {
           <div className="content__map-section">
             <h4 className="map-title">Location</h4>
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.2332031354063!2d104.0395959498438!3d0.9812683992806853!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d9910f30555551%3A0x354b9fd40a2da90d!2sBarelang%20Bridge%20Batam%2C%20Indonesia!5e0!3m2!1sid!2sid!4v1626015369764!5m2!1sid!2sid"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63824.94971363673!2d104.02559383176848!3d1.1175792402775235!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d988dc34cd0ecb%3A0xe373ee32cae6412!2sKec.%20Batam%20Kota%2C%20Kota%20Batam%2C%20Kepulauan%20Riau!5e0!3m2!1sid!2sid!4v1626275977399!5m2!1sid!2sid"
               title="map"
               width="600"
               height="450"
