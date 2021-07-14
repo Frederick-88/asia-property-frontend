@@ -1,5 +1,107 @@
 @import "variables.scss";
 
+// --------------------------
+// < --- Listing List --- >
+// --------------------------
+
+.listing-list__container {
+  background: $white;
+  display: flex;
+
+  .listing-section {
+    padding: 150px 75px 0;
+    width: 50%;
+
+    .listing-title {
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+
+    .listing__navigation-setting {
+      display: flex;
+    }
+
+    .option-dropdown {
+      width: 20%;
+      margin-right: 20px;
+    }
+
+    .search-bar {
+      display: flex;
+      height: 45px;
+      width: 80%;
+      position: relative;
+
+      .search-icon {
+        position: absolute;
+        font-size: 1.125rem;
+        top: 13px;
+        left: 20px;
+        color: $blue;
+      }
+
+      .search-input {
+        display: block;
+        padding: 0 20px 0 60px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        height: 100%;
+        outline: 0;
+        border: 1px solid $lightGrey4;
+        border-right: 0;
+        width: 80%;
+        background: $white;
+        border-radius: 4px 0 0 4px;
+        letter-spacing: 1.5px;
+      }
+
+      .search-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.875rem;
+        font-weight: 500;
+        width: 20%;
+        height: 100%;
+        border: 0;
+        outline: 0;
+        background: $blue;
+        color: $white;
+        border-radius: 0 4px 4px 0;
+        cursor: pointer;
+        transition: background 0.3s;
+
+        &:hover {
+          background: $darkBlue;
+        }
+      }
+    }
+
+    .listing-list {
+      margin-top: 30px;
+    }
+  }
+
+  .listing__map {
+    top: 80px;
+    right: 0;
+    position: sticky;
+    margin-top: 80px;
+    height: calc(100vh - 80px);
+    width: 50%;
+    background: $lightGrey2;
+
+    .map {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+// --------------------------
+// < --- Listing Detail --- >
+// --------------------------
+
 .listing-detail__wrapper {
   padding: 100px 140px 20px;
   background: $white;
@@ -376,6 +478,7 @@
       border-radius: 10px;
       background: $white;
       padding: 50px 20px;
+      margin-left: 40px;
       height: 570px;
       display: flex;
       align-items: center;
