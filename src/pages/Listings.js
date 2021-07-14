@@ -1,9 +1,12 @@
 import React from "react";
 
+import ListingList from "../components/Listings/ListingList";
+import "../assets/styles/listings.scss";
+
 const Listing = (props) => {
   return (
     <section>
-      <h4>Listing Page</h4>
+      <ListingList />
     </section>
   );
 };
