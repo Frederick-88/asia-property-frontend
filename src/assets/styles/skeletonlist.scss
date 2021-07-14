@@ -1,5 +1,10 @@
 @import "variables.scss";
 
+.skeleton-list__container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .card-skeleton {
   width: 270px;
   height: 300px;
