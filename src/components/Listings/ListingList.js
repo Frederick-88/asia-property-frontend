@@ -1,7 +1,46 @@
 import React from "react";
+
 import SkeletonList from "../SkeletonList";
+import ListingCard from "../Home/children/ListingCard";
 
 const ListingList = (props) => {
+  const isLoading = false;
+
+  const ListingListComponent = () => {
+    if (isLoading) {
+      return <SkeletonList quantity={8} />;
+    } else {
+      return (
+        <div className="listing-list">
+          {sampleListingData(8).map((listing, index) => {
+            return <ListingCard data={listing} key={index} />;
+          })}
+        </div>
+      );
+    }
+  };
+
+  const sampleListingData = (quantity) => {
+    const array = [];
+
+    for (let index = 0; index < quantity; index++) {
+      array.push({
+        id: 1001 + index,
+        name: `Apartment Boulevard - ${index}`,
+        price: "150,000",
+        status: "available",
+        address: "393 Lewis Ave, Brooklyn, New York",
+        is_renting: false,
+        bathroom_count: 3,
+        bedroom_count: 3,
+        square_feet_size: 900,
+        type: "apartment",
+      });
+    }
+
+    return array;
+  };
+
   return (
     <div className="listing-list__container">
       <div className="listing-section">
@@ -27,9 +66,7 @@ const ListingList = (props) => {
           </div>
         </div>
 
-        <div className="listing-list">
-          <SkeletonList quantity={8} />
-        </div>
+        <ListingListComponent />
       </div>
 
       <div className="listing__map">

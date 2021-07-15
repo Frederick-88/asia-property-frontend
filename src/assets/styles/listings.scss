@@ -53,6 +53,10 @@
         background: $white;
         border-radius: 4px 0 0 4px;
         letter-spacing: 1.5px;
+
+        &:focus {
+          border-color: $blue;
+        }
       }
 
       .search-button {
@@ -78,7 +82,22 @@
     }
 
     .listing-list {
-      margin-top: 30px;
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+
+      .listing-card {
+        width: 50%;
+        padding-right: 10px;
+        margin: 0;
+        margin-top: 30px;
+
+        &:nth-of-type(even) {
+          padding-right: 0;
+          padding-left: 10px;
+        }
+      }
     }
   }
 
