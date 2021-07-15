@@ -522,7 +522,7 @@
 
   .agent__header-wrapper {
     margin-right: 60px;
-    width: 25%;
+    width: 35%;
 
     .agent-title {
       font-size: 3.25rem;
@@ -537,11 +537,12 @@
       font-weight: 500;
       color: $textGrey;
       line-height: 2;
+      max-width: 450px;
     }
   }
 
   .agent__list-carousel {
-    width: 75%;
+    width: 65%;
 
     .carousel__button-list {
       display: flex;
@@ -579,7 +580,7 @@
     }
 
     .agent-card {
-      width: 80%;
+      width: 90%;
       margin: auto;
       transition: transform 0.3s;
 
