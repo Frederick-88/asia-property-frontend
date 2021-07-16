@@ -8,9 +8,15 @@
   background: $white;
   display: flex;
 
-  .listing-section {
+  .listing-section__container {
     padding: 150px 75px 0;
     width: 50%;
+  }
+
+  .listing-section {
+    max-width: 600px;
+    margin: auto;
+    width: 100%;
 
     .listing-title {
       font-weight: 500;

@@ -43,30 +43,32 @@ const ListingList = (props) => {
 
   return (
     <div className="listing-list__container">
-      <div className="listing-section">
-        <h4 className="listing-title">Showing 1-8 of 45 Results</h4>
-        <div className="listing__navigation-setting">
-          <select className="option-dropdown" name="property-type">
-            <option className="option" value="All">
-              All
-            </option>
-            <option className="option" value="For Sale">
-              For Sale
-            </option>
-            <option className="option" value="For Rent">
-              For Rent
-            </option>
-          </select>
-          <div className="search-bar">
-            <i className="icon-search search-icon" />
-            <input className="search-input" placeholder="Enter Keyword ..." />
-            <button type="button" className="search-button">
-              Search
-            </button>
+      <div className="listing-section__container">
+        <div className="listing-section">
+          <h4 className="listing-title">Showing 1-8 of 45 Results</h4>
+          <div className="listing__navigation-setting">
+            <select className="option-dropdown" name="property-type">
+              <option className="option" value="All">
+                All
+              </option>
+              <option className="option" value="For Sale">
+                For Sale
+              </option>
+              <option className="option" value="For Rent">
+                For Rent
+              </option>
+            </select>
+            <div className="search-bar">
+              <i className="icon-search search-icon" />
+              <input className="search-input" placeholder="Enter Keyword ..." />
+              <button type="button" className="search-button">
+                Search
+              </button>
+            </div>
           </div>
-        </div>
 
-        <ListingListComponent />
+          <ListingListComponent />
+        </div>
       </div>
 
       <div className="listing__map">
