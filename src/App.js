@@ -7,6 +7,8 @@ import "./assets/styles/global.scss";
 import mainBackground from "./assets/images/home_bg.jpg";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ScrollToTop from "./utilities/ScrollToTop";
+
 import Home from "./pages/Home";
 import Listings from "./pages/Listings";
 import ListingDetail from "./pages/ListingDetail";
@@ -26,6 +28,7 @@ const App = () => {
     <main>
       <BrowserView>
         <Router>
+          <ScrollToTop />
           <main
             className="main-section"
             style={backgroundStyle(mainBackground)}
