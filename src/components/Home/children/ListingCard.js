@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import SampleSaleImage from "../../../assets/images/sample-real-estate.jpg";
 import SampleRentImage from "../../../assets/images/sample-real-estate-rent.jpg";
+import "../../../assets/styles/home.scss";
 
 const ListingCard = (props) => {
   const isRentListingType = props.data.is_renting;

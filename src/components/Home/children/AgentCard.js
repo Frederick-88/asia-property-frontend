@@ -1,5 +1,6 @@
 import React from "react";
 import SampleAgent from "../../../assets/images/sample-agent.jpeg";
+import "../../../assets/styles/home.scss";
 
 const AgentCard = (props) => {
   const locationText = `${props.data.city}, ${props.data.country}`;

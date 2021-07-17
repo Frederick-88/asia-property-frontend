@@ -1,9 +1,13 @@
 import React, { useRef } from "react";
+import { useHistory } from "react-router-dom";
+
 import ListingCard from "./children/ListingCard";
 import Slider from "react-slick";
 
 const HomeListingPreview = (props) => {
+  const history = useHistory();
   const customSlider = useRef();
+
   const settings = {
     dots: true,
     arrows: false,
@@ -94,12 +98,24 @@ const HomeListingPreview = (props) => {
     },
   ];
 
+  // -----------------------------------
+  // < ------------------------------- >
+  // -----------------------------------
+
   const setPrevCarousel = () => {
     customSlider.current.slickPrev();
   };
 
   const setNextCarousel = () => {
     customSlider.current.slickNext();
+  };
+
+  const goToListingPage = () => {
+    if (isRentListingType) {
+      history.push("/listings?type=for-rent");
+    } else {
+      history.push("/listings?type=for-sale");
+    }
   };
 
   return (
@@ -115,7 +131,11 @@ const HomeListingPreview = (props) => {
             suscipit
           </p>
         </div>
-        <button type="button" className="list-header__button">
+        <button
+          type="button"
+          className="list-header__button"
+          onClick={goToListingPage}
+        >
           <p className="title">See all properties</p>
           <i className="icon-arrow-right" />
         </button>

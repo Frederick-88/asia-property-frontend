@@ -1,10 +1,14 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
+
 import ApartmentImage from "../../assets/images/sample-apartment.jpg";
 import HouseImage from "../../assets/images/sample-house.jpg";
 import HomeClusterImage from "../../assets/images/sample-home-cluster.jpg";
 import VillaImage from "../../assets/images/sample-villa.jpg";
 
 const HomeListingOptions = () => {
+  const history = useHistory();
+
   const options = [
     {
       title: "Apartment",
@@ -28,6 +32,10 @@ const HomeListingOptions = () => {
     },
   ];
 
+  const goToListingPage = () => {
+    history.push("/listings");
+  };
+
   return (
     <section className="home__listing-options">
       <div className="options__header-wrapper">
@@ -45,6 +53,7 @@ const HomeListingOptions = () => {
               type="button"
               key={option.title}
               className="options__list-item"
+              onClick={goToListingPage}
             >
               <img
                 className="item-image"
