@@ -1,0 +1,54 @@
+@import "../../assets/styles/variables.scss";
+
+.pagination {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin: 50px auto;
+  padding: 0;
+
+  .pagination-item {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    background: $lightGrey6;
+    margin: 0 10px;
+    transition: background 0.3s;
+    border-radius: 4px;
+    font-size: 0.875rem;
+
+    &:hover {
+      background: $disabledGrey;
+    }
+
+    &.item--button {
+      font-size: 0.6875rem;
+    }
+
+    &.item--active {
+      background: $blue;
+
+      .link {
+        color: $white;
+      }
+    }
+
+    &.item--disabled {
+      background: $disabledGrey;
+      cursor: default;
+      pointer-events: none;
+
+      .link {
+        color: $grey;
+      }
+    }
+  }
+
+  .link {
+    padding: 10px 15px;
+    text-decoration: none;
+    background: transparent;
+    color: $darkGrey;
+    transition: color 0.3s;
+  }
+}
