@@ -7,6 +7,10 @@
   display: flex;
   color: $lightGrey2;
 
+  &.footer--no-margin {
+    margin-top: 0;
+  }
+
   .footer-section {
     width: 30%;
     margin: 0 20px;

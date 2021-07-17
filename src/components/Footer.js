@@ -1,10 +1,18 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import Logo from "../assets/images/logo.png";
 import "../assets/styles/footer.scss";
 
 const Footer = () => {
+  const currentRoute = useLocation().pathname;
+
+  const footerClass = () => {
+    const needMarginInFooterRoute = currentRoute === "/";
+    return needMarginInFooterRoute ? "footer" : "footer footer--no-margin";
+  };
+
   return (
-    <section className="footer">
+    <section className={footerClass()}>
       <div className="footer-section section--main">
         <div className="image__wrapper">
           <img className="image" src={Logo} alt="logo" />
