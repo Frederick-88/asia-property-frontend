@@ -22,20 +22,27 @@ class Navbar extends Component {
   componentDidMount() {
     this.setState({ currentRoute: this.props.location.pathname });
     window.addEventListener("scroll", this.handleScroll);
+    const route = this.state.currentRoute;
+    const withBgRoute =
+      route !== "/" && route !== "/wishlists" && route !== "/our-agents";
 
-    if (this.state.currentRoute !== "/") {
+    if (withBgRoute) {
       this.setState({ withBg: true });
     }
   }
 
   componentDidUpdate(previousProps, previousState) {
     const currentPath = this.props.location.pathname;
+    const route = this.state.currentRoute;
+    const withBgRoute =
+      route !== "/" && route !== "/wishlists" && route !== "/our-agents";
+
     // catch changes in url/route, added if() to avoid maximum stack error
     // read this for detail -> https://stackoverflow.com/questions/30528348/setstate-inside-of-componentdidupdate
     if (previousState.currentRoute !== currentPath) {
       this.setState({ currentRoute: currentPath });
 
-      if (this.state.currentRoute !== "/") {
+      if (withBgRoute) {
         this.setState({ withBg: true });
       } else {
         this.setState({ withBg: false });
@@ -49,7 +56,7 @@ class Navbar extends Component {
 
   handleScroll = () => {
     const position = document.documentElement;
-    const scrolledThroughLimit = position.scrollTop > 120;
+    const scrolledThroughLimit = position.scrollTop > 90;
     this.setState({ isScrolled: scrolledThroughLimit });
   };
 
