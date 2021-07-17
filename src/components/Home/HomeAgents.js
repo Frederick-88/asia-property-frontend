@@ -61,7 +61,7 @@ const HomeAgents = () => {
           Asia Property has 100+ agents that ready to provide the best service &
           support for your dream home purchases.
         </p>
-        <Link to="/agents" className="agent__button">
+        <Link to="/our-agents" className="agent__button">
           <p className="title">See all agents</p>
           <i className="icon-arrow-right" />
         </Link>
