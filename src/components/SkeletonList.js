@@ -19,16 +19,18 @@ const SkeletonList = (props) => {
     <div className="skeleton-list__container">
       {mockQuantityArray().map((element, index) => {
         return (
-          <div className="card-skeleton" key={index}>
-            <div className="animated-background">
-              <div className="card-skeleton-img"></div>
-              <div className="skel-mask-container">
-                <div className="skel-mask skel-mask-1"></div>
-                <div className="skel-mask skel-mask-2"></div>
-                <div className="skel-mask skel-mask-3"></div>
-                <div className="skel-mask skel-mask-4"></div>
-                <div className="skel-mask skel-mask-5"></div>
-                <div className="skel-mask skel-mask-6"></div>
+          <div className="card-skeleton__container" key={index}>
+            <div className="card-skeleton">
+              <div className="animated-background">
+                <div className="card-skeleton-img"></div>
+                <div className="skel-mask-container">
+                  <div className="skel-mask skel-mask-1"></div>
+                  <div className="skel-mask skel-mask-2"></div>
+                  <div className="skel-mask skel-mask-3"></div>
+                  <div className="skel-mask skel-mask-4"></div>
+                  <div className="skel-mask skel-mask-5"></div>
+                  <div className="skel-mask skel-mask-6"></div>
+                </div>
               </div>
             </div>
           </div>
