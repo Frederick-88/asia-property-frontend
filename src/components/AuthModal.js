@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Modal from "../utilities/Modal";
 import Slider from "react-slick";
+import { toast } from "react-toastify";
 
 import inspiration01 from "../assets/images/auth-modal/inspiration1.png";
 import inspiration02 from "../assets/images/auth-modal/inspiration2.jpg";
@@ -12,7 +13,9 @@ import inspiration06 from "../assets/images/auth-modal/inspiration6.jpg";
 import "../assets/styles/authmodal.scss";
 
 const AuthModal = (props) => {
+  // -------------------------------------------
   // < ---- Conditional Component Renders ---- >
+  // -------------------------------------------
   const AuthAddonsComponent = () => {
     if (authType === "login") {
       return (
@@ -51,7 +54,7 @@ const AuthModal = (props) => {
   const AuthFormComponent = () => {
     if (authType === "register") {
       return (
-        <div className="input-list">
+        <div className="form__input-list">
           <label className="input-title" htmlFor="username">
             Username
           </label>
@@ -59,8 +62,11 @@ const AuthModal = (props) => {
             <i className="icon-user icon" />
             <input
               className="input"
+              name="username"
               id="username"
               placeholder="Enter your username"
+              value={authInputData.username}
+              onChange={(event) => handleAuthInputChange(event)}
             />
           </div>
           <label className="input-title" htmlFor="email">
@@ -69,9 +75,13 @@ const AuthModal = (props) => {
           <div className="input-wrapper">
             <i className="icon-mail icon" />
             <input
+              type="email"
               className="input"
+              name="email"
               id="email"
               placeholder="Enter your email"
+              value={authInputData.email}
+              onChange={(event) => handleAuthInputChange(event)}
             />
           </div>
           <label className="input-title" htmlFor="phone-number">
@@ -80,9 +90,13 @@ const AuthModal = (props) => {
           <div className="input-wrapper">
             <i className="icon-phone icon" />
             <input
+              type="number"
               className="input"
+              name="phone_number"
               id="phone-number"
               placeholder="Enter your phone number"
+              value={authInputData.phone_number}
+              onChange={(event) => handleAuthInputChange(event)}
             />
           </div>
           <label className="input-title" htmlFor="password">
@@ -93,8 +107,11 @@ const AuthModal = (props) => {
             <input
               type={passwordInputType()}
               className="input input--password"
+              name="password"
               id="password"
               placeholder="Enter your password"
+              value={authInputData.password}
+              onChange={(event) => handleAuthInputChange(event)}
             />
             <button
               type="button"
@@ -106,16 +123,20 @@ const AuthModal = (props) => {
       );
     } else {
       return (
-        <div className="input-list">
+        <div className="form__input-list">
           <label className="input-title" htmlFor="email">
             Email Address
           </label>
           <div className="input-wrapper">
             <i className="icon-mail icon" />
             <input
+              type="email"
               className="input"
+              name="email"
               id="email"
               placeholder="Enter your email"
+              value={authInputData.email}
+              onChange={(event) => handleAuthInputChange(event)}
             />
           </div>
 
@@ -127,8 +148,11 @@ const AuthModal = (props) => {
             <input
               type={passwordInputType()}
               className="input input--password"
+              name="password"
               id="password"
               placeholder="Enter your password"
+              value={authInputData.password}
+              onChange={(event) => handleAuthInputChange(event)}
             />
             <button
               type="button"
@@ -141,7 +165,9 @@ const AuthModal = (props) => {
     }
   };
 
+  // ---------------------
   // < ---- States ---- >
+  // ---------------------
   const settings = {
     dots: false,
     arrows: false,
@@ -178,19 +204,16 @@ const AuthModal = (props) => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [authType, setAuthType] = useState(props.type);
-  // const [dataInputLogin, setDataInputLogin] = useState({
-  //   email: "",
-  //   password: "",
-  // });
+  const [authInputData, setAuthInputData] = useState({
+    email: "",
+    password: "",
+    username: "",
+    phone_number: "",
+  });
 
-  // const handleInputLoginChange = (event) => {
-  //   setDataInputLogin({
-  //     ...dataInputLogin,
-  //     [event.currentTarget.name]: event.currentTarget.value,
-  //   });
-  // };
-
+  // -----------------------
   //  < ---- Computed ---- >
+  // -----------------------
   const authTitle = () => {
     if (authType === "register") return "Create Account";
     else if (authType === "login") return "Login to your account";
@@ -235,7 +258,9 @@ const AuthModal = (props) => {
       : "auth-modal__section section--right";
   };
 
+  // ----------------------
   //  < ---- Methods ---- >
+  // ----------------------
   const hideModal = () => {
     props.hideModal();
   };
@@ -243,13 +268,55 @@ const AuthModal = (props) => {
   const toggleAuthType = () => {
     const authToggleValue = authType === "login" ? "register" : "login";
     setAuthType(authToggleValue);
+    resetAuthInput();
   };
 
   const togglePasswordType = () => {
     setShowPassword(!showPassword);
   };
 
+  const resetAuthInput = () => {
+    setAuthInputData({
+      email: "",
+      password: "",
+      username: "",
+      phone_number: "",
+    });
+  };
+
+  const handleAuthInputChange = (event) => {
+    setAuthInputData({
+      ...authInputData,
+      [event.currentTarget.name]: event.currentTarget.value,
+    });
+  };
+
+  const handleAuthInputSubmit = () => {
+    let isValidForm = false;
+    const { email, password, username, phone_number } = authInputData;
+
+    // check existency
+    if (authType === "register") {
+      isValidForm = !!email && !!password && !!username && !!phone_number;
+    } else {
+      isValidForm = !!email && !!password;
+    }
+
+    if (!isValidForm) {
+      toast.error("Please fill all the form.", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 5000,
+      });
+      return;
+    }
+
+    props.handleAuthInputSubmit({ type: authType, ...authInputData });
+    resetAuthInput();
+  };
+
+  // -----------------------
   // < ---- UseEffect ---- >
+  // -----------------------
   useEffect(() => {
     // watch changes in props.type
     setAuthType(props.type);
@@ -271,7 +338,11 @@ const AuthModal = (props) => {
 
             {AuthAddonsComponent()}
 
-            <button type="button" className="auth-button">
+            <button
+              type="button"
+              className="auth-button"
+              onClick={handleAuthInputSubmit}
+            >
               {authButtonText()}
             </button>
 
@@ -279,20 +350,18 @@ const AuthModal = (props) => {
           </div>
 
           <div className={carouselClass()}>
-            {props.isAuthModalShow ? (
-              <Slider {...settings}>
-                {inspirationList.map((inspiration, index) => {
-                  return (
-                    <img
-                      className="preview-image"
-                      src={inspiration.image}
-                      key={index}
-                      alt="previews"
-                    />
-                  );
-                })}
-              </Slider>
-            ) : null}
+            <Slider {...settings}>
+              {inspirationList.map((inspiration, index) => {
+                return (
+                  <img
+                    className="preview-image"
+                    src={inspiration.image}
+                    key={index}
+                    alt="previews"
+                  />
+                );
+              })}
+            </Slider>
           </div>
         </main>
       </Modal.Body>
