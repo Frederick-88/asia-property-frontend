@@ -1,6 +1,79 @@
 @import "variables.scss";
 
 .wishlist__container {
-  padding: 100px 75px 40px;
-  background: $white;
+  background: $lightGrey2;
+  padding-bottom: 80px;
+
+  .wishlist__banner {
+    padding-top: 100px;
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+
+    .banner-container {
+      display: flex;
+      align-items: center;
+      max-height: 400px;
+    }
+
+    .banner-image {
+      max-height: 350px;
+      height: 100%;
+    }
+
+    .banner-text {
+      margin-left: 40px;
+      max-width: 400px;
+      color: $lightGrey2;
+
+      .banner-title {
+        margin-bottom: 15px;
+        font-weight: 600;
+        font-size: 2rem;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+      }
+
+      .banner-description {
+        line-height: 1.8;
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .wishlist__content {
+    margin: -80px auto 0;
+    width: 85%;
+    padding: 50px;
+    border-radius: 10px;
+    background: $white;
+    box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.25);
+
+    .wishlist-list {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .list-title {
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin-left: 15px;
+      color: $darkGrey;
+      max-width: 120px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid $darkGrey;
+    }
+
+    .listing-card {
+      width: 25%;
+      padding: 0 15px;
+      margin: 0;
+      margin-top: 40px;
+    }
+
+    .card-skeleton__container {
+      width: 25%;
+    }
+  }
 }
