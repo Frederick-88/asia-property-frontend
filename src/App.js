@@ -2,6 +2,8 @@ import React from "react";
 import { BrowserView, MobileView } from "react-device-detect";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./assets/styles/global.scss";
 
 import mainBackground from "./assets/images/home_bg.jpg";
@@ -34,6 +36,7 @@ const App = () => {
             style={backgroundStyle(mainBackground)}
           >
             <Navbar />
+            <ToastContainer />
             <Switch>
               <Route exact path="/">
                 <Home />
