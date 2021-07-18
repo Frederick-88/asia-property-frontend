@@ -1,17 +1,22 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
+import { toast } from "react-toastify";
+
 import Logo from "../assets/images/logo.png";
 
 import "../assets/styles/navbar.scss";
 import AuthModal from "./AuthModal";
 import AboutUsModal from "./AboutUsModal";
+import UserProfileModal from "./UserProfileModal";
 
 class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isAuthenticated: false,
       isScrolled: false,
       withBg: false,
+      isProfileModalShow: false,
       isAboutUsModalShow: false,
       isAuthModalShow: false,
       selectedAuthType: "login",
@@ -54,11 +59,44 @@ class Navbar extends Component {
     window.removeEventListener("scroll", this.handleScroll);
   }
 
-  handleScroll = () => {
-    const position = document.documentElement;
-    const scrolledThroughLimit = position.scrollTop > 90;
-    this.setState({ isScrolled: scrolledThroughLimit });
+  AuthNavComponent = () => {
+    if (this.state.isAuthenticated) {
+      return (
+        <UserProfileModal
+          isProfileModalShow={this.state.isProfileModalShow}
+          toggleIsProfileModalShow={this.toggleIsProfileModalShow}
+          hideIsProfileModalShow={this.hideIsProfileModalShow}
+          goToAboutDeveloper={this.goToAboutDeveloper}
+          logout={this.logout}
+        />
+      );
+    } else {
+      return (
+        <div className="auth-button__list">
+          <button
+            type="button"
+            className="nav__auth-button"
+            onClick={() => this.showAuthModal("login")}
+          >
+            <i className="icon-user icon" />
+            <p className="title">Sign in</p>
+          </button>
+          <button
+            type="button"
+            className="nav__auth-button auth--admin"
+            onClick={() => this.showAuthModal("login-admin")}
+          >
+            <p className="title">For Admin</p>
+            <i className="icon-arrow-right icon" />
+          </button>
+        </div>
+      );
+    }
   };
+
+  // ----------------------
+  //  < ---- Computed ---- >
+  // ----------------------
 
   navClass = () => {
     const classArray = ["navigation__bar"];
@@ -70,6 +108,24 @@ class Navbar extends Component {
     return classArray.join(" "); // creating result like `navigation__bar nav--scrolled` so usable in react's className
   };
 
+  // ----------------------
+  //  < ---- Methods ---- >
+  // ----------------------
+
+  toggleIsProfileModalShow = () => {
+    this.setState({ isProfileModalShow: !this.state.isProfileModalShow });
+  };
+
+  hideIsProfileModalShow = () => {
+    this.setState({ isProfileModalShow: false });
+  };
+
+  handleScroll = () => {
+    const position = document.documentElement;
+    const scrolledThroughLimit = position.scrollTop > 90;
+    this.setState({ isScrolled: scrolledThroughLimit });
+  };
+
   showAuthModal = (authType) => {
     this.setState({ isAuthModalShow: true, selectedAuthType: authType });
   };
@@ -78,8 +134,42 @@ class Navbar extends Component {
     this.setState({ isAuthModalShow: false });
   };
 
+  goToAboutDeveloper = () => {
+    this.toggleAboutUsModal(false);
+    this.setState({ isProfileModalShow: false });
+  };
+
   toggleAboutUsModal = (currentModalState) => {
     this.setState({ isAboutUsModalShow: !currentModalState });
+  };
+
+  handleAuthInputSubmit = (data) => {
+    if (data.type === "register") {
+      toast.success("You've successfully created a new account.", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 5000,
+      });
+    } else if (data.type === "login-admin") {
+      this.setState({ isAuthenticated: true, isAuthModalShow: false });
+      toast.success("You've successfully logged in as an admin.", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 5000,
+      });
+    } else {
+      this.setState({ isAuthenticated: true, isAuthModalShow: false });
+      toast.success("You've successfully logged in.", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 5000,
+      });
+    }
+  };
+
+  logout = () => {
+    this.setState({ isAuthenticated: false, isProfileModalShow: false });
+    toast.success("You've successfully logged out.", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 5000,
+    });
   };
 
   render() {
@@ -87,11 +177,17 @@ class Navbar extends Component {
       this.state;
 
     // some react functions doesn't use "()" to avoid error -> read this: https://stackoverflow.com/questions/48497358/reactjs-maximum-update-depth-exceeded-error
-    const { toggleAboutUsModal, showAuthModal, hideAuthModal } = this;
-    const navClass = this.navClass(); // for function that returns must use "()" so can call the function & get the return
+    // note: // for function that returns must use "()" so can call the function & get the return
+    const {
+      toggleAboutUsModal,
+      navClass,
+      AuthNavComponent,
+      hideAuthModal,
+      handleAuthInputSubmit,
+    } = this;
 
     return (
-      <section className={navClass}>
+      <section className={navClass()}>
         <div className="navigation__list">
           <Link to="/" className="nav-image__wrapper">
             <img className="nav__image" src={Logo} alt="logo" />
@@ -115,24 +211,7 @@ class Navbar extends Component {
           </button>
         </div>
 
-        <div className="auth-button__list">
-          <button
-            type="button"
-            className="nav__auth-button"
-            onClick={() => showAuthModal("login")}
-          >
-            <i className="icon-user icon" />
-            <p className="title">Sign in</p>
-          </button>
-          <button
-            type="button"
-            className="nav__auth-button auth--admin"
-            onClick={() => showAuthModal("login-admin")}
-          >
-            <p className="title">For Admin</p>
-            <i className="icon-arrow-right icon" />
-          </button>
-        </div>
+        {AuthNavComponent()}
 
         {/* 
           in Event/Emits from Child, Binding into Function can use "()=>" if you're going to send a param.
@@ -141,6 +220,7 @@ class Navbar extends Component {
           isAuthModalShow={isAuthModalShow}
           type={selectedAuthType}
           hideModal={hideAuthModal}
+          handleAuthInputSubmit={handleAuthInputSubmit}
         />
         <AboutUsModal
           isAboutUsModalShow={isAboutUsModalShow}

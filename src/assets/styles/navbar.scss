@@ -110,4 +110,120 @@
       letter-spacing: 2px;
     }
   }
+
+  .auth__user-profile {
+    position: relative;
+
+    .user-profile__header {
+      display: flex;
+      align-items: center;
+      background: transparent;
+      border: 0;
+      outline: 0;
+      cursor: pointer;
+    }
+
+    .profile-image {
+      background: $lightGrey2;
+      width: 35px;
+      height: 35px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .profile-icon {
+      color: $lightGrey2;
+      font-size: 0.875rem;
+      margin-left: 10px;
+    }
+
+    .user-profile__content {
+      position: absolute;
+      top: 50px;
+      right: 0;
+      background: $white;
+      border-radius: 4px;
+      padding: 20px;
+      color: $darkGrey;
+      min-width: 250px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-30px);
+      transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+
+      &.is-show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+    }
+
+    .profile-username {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .profile-role,
+    .profile-email,
+    .profile-location {
+      font-size: 0.8125rem;
+    }
+
+    .profile-role {
+      text-transform: uppercase;
+      font-weight: 500;
+      color: $textGrey;
+      margin-top: 2px;
+    }
+
+    .profile-container {
+      display: flex;
+      align-items: center;
+      margin-top: 4px;
+
+      &:first-of-type {
+        margin-top: 10px;
+      }
+
+      .icon {
+        margin-right: 10px;
+        font-size: 0.875rem;
+      }
+    }
+
+    .divider-line {
+      margin: 20px 0;
+      border-color: $lightGrey6;
+    }
+
+    .profile-button {
+      color: $blue;
+      border: 1px solid $blue;
+      background: transparent;
+      outline: 0;
+      padding: 8px 12px;
+      width: 100%;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+
+      &:hover {
+        background: $blue;
+        color: $white;
+      }
+
+      &.button--logout {
+        border: 0;
+        background: $red;
+        color: $white;
+
+        &:hover {
+          background: $redHover;
+        }
+      }
+    }
+  }
 }
