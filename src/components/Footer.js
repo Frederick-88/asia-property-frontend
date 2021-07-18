@@ -1,14 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
+
+import { toast } from "react-toastify";
 import Logo from "../assets/images/logo.png";
 import "../assets/styles/footer.scss";
 
 const Footer = () => {
+  const [emailInput, setEmailInput] = useState("");
   const currentRoute = useLocation().pathname;
 
   const footerClass = () => {
     const needMarginInFooterRoute = currentRoute === "/";
     return needMarginInFooterRoute ? "footer" : "footer footer--no-margin";
+  };
+
+  const onChangeSubscribeInput = (event) => {
+    let { value } = event.currentTarget;
+    setEmailInput(value);
+  };
+
+  const subscribe = () => {
+    if (!emailInput) {
+      toast.warn("Please check your email address.", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 5000,
+      });
+    } else {
+      toast.success(
+        "Thanks for subscribe! Stay close with any latest informations from Asia Property.",
+        {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 5000,
+        }
+      );
+    }
+
+    setEmailInput("");
   };
 
   return (
@@ -53,8 +80,17 @@ const Footer = () => {
           suscipit sagittis
         </p>
         <div className="subscribe-section">
-          <input className="subscribe-input" placeholder="Your email" />
-          <button type="button" className="subscribe-button">
+          <input
+            className="subscribe-input"
+            placeholder="Your email"
+            value={emailInput}
+            onChange={(event) => onChangeSubscribeInput(event)}
+          />
+          <button
+            type="button"
+            className="subscribe-button"
+            onClick={subscribe}
+          >
             Subscribe
           </button>
         </div>
