@@ -1,10 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 
 import SkeletonList from "../SkeletonList";
 import ListingCard from "../Home/children/ListingCard";
+import Dropdown from "../../utilities/Dropdown";
+import Pagination from "../../utilities/Pagination";
 
 const ListingList = (props) => {
+  const history = useHistory();
+  const currentQueryUrl = useLocation().search;
+
   const isLoading = false;
+  const paginationCount = 4;
+  const dropdownOptions = [
+    {
+      name: "All",
+      value: "all",
+    },
+    {
+      name: "For Sale",
+      value: "for-sale",
+    },
+    {
+      name: "For Rent",
+      value: "for-rent",
+    },
+  ];
+
+  const [pageQuery, setPageQuery] = useState(1);
+  const [typeQuery, setTypeQuery] = useState("all");
+
+  // -------------------------------------------------
+  // < --------------------------------------------- >
+  // -------------------------------------------------
 
   const ListingListComponent = () => {
     if (isLoading) {
@@ -41,23 +69,52 @@ const ListingList = (props) => {
     return array;
   };
 
+  // -------------------------------------------------
+  // < --------------------------------------------- >
+  // -------------------------------------------------
+
+  const getDropdownValue = (value) => {
+    setTypeQuery(value);
+    history.push(`?page=${pageQuery}&type=${value}`);
+  };
+
+  useEffect(() => {
+    const params = new URLSearchParams(currentQueryUrl);
+    const urlPageQuery = params.get("page");
+    const urlTypeQuery = params.get("type");
+
+    if (!currentQueryUrl) {
+      // always need to have '?page={page_num}'
+      history.push("?page=1&type=all");
+    } else if (urlPageQuery && !urlTypeQuery) {
+      const paramPrefix = `?page=${urlPageQuery}&type=all`;
+      history.push(paramPrefix);
+    } else if (!urlPageQuery && urlTypeQuery) {
+      const paramPrefix = `?page=1&type=${urlTypeQuery}`;
+      history.push(paramPrefix);
+    } else {
+      setPageQuery(urlPageQuery);
+      setTypeQuery(urlTypeQuery);
+    }
+  }, [currentQueryUrl, history]);
+
+  useEffect(() => {
+    console.log({ pageQuery }, "call api/set data in FE");
+  }, [pageQuery]);
+
   return (
     <div className="listing-list__container">
       <div className="listing-section__container">
         <div className="listing-section">
           <h4 className="listing-title">Showing 1-8 of 45 Results</h4>
           <div className="listing__navigation-setting">
-            <select className="option-dropdown" name="property-type">
-              <option className="option" value="All">
-                All
-              </option>
-              <option className="option" value="For Sale">
-                For Sale
-              </option>
-              <option className="option" value="For Rent">
-                For Rent
-              </option>
-            </select>
+            <div className="option-dropdown">
+              <Dropdown
+                value={typeQuery}
+                options={dropdownOptions}
+                getDropdownValue={getDropdownValue}
+              />
+            </div>
             <div className="search-bar">
               <i className="icon-search search-icon" />
               <input className="search-input" placeholder="Enter Keyword ..." />
@@ -68,6 +125,8 @@ const ListingList = (props) => {
           </div>
 
           <ListingListComponent />
+
+          <Pagination paginationCount={paginationCount} />
         </div>
       </div>
 
