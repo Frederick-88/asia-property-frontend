@@ -1,5 +1,7 @@
 import React from "react";
 
+import { toast } from "react-toastify";
+
 import ListingCard from "../Home/children/ListingCard";
 import "../../assets/styles/home.scss"; // for ListingCard css
 
@@ -107,6 +109,13 @@ const ListingDetailComponent = (props) => {
     },
   ];
 
+  const comingSoonNotification = (featureName) => {
+    toast.success(`${featureName} feature will come soon.`, {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 5000,
+    });
+  };
+
   return (
     <div className="listing-detail__wrapper">
       <h4 className="detail-title">Apartment Meisterstadt Pollux-A #31-12</h4>
@@ -120,11 +129,19 @@ const ListingDetailComponent = (props) => {
         </div>
 
         <div className="header-section section--right">
-          <button type="button" className="share-section">
+          <button
+            type="button"
+            className="share-section"
+            onClick={() => comingSoonNotification("Share listing")}
+          >
             <i className="icon icon-share" />
             <p className="text">Share</p>
           </button>
-          <button type="button" className="share-section">
+          <button
+            type="button"
+            className="share-section"
+            onClick={() => comingSoonNotification("Add listing to wishlist")}
+          >
             <i className="icon icon-favourite-line" />
             <p className="text">Wishlist</p>
           </button>
@@ -166,7 +183,11 @@ const ListingDetailComponent = (props) => {
           </div>
         </div>
 
-        <button type="button" className="show-images__button">
+        <button
+          type="button"
+          className="show-images__button"
+          onClick={() => comingSoonNotification("Show all photos")}
+        >
           <i className="icon-pictures" />
           <p className="text">Show all photos</p>
         </button>
@@ -250,7 +271,7 @@ const ListingDetailComponent = (props) => {
           <hr className="divider-line" />
 
           <div className="content__suggestion">
-            <h4 className="suggestion-title">Similar location you may like</h4>
+            <h4 className="suggestion-title">Similar listing you may like</h4>
             <div className="suggestion-list">
               {listingSuggestions.map((listing, index) => {
                 return (
@@ -276,10 +297,18 @@ const ListingDetailComponent = (props) => {
             <p className="agent-text">0858-3599-5588</p>
           </div>
 
-          <button type="button" className="agent-button">
+          <button
+            type="button"
+            className="agent-button"
+            onClick={() => comingSoonNotification("Send email to agent")}
+          >
             Send Message or Email
           </button>
-          <button type="button" className="agent-button button--hollow">
+          <button
+            type="button"
+            className="agent-button button--hollow"
+            onClick={() => comingSoonNotification("Call agent")}
+          >
             Call
           </button>
         </div>
