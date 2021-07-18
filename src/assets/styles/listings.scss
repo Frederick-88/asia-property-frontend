@@ -17,6 +17,7 @@
     max-width: 600px;
     margin: auto;
     width: 100%;
+    margin-bottom: 80px;
 
     .listing-title {
       font-weight: 500;
@@ -128,7 +129,7 @@
 // --------------------------
 
 .listing-detail__wrapper {
-  padding: 100px 140px 20px;
+  padding: 100px 140px;
   background: $white;
 
   .detail-title {

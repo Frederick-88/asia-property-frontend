@@ -112,9 +112,9 @@ const HomeListingPreview = (props) => {
 
   const goToListingPage = () => {
     if (isRentListingType) {
-      history.push("/listings?type=for-rent");
+      history.push("/listings?page=1&type=for-rent");
     } else {
-      history.push("/listings?type=for-sale");
+      history.push("/listings?page=1&type=for-sale");
     }
   };
 
