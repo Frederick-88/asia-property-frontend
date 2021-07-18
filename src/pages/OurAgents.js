@@ -1,9 +1,11 @@
 import React from "react";
+import OurAgentsComponent from "../components/OurAgents/OurAgentsComponent";
+import "../assets/styles/ouragents.scss";
 
 const OurAgents = (props) => {
   return (
     <section>
-      <h4>Our Agents Page</h4>
+      <OurAgentsComponent />
     </section>
   );
 };
