@@ -21,12 +21,22 @@ const AuthModal = (props) => {
       return (
         <div className="auth-addons">
           <div className="signed-in__wrapper">
-            <input type="checkbox" className="checkbox" id="check-signed" />
+            <input
+              type="checkbox"
+              className="checkbox"
+              id="check-signed"
+              checked={stayAuthenticated}
+              onChange={() => setStayAuthenticated(!stayAuthenticated)}
+            />
             <label htmlFor="check-signed" className="text">
               Keep me signed in
             </label>
           </div>
-          <button type="button" className="auth__forgot-pass-button">
+          <button
+            type="button"
+            className="auth__forgot-pass-button"
+            onClick={forgotPassword}
+          >
             Forgot Password?
           </button>
         </div>
@@ -202,6 +212,7 @@ const AuthModal = (props) => {
     },
   ];
 
+  const [stayAuthenticated, setStayAuthenticated] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [authType, setAuthType] = useState(props.type);
   const [authInputData, setAuthInputData] = useState({
@@ -312,6 +323,13 @@ const AuthModal = (props) => {
 
     props.handleAuthInputSubmit({ type: authType, ...authInputData });
     resetAuthInput();
+  };
+
+  const forgotPassword = () => {
+    toast.success("Forgot password feature will come soon.", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 5000,
+    });
   };
 
   // -----------------------
