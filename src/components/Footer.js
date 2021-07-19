@@ -38,6 +38,13 @@ const Footer = () => {
     setEmailInput("");
   };
 
+  const onClickSubFooter = () => {
+    toast.success("Suboptions feature in footer will come soon.", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 5000,
+    });
+  };
+
   return (
     <section className={footerClass()}>
       <div className="footer-section section--main">
@@ -57,19 +64,37 @@ const Footer = () => {
       <div className="footer-section section--large">
         <div className="footer__section-child">
           <p className="footer-title">Popular Searches</p>
-          <p className="footer-text">Apartment for Rent</p>
-          <p className="footer-text">Apartment for Sale</p>
-          <p className="footer-text">House for Rent</p>
-          <p className="footer-text">House for Sale</p>
+          <p className="footer-subtitle" onClick={onClickSubFooter}>
+            Apartment for Rent
+          </p>
+          <p className="footer-subtitle" onClick={onClickSubFooter}>
+            Apartment for Sale
+          </p>
+          <p className="footer-subtitle" onClick={onClickSubFooter}>
+            House for Rent
+          </p>
+          <p className="footer-subtitle" onClick={onClickSubFooter}>
+            House for Sale
+          </p>
         </div>
 
         <div className="footer__section-child">
           <p className="footer-title">Quick Links</p>
-          <p className="footer-text">Terms & Conditions</p>
-          <p className="footer-text">Privacy Policy</p>
-          <p className="footer-text">Contact support</p>
-          <p className="footer-text">Careers</p>
-          <p className="footer-text">FAQs</p>
+          <p className="footer-subtitle" onClick={onClickSubFooter}>
+            Terms & Conditions
+          </p>
+          <p className="footer-subtitle" onClick={onClickSubFooter}>
+            Privacy Policy
+          </p>
+          <p className="footer-subtitle" onClick={onClickSubFooter}>
+            Contact support
+          </p>
+          <p className="footer-subtitle" onClick={onClickSubFooter}>
+            Careers
+          </p>
+          <p className="footer-subtitle" onClick={onClickSubFooter}>
+            FAQs
+          </p>
         </div>
       </div>
 

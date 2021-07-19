@@ -35,7 +35,8 @@
       margin-bottom: 20px;
     }
 
-    .footer-text {
+    .footer-text,
+    .footer-subtitle {
       font-weight: 300;
       font-size: 0.875rem;
       margin-bottom: 10px;
@@ -47,6 +48,10 @@
         color: $lightGrey2;
         margin-bottom: 0;
       }
+    }
+
+    .footer-subtitle {
+      cursor: pointer;
     }
 
     .image__wrapper {

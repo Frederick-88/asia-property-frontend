@@ -61,9 +61,9 @@ const AboutUsModal = (props) => {
           </div>
 
           <p className="developer-description">
-            Asia Property is made by Frederick, both in Frontend (React.js) &
-            Backend (ExpressJS, MongoDB). Deployed Backend to (Heroku) as the
-            API service to be used in Asia Property.
+            Asia Property is made by Frederick, both in Frontend (React.js &
+            Redux) & Backend (ExpressJS, MongoDB). Deployed Backend to (Heroku)
+            as the API service to be used in Asia Property.
           </p>
           <p className="developer-description">
             He is a MERN & MEVN Fullstack Javascript Developer who thrives in

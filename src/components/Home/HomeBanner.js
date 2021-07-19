@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 const HomeBanner = () => {
   const [activeNav, setActiveNav] = useState("all-real-estate");
@@ -14,6 +15,13 @@ const HomeBanner = () => {
 
   const setNavigation = (nav) => {
     setActiveNav(nav);
+  };
+
+  const searchListing = () => {
+    toast.success("Search feature will come soon.", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 5000,
+    });
   };
 
   return (
@@ -48,7 +56,7 @@ const HomeBanner = () => {
       <div className="search-bar">
         <i className="icon-search search-icon" />
         <input className="search-input" placeholder="Enter Keyword ..." />
-        <button type="button" className="search-button">
+        <button type="button" className="search-button" onClick={searchListing}>
           Search
         </button>
       </div>
