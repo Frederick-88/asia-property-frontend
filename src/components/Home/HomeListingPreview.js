@@ -15,6 +15,15 @@ const HomeListingPreview = (props) => {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 4,
+    responsive: [
+      {
+        breakpoint: 1380,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+        },
+      },
+    ],
   };
   const isRentListingType = props.type && props.type === "rent";
   const propertyText = isRentListingType ? "Apartment" : "House";
@@ -27,7 +36,7 @@ const HomeListingPreview = (props) => {
     {
       id: 1001,
       name: `${propertyText} Boulevard`,
-      price: "150,000",
+      price: isRentListingType ? "15.000" : "150,000",
       status: "available",
       address: "393 Lewis Ave, Brooklyn, New York",
       is_renting: isRentListingType,
@@ -39,7 +48,7 @@ const HomeListingPreview = (props) => {
     {
       id: 1002,
       name: `${propertyText} Promax`,
-      price: "180,000",
+      price: isRentListingType ? "18.000" : "180,000",
       status: "available",
       address: "393 Lewis Ave, Brooklyn, New York",
       is_renting: isRentListingType,
@@ -51,7 +60,7 @@ const HomeListingPreview = (props) => {
     {
       id: 1003,
       name: `${propertyText} Boulevard`,
-      price: "130,000",
+      price: isRentListingType ? "21.000" : "130,000",
       status: "available",
       address: "393 Lewis Ave, Brooklyn, New York",
       is_renting: isRentListingType,
@@ -63,7 +72,7 @@ const HomeListingPreview = (props) => {
     {
       id: 1004,
       name: `${propertyText} Promax`,
-      price: "250,000",
+      price: isRentListingType ? "10.000" : "250,000",
       status: "available",
       address: "393 Lewis Ave, Brooklyn, New York",
       is_renting: isRentListingType,
@@ -75,7 +84,7 @@ const HomeListingPreview = (props) => {
     {
       id: 1005,
       name: `${propertyText} Boulevard`,
-      price: "150,000",
+      price: isRentListingType ? "20.000" : "150,000",
       status: "available",
       address: "393 Lewis Ave, Brooklyn, New York",
       is_renting: isRentListingType,
@@ -87,7 +96,7 @@ const HomeListingPreview = (props) => {
     {
       id: 1006,
       name: `${propertyText} Promax`,
-      price: "120,000",
+      price: isRentListingType ? "18.000" : "120,000",
       status: "available",
       address: "393 Lewis Ave, Brooklyn, New York",
       is_renting: isRentListingType,

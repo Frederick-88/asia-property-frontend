@@ -58,7 +58,7 @@ const ListingList = (props) => {
         price: "150,000",
         status: "available",
         address: "393 Lewis Ave, Brooklyn, New York",
-        is_renting: false,
+        is_renting: true,
         bathroom_count: 3,
         bedroom_count: 3,
         square_feet_size: 900,

@@ -53,3 +53,4 @@ React Technical References :
 - Pug HTML with React ( if needed ) https://stackoverflow.com/questions/56513346/how-to-use-pug-templating-engine-with-reactjs
 - Creating Reusable Component similar to Vue Slots in React https://medium.com/@srph/react-imitating-vue-slots-eab8393f96fd
 - React Get Current Path for Class Component https://reactrouter.com/core/api/withRouter
+- Responsive Screen Sizes Reference https://www.hobo-web.co.uk/best-screen-size/

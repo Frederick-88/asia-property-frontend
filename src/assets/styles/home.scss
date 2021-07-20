@@ -281,11 +281,22 @@
     font-size: 0.75rem;
     border-radius: 4px;
     color: $white;
+    margin-top: 20px;
+
+    @media only screen and (max-width: 1380px) {
+      font-size: 0.6875rem;
+      padding: 5px 12px;
+    }
+
+    @media only screen and (max-width: 1280px) {
+      margin-top: 15px;
+    }
 
     &.tag--featured {
       position: absolute;
       top: 8px;
       left: 8px;
+      margin-top: 0;
       background: $darkGold;
     }
   }
@@ -364,6 +375,10 @@
       align-items: center;
       margin-right: 15px;
 
+      @media only screen and (max-width: 1380px) {
+        margin-right: 10px;
+      }
+
       &:last-of-type {
         margin-right: 0;
       }
@@ -374,7 +389,17 @@
         margin-right: 5px;
 
         &.icon-size {
+          margin-right: 3px;
           font-size: 0.9375rem;
+        }
+
+        @media only screen and (max-width: 1380px) {
+          margin-right: 5px;
+          font-size: 0.6125rem;
+
+          &.icon-size {
+            font-size: 0.8125rem;
+          }
         }
       }
 
@@ -382,13 +407,21 @@
         font-size: 0.825rem;
         font-weight: 500;
         color: $textGrey2;
+
+        @media only screen and (max-width: 1280px) {
+          font-size: 0.75rem;
+        }
       }
     }
   }
 
   .card__content-divider {
     border: 1px solid $lightGrey2;
-    margin: 20px 0;
+    margin: 20px 0 0;
+
+    @media only screen and (max-width: 1280px) {
+      margin: 15px 0 0;
+    }
   }
 
   .card-price__wrapper {
@@ -396,11 +429,21 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 15px 15px;
+    flex-wrap: wrap;
 
     .card-price {
       font-size: 0.875rem;
       font-weight: 700;
       color: $textGrey;
+      margin-top: 20px;
+
+      @media only screen and (max-width: 1380px) {
+        font-size: 0.8125rem;
+      }
+
+      @media only screen and (max-width: 1280px) {
+        margin-top: 15px;
+      }
     }
   }
 }
@@ -413,6 +456,10 @@
   padding: 120px 40px 120px 100px;
   background: $lightBlue2;
 
+  @media only screen and (max-width: 1180px) {
+    padding: 80px 40px 80px 80px;
+  }
+
   .options__header-wrapper {
     margin-right: 60px;
     width: 25%;
@@ -422,6 +469,14 @@
       font-weight: 700;
       line-height: 1.1;
       color: $darkGrey;
+
+      @media only screen and (max-width: 1380px) {
+        font-size: 3rem;
+      }
+
+      @media only screen and (max-width: 1180px) {
+        font-size: 2.75rem;
+      }
     }
 
     .header-subtitle {
@@ -430,6 +485,10 @@
       font-weight: 500;
       color: $textGrey;
       line-height: 2;
+
+      @media only screen and (max-width: 1180px) {
+        font-size: 0.8125rem;
+      }
     }
   }
 
@@ -506,6 +565,10 @@
       font-size: 1rem;
       margin: 10px auto 40px;
       width: 30%;
+
+      @media only screen and (max-width: 1440px) {
+        width: 50%;
+      }
     }
   }
 
@@ -522,6 +585,10 @@
   padding: 80px 40px 80px 100px;
   background: $lightBlue2;
 
+  @media only screen and (max-width: 1180px) {
+    padding: 80px 40px 80px 80px;
+  }
+
   .agent__header-wrapper {
     margin-right: 60px;
     width: 35%;
@@ -531,6 +598,14 @@
       font-weight: 700;
       line-height: 1.1;
       color: $darkGrey;
+
+      @media only screen and (max-width: 1380px) {
+        font-size: 3rem;
+      }
+
+      @media only screen and (max-width: 1180px) {
+        font-size: 2.75rem;
+      }
     }
 
     .agent-subtitle {

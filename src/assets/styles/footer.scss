@@ -90,6 +90,10 @@
       background: $white;
       border-radius: 4px 0 0 4px;
       letter-spacing: 1.5px;
+
+      @media only screen and (max-width: 1180px) {
+        width: 60%;
+      }
     }
 
     .subscribe-button {
@@ -110,6 +114,11 @@
 
       &:hover {
         background: $darkBlue;
+      }
+
+      @media only screen and (max-width: 1180px) {
+        font-size: 0.875rem;
+        width: 40%;
       }
     }
   }
