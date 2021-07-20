@@ -1,0 +1,32 @@
+@import "../../assets/styles/variables.scss";
+
+.scroll-to-top__container {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 1000;
+}
+
+.scroll-to-top__button {
+  background: $blue;
+  padding: 12px 15px 16px 15px;
+  font-size: 1rem;
+  color: $white;
+  border: 0;
+  outline: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0;
+  visibility: 0;
+  transition: opacity 0.5s, background 0.3s, color 0.3s;
+
+  &:hover {
+    background: $lightGrey2;
+    color: $blue;
+  }
+
+  &.is-show {
+    opacity: 1;
+    visibility: visible;
+  }
+}

@@ -30,11 +30,11 @@ const App = () => {
     <main>
       <BrowserView>
         <Router>
-          <ScrollToTop />
           <main
             className="main-section"
             style={backgroundStyle(mainBackground)}
           >
+            <ScrollToTop />
             <Navbar />
             <ToastContainer />
             <Switch>
