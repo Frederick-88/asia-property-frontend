@@ -125,6 +125,7 @@ const AuthModal = (props) => {
             />
             <button
               type="button"
+              tabIndex="1"
               className={passwordInputIcon()}
               onClick={togglePasswordType}
             />
@@ -166,6 +167,7 @@ const AuthModal = (props) => {
             />
             <button
               type="button"
+              tabIndex="1"
               className={passwordInputIcon()}
               onClick={togglePasswordType}
             />

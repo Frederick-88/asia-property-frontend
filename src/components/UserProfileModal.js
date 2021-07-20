@@ -1,9 +1,11 @@
 import React from "react";
 import { useDetectClickOutside } from "react-detect-click-outside";
 import { toast } from "react-toastify";
-import sampleUser from "../assets/images/sample-user.png";
+import { connect } from "react-redux";
 
 const UserProfileModal = (props) => {
+  const userProfileType = props.userToken ? props.userData : props.adminData;
+
   const userProfileModalClass = () => {
     return props.isProfileModalShow
       ? "user-profile__content is-show"
@@ -40,21 +42,25 @@ const UserProfileModal = (props) => {
         className="user-profile__header"
         onClick={props.toggleIsProfileModalShow}
       >
-        <img className="profile-image" src={sampleUser} alt="user-profile " />
+        <img
+          className="profile-image"
+          src={userProfileType.image}
+          alt="user-profile "
+        />
         <i className="profile-icon icon-chevron-down" />
       </button>
 
       <div className={userProfileModalClass()}>
-        <p className="profile-username">Chen Frederick</p>
-        <p className="profile-role">User</p>
+        <p className="profile-username">{userProfileType.username}</p>
+        <p className="profile-role">{userProfileType.role}</p>
 
         <div className="profile-container">
           <i className="icon icon-mail" />
-          <p className="profile-email">frederick@asiaproperty.com</p>
+          <p className="profile-email">{userProfileType.email}</p>
         </div>
         <div className="profile-container">
-          <i className="icon icon-location" />
-          <p className="profile-location">Batam, Indonesia</p>
+          <i className="icon icon-phone" />
+          <p className="profile-location">{userProfileType.phone_number}</p>
         </div>
 
         <hr className="divider-line" />
@@ -85,4 +91,12 @@ const UserProfileModal = (props) => {
   );
 };
 
-export default UserProfileModal;
+const mapStateToProps = (state) => {
+  return {
+    userData: state.LoginReducer.userData,
+    adminData: state.LoginReducer.adminData,
+    userToken: state.LoginReducer.userToken,
+  };
+};
+
+export default connect(mapStateToProps, null)(UserProfileModal);

@@ -1,9 +1,16 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
-import { toast } from "react-toastify";
+import { compose } from "redux";
+import { connect } from "react-redux";
+
+import {
+  doLogin,
+  doLogout,
+  doRegister,
+  setIsAuthModalShow,
+} from "../actionCreators/LoginAction";
 
 import Logo from "../assets/images/logo.png";
-
 import "../assets/styles/navbar.scss";
 import AuthModal from "./AuthModal";
 import AboutUsModal from "./AboutUsModal";
@@ -13,12 +20,10 @@ class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isAuthenticated: false,
       isScrolled: false,
       withBg: false,
       isProfileModalShow: false,
       isAboutUsModalShow: false,
-      isAuthModalShow: false,
       selectedAuthType: "login",
       currentRoute: "",
     };
@@ -60,7 +65,7 @@ class Navbar extends Component {
   }
 
   AuthNavComponent = () => {
-    if (this.state.isAuthenticated) {
+    if (this.props.isAuthenticated) {
       return (
         <UserProfileModal
           isProfileModalShow={this.state.isProfileModalShow}
@@ -127,11 +132,12 @@ class Navbar extends Component {
   };
 
   showAuthModal = (authType) => {
-    this.setState({ isAuthModalShow: true, selectedAuthType: authType });
+    this.setState({ selectedAuthType: authType });
+    this.props.setIsAuthModalShow(true);
   };
 
   hideAuthModal = () => {
-    this.setState({ isAuthModalShow: false });
+    this.props.setIsAuthModalShow(false);
   };
 
   goToAboutDeveloper = () => {
@@ -145,36 +151,23 @@ class Navbar extends Component {
 
   handleAuthInputSubmit = (data) => {
     if (data.type === "register") {
-      toast.success("You've successfully created a new account.", {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 5000,
-      });
+      this.props.doRegister(data);
     } else if (data.type === "login-admin") {
-      this.setState({ isAuthenticated: true, isAuthModalShow: false });
-      toast.success("You've successfully logged in as an admin.", {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 5000,
-      });
+      this.props.doLogin(data);
     } else {
-      this.setState({ isAuthenticated: true, isAuthModalShow: false });
-      toast.success("You've successfully logged in.", {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 5000,
-      });
+      this.props.doLogin(data);
     }
   };
 
   logout = () => {
-    this.setState({ isAuthenticated: false, isProfileModalShow: false });
-    toast.success("You've successfully logged out.", {
-      position: toast.POSITION.TOP_CENTER,
-      autoClose: 5000,
-    });
+    this.props.doLogout();
+    this.setState({ isProfileModalShow: false });
   };
 
   render() {
-    const { isAboutUsModalShow, isAuthModalShow, selectedAuthType } =
-      this.state;
+    const { isAboutUsModalShow, selectedAuthType } = this.state;
+
+    const { isAuthModalShow } = this.props;
 
     // some react functions doesn't use "()" to avoid error -> read this: https://stackoverflow.com/questions/48497358/reactjs-maximum-update-depth-exceeded-error
     // note: // for function that returns must use "()" so can call the function & get the return
@@ -231,4 +224,21 @@ class Navbar extends Component {
   }
 }
 
-export default withRouter(Navbar);
+const mapDispatchToProps = {
+  doLogin,
+  doLogout,
+  doRegister,
+  setIsAuthModalShow,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.LoginReducer.isAuthenticated,
+    isAuthModalShow: state.LoginReducer.isAuthModalShow,
+  };
+};
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(Navbar);
