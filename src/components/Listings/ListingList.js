@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
+import { connect, useDispatch } from "react-redux";
+
+import {
+  getListing,
+  getListingWithQueries,
+} from "../../actionCreators/UsersAction";
 
 import SkeletonList from "../SkeletonList";
 import ListingCard from "../Home/children/ListingCard";
 import Dropdown from "../../utilities/Dropdown";
-import Pagination from "../../utilities/Pagination";
+import emptyResult from "../../assets/images/illustrations/empty-result.png";
 
 const ListingList = (props) => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const currentQueryUrl = useLocation().search;
+  const isLoading = props.isLoadingType === "listing";
 
-  const isLoading = false;
-  const paginationCount = 4;
   const dropdownOptions = [
     {
       name: "All",
@@ -29,44 +35,52 @@ const ListingList = (props) => {
 
   const [pageQuery, setPageQuery] = useState(1);
   const [typeQuery, setTypeQuery] = useState("all");
+  const [searchQueryInput, setSearchQueryInput] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
   // -------------------------------------------------
   // < --------------------------------------------- >
   // -------------------------------------------------
 
+  const listingData = () => {
+    if (typeQuery === "all") {
+      return props.listingData;
+    } else if (typeQuery === "for-rent") {
+      return props.forRentListingData;
+    } else {
+      return props.forSaleListingData;
+    }
+  };
+
+  const listingTitle = () => {
+    const listingLength = listingData().length;
+    const start = listingLength ? "1" : "0";
+    return `Showing ${start}-${listingLength} of ${listingLength} Results`;
+  };
+
   const ListingListComponent = () => {
+    const emptyListingResult = !listingData().length;
+
     if (isLoading) {
-      return <SkeletonList quantity={8} />;
+      return <SkeletonList quantity={6} />;
+    } else if (emptyListingResult) {
+      return (
+        <div className="empty-listing-result">
+          <img className="image" src={emptyResult} alt="empty-search" />
+          <p className="text">
+            Sorry, we couldn't find the things you search for, please try again.
+          </p>
+        </div>
+      );
     } else {
       return (
         <div className="listing-list">
-          {sampleListingData(8).map((listing, index) => {
+          {listingData().map((listing, index) => {
             return <ListingCard data={listing} key={index} />;
           })}
         </div>
       );
     }
-  };
-
-  const sampleListingData = (quantity) => {
-    const array = [];
-
-    for (let index = 0; index < quantity; index++) {
-      array.push({
-        id: 1001 + index,
-        name: `Apartment Boulevard - ${index}`,
-        price: "150,000",
-        status: "available",
-        address: "393 Lewis Ave, Brooklyn, New York",
-        is_renting: true,
-        bathroom_count: 3,
-        bedroom_count: 3,
-        square_feet_size: 900,
-        type: "apartment",
-      });
-    }
-
-    return array;
   };
 
   // -------------------------------------------------
@@ -78,10 +92,29 @@ const ListingList = (props) => {
     history.push(`?page=${pageQuery}&type=${value}`);
   };
 
+  const handleSearchInput = (event) => {
+    let { value } = event.currentTarget;
+    setSearchQueryInput(value);
+  };
+
+  const searchListing = () => {
+    const params = new URLSearchParams(currentQueryUrl);
+    const urlPageQuery = params.get("page");
+    const urlTypeQuery = params.get("type");
+    let paramPrefix = `?page=${urlPageQuery}&type=${urlTypeQuery}`;
+
+    if (searchQueryInput) {
+      paramPrefix = `?page=${urlPageQuery}&type=${urlTypeQuery}&search_query=${searchQueryInput}`;
+    }
+
+    history.push(paramPrefix);
+  };
+
   useEffect(() => {
     const params = new URLSearchParams(currentQueryUrl);
     const urlPageQuery = params.get("page");
     const urlTypeQuery = params.get("type");
+    const urlSearchQuery = params.get("search_query") || "";
 
     if (!currentQueryUrl) {
       // always need to have '?page={page_num}'
@@ -95,18 +128,34 @@ const ListingList = (props) => {
     } else {
       setPageQuery(urlPageQuery);
       setTypeQuery(urlTypeQuery);
+      setSearchQuery(urlSearchQuery);
     }
   }, [currentQueryUrl, history]);
 
   useEffect(() => {
-    console.log({ pageQuery }, "call api/set data in FE");
-  }, [pageQuery]);
+    const isAllTypeQuery = typeQuery === "all";
+
+    if (isAllTypeQuery && !searchQuery) {
+      dispatch(
+        getListing({
+          isInitialGet: false,
+        })
+      );
+    } else {
+      dispatch(
+        getListingWithQueries({
+          type: isAllTypeQuery ? null : typeQuery,
+          search_query: searchQuery ? searchQuery : null,
+        })
+      );
+    }
+  }, [pageQuery, typeQuery, searchQuery, dispatch]);
 
   return (
     <div className="listing-list__container">
       <div className="listing-section__container">
         <div className="listing-section">
-          <h4 className="listing-title">Showing 1-8 of 45 Results</h4>
+          <h4 className="listing-title">{listingTitle()}</h4>
           <div className="listing__navigation-setting">
             <div className="option-dropdown">
               <Dropdown
@@ -117,8 +166,17 @@ const ListingList = (props) => {
             </div>
             <div className="search-bar">
               <i className="icon-search search-icon" />
-              <input className="search-input" placeholder="Enter Keyword ..." />
-              <button type="button" className="search-button">
+              <input
+                className="search-input"
+                placeholder="Enter Keyword ..."
+                value={searchQuery}
+                onChange={(event) => handleSearchInput(event)}
+              />
+              <button
+                type="button"
+                className="search-button"
+                onClick={searchListing}
+              >
                 Search
               </button>
             </div>
@@ -126,7 +184,8 @@ const ListingList = (props) => {
 
           <ListingListComponent />
 
-          <Pagination paginationCount={paginationCount} />
+          {/* Coming Soon Feature */}
+          {/* <Pagination paginationCount={paginationCount} /> */}
         </div>
       </div>
 
@@ -144,4 +203,18 @@ const ListingList = (props) => {
   );
 };
 
-export default ListingList;
+const mapDispatchToProps = {
+  getListing,
+  getListingWithQueries,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    isLoadingType: state.UsersReducer.isLoadingType,
+    listingData: state.UsersReducer.listingData,
+    forRentListingData: state.UsersReducer.forRentListingData,
+    forSaleListingData: state.UsersReducer.forSaleListingData,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListingList);

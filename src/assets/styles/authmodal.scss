@@ -157,6 +157,26 @@
         background: $lightGrey2;
         color: $blue;
       }
+
+      &.button--admin {
+        display: flex;
+        justify-content: center;
+        background: transparent;
+        border: 1px solid $blue;
+        border-radius: 4px;
+        color: $blue;
+        margin-top: 15px;
+
+        &:hover {
+          background: $blue;
+          color: $white;
+        }
+
+        .icon-checkmark {
+          margin-top: 2px;
+          margin-left: 6px;
+        }
+      }
     }
 
     .auth-toggle {

@@ -15,9 +15,9 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(thunk))
 );
 
-store.subscribe(() => {
-  console.log("store.getState() / redux store changed", store.getState());
-});
+// store.subscribe(() => {
+//   console.log("store.getState() / redux store changed", store.getState());
+// });
 
 ReactDOM.render(
   <Provider store={store}>

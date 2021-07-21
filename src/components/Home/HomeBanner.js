@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
 
 const HomeBanner = () => {
+  const history = useHistory();
   const [activeNav, setActiveNav] = useState("all-real-estate");
+  const [searchQueryInput, setSearchQueryInput] = useState("");
 
   const navbarClass = (nav) => {
     const classArray = ["nav--item"];
@@ -18,10 +20,23 @@ const HomeBanner = () => {
   };
 
   const searchListing = () => {
-    toast.success("Search feature will come soon.", {
-      position: toast.POSITION.TOP_CENTER,
-      autoClose: 5000,
-    });
+    const typeParam =
+      activeNav === "all-real-estate"
+        ? "all"
+        : activeNav === "for-rent"
+        ? "for-rent"
+        : "for-sale";
+    let listingListRoute = `/listings?page=1&type=${typeParam}`;
+    if (searchQueryInput) {
+      listingListRoute = `/listings?page=1&type=${typeParam}&search_query=${searchQueryInput}`;
+    }
+
+    history.push(listingListRoute);
+  };
+
+  const handleSearchInput = (event) => {
+    let { value } = event.currentTarget;
+    setSearchQueryInput(value);
   };
 
   return (
@@ -55,7 +70,11 @@ const HomeBanner = () => {
 
       <div className="search-bar">
         <i className="icon-search search-icon" />
-        <input className="search-input" placeholder="Enter Keyword ..." />
+        <input
+          className="search-input"
+          placeholder="Enter Keyword ..."
+          onChange={(event) => handleSearchInput(event)}
+        />
         <button type="button" className="search-button" onClick={searchListing}>
           Search
         </button>

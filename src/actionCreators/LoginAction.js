@@ -86,6 +86,7 @@ export const doLogout = () => {
     });
   };
 };
+
 export const setIsAuthModalShow = (boolean) => {
   return (dispatch) => {
     dispatch({

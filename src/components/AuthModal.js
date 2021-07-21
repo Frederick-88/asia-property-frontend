@@ -61,6 +61,23 @@ const AuthModal = (props) => {
     return null;
   };
 
+  const ExtraAuthButton = () => {
+    if (authType === "login-admin") {
+      return (
+        <button
+          type="button"
+          className="auth-button button--admin"
+          onClick={proceedAsVisitor}
+        >
+          <p>Proceed as Visitor</p>
+          <i className="icon-checkmark" />
+        </button>
+      );
+    }
+
+    return null;
+  };
+
   const AuthFormComponent = () => {
     if (authType === "register") {
       return (
@@ -334,6 +351,16 @@ const AuthModal = (props) => {
     });
   };
 
+  const proceedAsVisitor = () => {
+    toast.success(
+      "Proceed as visitor for admin page feature will be available around late Q3 2021.",
+      {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 7000,
+      }
+    );
+  };
+
   // -----------------------
   // < ---- UseEffect ---- >
   // -----------------------
@@ -365,6 +392,8 @@ const AuthModal = (props) => {
             >
               {authButtonText()}
             </button>
+
+            {ExtraAuthButton()}
 
             {AuthToggleComponent()}
           </div>

@@ -1,12 +1,15 @@
 import React, { useRef } from "react";
 import { useHistory } from "react-router-dom";
+import { connect } from "react-redux";
 
 import ListingCard from "./children/ListingCard";
+import SkeletonList from "../SkeletonList";
 import Slider from "react-slick";
 
 const HomeListingPreview = (props) => {
   const history = useHistory();
   const customSlider = useRef();
+  const isLoading = props.isLoadingType === "listing";
 
   const settings = {
     dots: true,
@@ -14,7 +17,7 @@ const HomeListingPreview = (props) => {
     infinite: true,
     speed: 500,
     slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToScroll: 1,
     responsive: [
       {
         breakpoint: 1380,
@@ -25,87 +28,36 @@ const HomeListingPreview = (props) => {
       },
     ],
   };
-  const isRentListingType = props.type && props.type === "rent";
-  const propertyText = isRentListingType ? "Apartment" : "House";
 
-  /* TODO : 
-  - later after receive api call, for "is_wishlist" field can get from cookie & check whether the id is wishlisted/not
-  - filter to only show real estate with available status
-  */
-  const listingData = [
-    {
-      id: 1001,
-      name: `${propertyText} Boulevard`,
-      price: isRentListingType ? "15.000" : "150,000",
-      status: "available",
-      address: "393 Lewis Ave, Brooklyn, New York",
-      is_renting: isRentListingType,
-      bathroom_count: 3,
-      bedroom_count: 3,
-      square_feet_size: 900,
-      type: "apartment",
-    },
-    {
-      id: 1002,
-      name: `${propertyText} Promax`,
-      price: isRentListingType ? "18.000" : "180,000",
-      status: "available",
-      address: "393 Lewis Ave, Brooklyn, New York",
-      is_renting: isRentListingType,
-      bathroom_count: 2,
-      bedroom_count: 3,
-      square_feet_size: 1100,
-      type: "house",
-    },
-    {
-      id: 1003,
-      name: `${propertyText} Boulevard`,
-      price: isRentListingType ? "21.000" : "130,000",
-      status: "available",
-      address: "393 Lewis Ave, Brooklyn, New York",
-      is_renting: isRentListingType,
-      bathroom_count: 3,
-      bedroom_count: 2,
-      square_feet_size: 600,
-      type: "apartment",
-    },
-    {
-      id: 1004,
-      name: `${propertyText} Promax`,
-      price: isRentListingType ? "10.000" : "250,000",
-      status: "available",
-      address: "393 Lewis Ave, Brooklyn, New York",
-      is_renting: isRentListingType,
-      bathroom_count: 3,
-      bedroom_count: 3,
-      square_feet_size: 1800,
-      type: "house",
-    },
-    {
-      id: 1005,
-      name: `${propertyText} Boulevard`,
-      price: isRentListingType ? "20.000" : "150,000",
-      status: "available",
-      address: "393 Lewis Ave, Brooklyn, New York",
-      is_renting: isRentListingType,
-      bathroom_count: 3,
-      bedroom_count: 4,
-      square_feet_size: 1000,
-      type: "apartment",
-    },
-    {
-      id: 1006,
-      name: `${propertyText} Promax`,
-      price: isRentListingType ? "18.000" : "120,000",
-      status: "available",
-      address: "393 Lewis Ave, Brooklyn, New York",
-      is_renting: isRentListingType,
-      bathroom_count: 3,
-      bedroom_count: 3,
-      square_feet_size: 900,
-      type: "house",
-    },
-  ];
+  const isRentListingType = props.type && props.type === "rent";
+
+  const carouselWrapperClass = () => {
+    return isLoading
+      ? "carousel__wrapper wrapper--is-loading"
+      : "carousel__wrapper";
+  };
+
+  const listingData = () => {
+    if (isRentListingType) {
+      return props.forRentListingData;
+    } else {
+      return props.forSaleListingData;
+    }
+  };
+
+  const ListingPreviewComponent = () => {
+    if (isLoading) {
+      return <SkeletonList quantity={4} />;
+    } else {
+      return (
+        <Slider ref={(slider) => (customSlider.current = slider)} {...settings}>
+          {listingData().map((listing, index) => {
+            return <ListingCard data={listing} key={index} />;
+          })}
+        </Slider>
+      );
+    }
+  };
 
   // -----------------------------------
   // < ------------------------------- >
@@ -136,8 +88,9 @@ const HomeListingPreview = (props) => {
           </h4>
           <hr className="list__line-decoration" />
           <p className="list-subtitle">
-            Lorem ipsum dolor sit amet, consec tetur cing elit. Suspe ndisse
-            suscipit
+            Here, are the best & great properties for{" "}
+            {isRentListingType ? "rent" : "sale"}, see more of them by clicking
+            the button beside.
           </p>
         </div>
         <button
@@ -158,16 +111,11 @@ const HomeListingPreview = (props) => {
         >
           <i className="icon-chevron-left" />
         </button>
-        <div className="carousel__wrapper">
-          <Slider
-            ref={(slider) => (customSlider.current = slider)}
-            {...settings}
-          >
-            {listingData.map((listing, index) => {
-              return <ListingCard data={listing} key={index} />;
-            })}
-          </Slider>
+
+        <div className={carouselWrapperClass()}>
+          {ListingPreviewComponent()}
         </div>
+
         <button
           type="button"
           className="carousel-icon icon--right"
@@ -180,4 +128,12 @@ const HomeListingPreview = (props) => {
   );
 };
 
-export default HomeListingPreview;
+const mapStateToProps = (state) => {
+  return {
+    isLoadingType: state.UsersReducer.isLoadingType,
+    forRentListingData: state.UsersReducer.forRentListingData,
+    forSaleListingData: state.UsersReducer.forSaleListingData,
+  };
+};
+
+export default connect(mapStateToProps, null)(HomeListingPreview);

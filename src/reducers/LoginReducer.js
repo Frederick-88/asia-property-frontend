@@ -29,7 +29,7 @@ const triggerNotification = (notifType, message, isMultiple) => {
   }
 };
 
-const loginReducer = (state = initialState, action) => {
+const LoginReducer = (state = initialState, action) => {
   const { payload, type } = action;
 
   switch (type) {
@@ -66,7 +66,7 @@ const loginReducer = (state = initialState, action) => {
       }
 
     case "SET_LOGIN_FAIL_NOTIFICATION":
-      triggerNotification("error", `Issue on logging in, ${payload.message}`);
+      triggerNotification("error", payload.message);
 
       return {
         ...state,
@@ -129,4 +129,4 @@ const loginReducer = (state = initialState, action) => {
   }
 };
 
-export default loginReducer;
+export default LoginReducer;

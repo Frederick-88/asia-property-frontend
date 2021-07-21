@@ -1,17 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
-import SampleSaleImage from "../../../assets/images/sample-real-estate.jpg";
-import SampleRentImage from "../../../assets/images/sample-real-estate-rent.jpg";
 import "../../../assets/styles/home.scss";
 
 const ListingCard = (props) => {
   const isRentListingType = props.data.is_renting;
   const rentText = isRentListingType ? "For Rent" : "For Sale";
-  const sampleImage = isRentListingType ? SampleRentImage : SampleSaleImage;
+  const imageThumb = props.data.images && props.data.images[0];
+  const imageCount = props.data.images && props.data.images.length;
   const priceText = isRentListingType
     ? `$${props.data.price}/month`
     : `$${props.data.price}`;
+
+  const featuredTagComponent = () => {
+    if (props.data.is_featured) {
+      return <span className="card-tag tag--featured">Featured</span>;
+    }
+
+    return null;
+  };
 
   const wishlistButtonClass = () => {
     const classArray = ["card__wishlist-button"];
@@ -25,19 +31,19 @@ const ListingCard = (props) => {
   };
 
   const listingRoute = () => {
-    return `/listing/${props.data.id}`;
+    return `/listing/${props.data._id}`;
   };
 
   return (
     <div className="listing-card">
       <div className="card__image-wrapper">
         <Link to={listingRoute()} className="card__image">
-          <img className="image" src={sampleImage} alt="real-estate" />
+          <img className="image" src={imageThumb} alt="real-estate" />
         </Link>
-        <span className="card-tag tag--featured">Featured</span>
+        {featuredTagComponent()}
         <span className="card__image-count">
           <i className="icon-pictures" />
-          <p className="count-text">8</p>
+          <p className="count-text">{imageCount}</p>
         </span>
         <button type="button" className={wishlistButtonClass()} />
       </div>
@@ -45,7 +51,9 @@ const ListingCard = (props) => {
       <div className="card__content-wrapper">
         <div className="card__content">
           <h4 className="title">{props.data.name}</h4>
-          <p className="description">{props.data.address}</p>
+          <p className="description">
+            {props.data.city + ", " + props.data.address}
+          </p>
           <div className="card-detail__wrapper">
             <div className="card-detail">
               <i className="icon-bedroom detail-icon" />
@@ -57,7 +65,7 @@ const ListingCard = (props) => {
             </div>
             <div className="card-detail">
               <i className="icon-size detail-icon" />
-              <p className="detail-text">{props.data.square_feet_size} SqFt</p>
+              <p className="detail-text">{props.data.building_size} SqFt</p>
             </div>
           </div>
         </div>

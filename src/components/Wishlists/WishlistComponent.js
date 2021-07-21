@@ -3,7 +3,6 @@ import { useHistory, useLocation } from "react-router-dom";
 
 import SkeletonList from "../SkeletonList";
 import ListingCard from "../Home/children/ListingCard";
-import Pagination from "../../utilities/Pagination";
 
 import wishlistVector from "../../assets/images/illustrations/wishlist.png";
 import banner from "../../assets/images/banner-bg.jpg";
@@ -12,7 +11,6 @@ const WishlistComponent = (props) => {
   const history = useHistory();
   const currentQueryUrl = useLocation().search;
   const isLoading = false;
-  const paginationCount = 4;
 
   // -----------------------------------
   // < ------------------------------- >
@@ -88,7 +86,9 @@ const WishlistComponent = (props) => {
       </div>
       <div className="wishlist__content">
         <ListingListComponent />
-        <Pagination paginationCount={paginationCount} />
+
+        {/* Coming Soon Feature */}
+        {/* <Pagination paginationCount={paginationCount} /> */}
       </div>
     </div>
   );

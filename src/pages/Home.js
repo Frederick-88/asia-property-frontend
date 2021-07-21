@@ -1,4 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect, useDispatch } from "react-redux";
+import {
+  getListingWithQueries,
+  getAgents,
+} from "../actionCreators/UsersAction";
 
 import "../assets/styles/home.scss";
 import HomeBanner from "../components/Home/HomeBanner";
@@ -11,6 +16,22 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const Home = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(
+      getListingWithQueries({
+        type: "for-sale",
+      })
+    );
+    dispatch(
+      getListingWithQueries({
+        type: "for-rent",
+      })
+    );
+    dispatch(getAgents());
+  }, [dispatch]);
+
   return (
     <section>
       <HomeBanner />
@@ -23,4 +44,9 @@ const Home = () => {
   );
 };
 
-export default Home;
+const mapDispatchToProps = {
+  getListingWithQueries,
+  getAgents,
+};
+
+export default connect(null, mapDispatchToProps)(Home);
