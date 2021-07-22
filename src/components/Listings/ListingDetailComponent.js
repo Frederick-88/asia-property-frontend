@@ -1,113 +1,87 @@
-import React from "react";
-
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import ListingCard from "../Home/children/ListingCard";
 import "../../assets/styles/home.scss"; // for ListingCard css
 
-import image1 from "../../assets/images/listing-detail/1.webp";
-import image2 from "../../assets/images/listing-detail/2.webp";
-import image3 from "../../assets/images/listing-detail/3.webp";
-import image4 from "../../assets/images/listing-detail/4.webp";
-import image5 from "../../assets/images/listing-detail/5.webp";
-import sampleAgent from "../../assets/images/sample-agent.jpeg";
-
 const ListingDetailComponent = (props) => {
-  // console.log(props.paramId);
-  const overview = [
+  const history = useHistory();
+  const listingDetail = props.listingDetail;
+  const isListingDetailEmpty = !Object.keys(listingDetail).length;
+
+  const saleTypeText = listingDetail.is_renting ? "For Rent" : "For Sale";
+
+  const overviewArray = [
     {
       type: "id",
-      value: "2297",
+      value: listingDetail._id,
       icon: "icon-property",
     },
     {
       type: "type",
-      value: "Apartment",
+      value: listingDetail.type,
       icon: "icon-file-text",
     },
     {
       type: "Bedrooms",
-      value: "3",
+      value: listingDetail.bedroom_count,
       icon: "icon-bedroom",
     },
     {
       type: "Bathrooms",
-      value: "2",
+      value: listingDetail.bathroom_count,
       icon: "icon-bathroom",
     },
     {
       type: "Status",
-      value: "For Sale",
+      value: saleTypeText,
       icon: "icon-information-line",
     },
     {
       type: "Size",
-      value: "900 SqFt",
+      value: listingDetail.building_size + "SqFt",
       icon: "icon-size",
     },
   ];
 
-  const propertyDetails = [
+  const propertyDetailsArray = [
     {
       type: "Property Id",
-      value: "2297",
+      value: listingDetail._id,
     },
     {
       type: "Property Type",
-      value: "Apartment",
+      value: listingDetail.type,
     },
     {
       type: "Bedrooms",
-      value: "3",
+      value: listingDetail.bedroom_count,
     },
     {
       type: "Bathrooms",
-      value: "2",
+      value: listingDetail.bathroom_count,
     },
     {
       type: "Size",
-      value: "900 SqFt",
+      value: listingDetail.building_size + "SqFt",
     },
     {
       type: "Country",
-      value: "Indonesia",
+      value: listingDetail.country,
     },
     {
       type: "City",
-      value: "Jakarta",
+      value: listingDetail.city,
     },
     {
       type: "Address",
-      value: "Kecamatan Batam Kota, Kepulauan Riau, Indonesia",
+      value: listingDetail.address,
     },
   ];
 
-  const listingSuggestions = [
-    {
-      id: 1001,
-      name: "Apartment Boulevard",
-      price: "150,000",
-      status: "available",
-      address: "393 Lewis Ave, Brooklyn, New York",
-      is_renting: false,
-      bathroom_count: 3,
-      bedroom_count: 3,
-      square_feet_size: 900,
-      type: "apartment",
-    },
-    {
-      id: 1002,
-      name: "Apartment Promax",
-      price: "180,000",
-      status: "available",
-      address: "393 Lewis Ave, Brooklyn, New York",
-      is_renting: true,
-      bathroom_count: 2,
-      bedroom_count: 3,
-      square_feet_size: 1100,
-      type: "house",
-    },
-  ];
+  const listingSuggestions = props.listingData.slice(0, 2);
 
   const comingSoonNotification = (featureName) => {
     toast.success(`${featureName} feature will come soon.`, {
@@ -116,16 +90,20 @@ const ListingDetailComponent = (props) => {
     });
   };
 
+  useEffect(() => {
+    if (isListingDetailEmpty) {
+      history.push("/");
+    }
+  }, [isListingDetailEmpty, history]);
+
   return (
     <div className="listing-detail__wrapper">
-      <h4 className="detail-title">Apartment Meisterstadt Pollux-A #31-12</h4>
+      <h4 className="detail-title">{listingDetail.name}</h4>
 
       <div className="detail-header">
         <div className="header-section section--left">
           <i className="icon-location" />
-          <p className="location-text">
-            Kecamatan Batam Kota, Kepulauan Riau, Indonesia
-          </p>
+          <p className="location-text">{listingDetail.address}</p>
         </div>
 
         <div className="header-section section--right">
@@ -152,7 +130,7 @@ const ListingDetailComponent = (props) => {
         <div className="photo-grid__section section--left">
           <img
             className="grid-image image--main"
-            src={image1}
+            src={listingDetail.images && listingDetail.images[0]}
             alt="photogrid"
           />
         </div>
@@ -160,24 +138,24 @@ const ListingDetailComponent = (props) => {
           <div className="photo-grid__child-section child-section--left">
             <img
               className="grid-image image--child"
-              src={image2}
+              src={listingDetail.images && listingDetail.images[1]}
               alt="photogrid"
             />
             <img
               className="grid-image image--child"
-              src={image3}
+              src={listingDetail.images && listingDetail.images[2]}
               alt="photogrid"
             />
           </div>
           <div className="photo-grid__child-section child-section--right">
             <img
               className="grid-image image--child"
-              src={image4}
+              src={listingDetail.images && listingDetail.images[3]}
               alt="photogrid"
             />
             <img
               className="grid-image image--child"
-              src={image5}
+              src={listingDetail.images && listingDetail.images[4]}
               alt="photogrid"
             />
           </div>
@@ -197,39 +175,39 @@ const ListingDetailComponent = (props) => {
         <div className="detail-content">
           <div className="content__header">
             <h4 className="header-title">
-              Apartment · Apartment Meisterstadt Pollux-A #31-12
+              {listingDetail.type} · {listingDetail.name}
             </h4>
             <div className="header-icons">
-              <span className="card-tag tag--featured">Featured</span>
-              <span className="card-tag">For Sale</span>
+              {listingDetail.is_featured && (
+                <span className="card-tag tag--featured">Featured</span>
+              )}
+              <span className="card-tag">{saleTypeText}</span>
             </div>
-            <h4 className="header-price">$1,250,000</h4>
+            <h4 className="header-price">${listingDetail.price}</h4>
           </div>
 
           <hr className="divider-line" />
 
-          <p className="content-description">
-            Breathtaking city view studio with a warm feeling of home, Located
-            at in the Centre of Batam Suitable for couple and friends. The
-            Location is strategic. 2 minutes walk to Mitra Raya Wet Market, 2
-            minutes walk to Fanindo Fast Food Street & Pandora Food Market, 5
-            minutes drive to Mega Mall , 5 minutes drive to Ferry Terminal
-            International Batam Centre, You can easily find local cuisine nearby
-            within 5 minutes drive.
-          </p>
+          <p className="content-description">{listingDetail.description}</p>
 
           <hr className="divider-line" />
 
           <div className="content__overview-section">
             <h4 className="overview-title">Overview</h4>
             <div className="overview-list">
-              {overview.map((item, index) => {
+              {overviewArray.map((item, index) => {
                 return (
                   <div className="overview__list-item" key={index}>
                     <i className={`icon ${item.icon}`} />
                     <div className="overview-content">
                       <p className="text">{item.type}</p>
-                      <p className="value">{item.value}</p>
+                      <p
+                        className={
+                          item.type === "id" ? "value value--id" : "value"
+                        }
+                      >
+                        {item.value}
+                      </p>
                     </div>
                   </div>
                 );
@@ -242,11 +220,19 @@ const ListingDetailComponent = (props) => {
           <div className="content__property-details-section">
             <h4 className="property-details-title">Details</h4>
             <div className="property-details-list">
-              {propertyDetails.map((item, index) => {
+              {propertyDetailsArray.map((item, index) => {
                 return (
                   <div className="property-details__list-item" key={index}>
                     <p className="text">{item.type}</p>
-                    <p className="value">{item.value}</p>
+                    <p
+                      className={
+                        item.type === "Property Id"
+                          ? "value value--id"
+                          : "value"
+                      }
+                    >
+                      {item.value}
+                    </p>
                   </div>
                 );
               })}
@@ -285,16 +271,26 @@ const ListingDetailComponent = (props) => {
         </div>
 
         <div className="detail-agent">
-          <img src={sampleAgent} className="agent-image" alt="agent" />
-          <h4 className="agent-title">Agent Ben Davies</h4>
+          <img
+            src={listingDetail.agent && listingDetail.agent.image}
+            className="agent-image"
+            alt="agent"
+          />
+          <h4 className="agent-title">
+            {listingDetail.agent && listingDetail.agent.name}
+          </h4>
 
           <div className="agent-info">
             <i className="icon-mail agent-icon" />
-            <p className="agent-text">bendavies@asiaproperty.com</p>
+            <p className="agent-text">
+              {listingDetail.agent && listingDetail.agent.email}
+            </p>
           </div>
           <div className="agent-info text--black">
             <i className="icon-phone agent-icon" />
-            <p className="agent-text">0858-3599-5588</p>
+            <p className="agent-text">
+              {listingDetail.agent && listingDetail.agent.phone_number}
+            </p>
           </div>
 
           <button
@@ -317,4 +313,11 @@ const ListingDetailComponent = (props) => {
   );
 };
 
-export default ListingDetailComponent;
+const mapStateToProps = (state) => {
+  return {
+    listingDetail: state.UsersReducer.listingDetail,
+    listingData: state.UsersReducer.listingData,
+  };
+};
+
+export default connect(mapStateToProps, null)(ListingDetailComponent);

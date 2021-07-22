@@ -2,7 +2,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 const baseURL = process.env.REACT_APP_HEROKU_BACKEND_URL;
 
-export const getListing = (data) => {
+export const getListing = () => {
   return async (dispatch) => {
     dispatch({
       type: "SET_IS_LOADER_TYPE",
@@ -51,10 +51,17 @@ export const getListingWithQueries = (data) => {
   }
 
   return async (dispatch) => {
-    dispatch({
-      type: "SET_IS_LOADER_TYPE",
-      payload: "listing",
-    });
+    if (data.isInitial) {
+      dispatch({
+        type: "SET_IS_INITIAL_LOAD",
+        payload: false,
+      });
+    } else {
+      dispatch({
+        type: "SET_IS_LOADER_TYPE",
+        payload: "listing",
+      });
+    }
 
     try {
       const axiosCall = await axios({
@@ -72,10 +79,17 @@ export const getListingWithQueries = (data) => {
         },
       });
 
-      dispatch({
-        type: "SET_IS_LOADER_TYPE",
-        payload: "",
-      });
+      if (data.isInitial) {
+        dispatch({
+          type: "SET_IS_INITIAL_LOAD",
+          payload: false,
+        });
+      } else {
+        dispatch({
+          type: "SET_IS_LOADER_TYPE",
+          payload: "",
+        });
+      }
 
       if (data.search_query) {
         dispatch({
@@ -90,20 +104,43 @@ export const getListingWithQueries = (data) => {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 5000,
       });
-      dispatch({
-        type: "SET_IS_LOADER_TYPE",
-        payload: "",
-      });
+      if (data.isInitial) {
+        dispatch({
+          type: "SET_IS_INITIAL_LOAD",
+          payload: false,
+        });
+      } else {
+        dispatch({
+          type: "SET_IS_LOADER_TYPE",
+          payload: "",
+        });
+      }
     }
+  };
+};
+
+export const setListingDetail = (listingDetail) => {
+  return (dispatch) => {
+    dispatch({
+      type: "SET_LISTING_DETAIL",
+      payload: listingDetail,
+    });
   };
 };
 
 export const getAgents = (data) => {
   return async (dispatch) => {
-    dispatch({
-      type: "SET_IS_LOADER_TYPE",
-      payload: "agent",
-    });
+    if (data && data.isInitial) {
+      dispatch({
+        type: "SET_IS_INITIAL_LOAD",
+        payload: true,
+      });
+    } else {
+      dispatch({
+        type: "SET_IS_LOADER_TYPE",
+        payload: "agent",
+      });
+    }
 
     try {
       const axiosCall = await axios({
@@ -117,6 +154,144 @@ export const getAgents = (data) => {
         payload: response.results,
       });
 
+      if (data && data.isInitial) {
+        dispatch({
+          type: "SET_IS_INITIAL_LOAD",
+          payload: false,
+        });
+      } else {
+        dispatch({
+          type: "SET_IS_LOADER_TYPE",
+          payload: "",
+        });
+      }
+    } catch (error) {
+      const errorMessage = error.response.data;
+      console.error(errorMessage);
+
+      toast.error("we're having some issues, can comeback later =)", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 5000,
+      });
+      if (data.isInitial) {
+        dispatch({
+          type: "SET_IS_INITIAL_LOAD",
+          payload: false,
+        });
+      } else {
+        dispatch({
+          type: "SET_IS_LOADER_TYPE",
+          payload: "",
+        });
+      }
+    }
+  };
+};
+
+export const getWishlists = (data) => {
+  return async (dispatch) => {
+    dispatch({
+      type: "SET_IS_LOADER_TYPE",
+      payload: "wishlist",
+    });
+
+    if (data.isReget) {
+      dispatch({
+        type: "SET_IS_INITIAL_LOAD",
+        payload: true,
+      });
+    }
+
+    try {
+      const axiosCall = await axios({
+        method: "get",
+        url: `${baseURL}/wishlist/get-by-user-id/${data.user_id}`,
+        headers: { "access-token": data.token },
+      });
+      const response = axiosCall.data;
+
+      dispatch({
+        type: "SET_WISHLISTS_DATA",
+        payload: response.results.wishlists || [],
+      });
+
+      dispatch({
+        type: "SET_IS_LOADER_TYPE",
+        payload: "",
+      });
+
+      if (data.isReget) {
+        dispatch({
+          type: "SET_IS_INITIAL_LOAD",
+          payload: false,
+        });
+      }
+    } catch (error) {
+      const errorMessage = error.response.data;
+      console.error(errorMessage);
+
+      toast.error("we're having some issues, can comeback later =)", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 5000,
+      });
+      dispatch({
+        type: "SET_IS_LOADER_TYPE",
+        payload: "",
+      });
+
+      if (data.isReget) {
+        dispatch({
+          type: "SET_IS_INITIAL_LOAD",
+          payload: false,
+        });
+      }
+    }
+  };
+};
+
+export const toggleWishlistListing = (data) => {
+  const formattedData = {
+    user_id: data.user_id,
+    real_estate_id: data.real_estate_id,
+  };
+  const isRemoveFromWishlist = data.is_wishlisted;
+
+  return async (dispatch) => {
+    dispatch({
+      type: "SET_IS_LOADER_TYPE",
+      payload: "listing",
+    });
+
+    try {
+      const axiosObj = {
+        headers: { "access-token": data.userToken },
+      };
+      if (isRemoveFromWishlist) {
+        axiosObj.url = `${baseURL}/wishlist/delete`;
+        axiosObj.method = "delete";
+        axiosObj.params = formattedData;
+      } else {
+        axiosObj.url = `${baseURL}/wishlist/create`;
+        axiosObj.method = "post";
+        axiosObj.data = formattedData;
+      }
+
+      const axiosCall = await axios(axiosObj);
+      const response = axiosCall.data;
+
+      dispatch({
+        type: "SHOW_TOGGLE_WISHLIST_NOTIFICATION",
+        payload: response.message,
+      });
+
+      dispatch(
+        getWishlists({
+          isReget: true,
+          user_id: data.user_id,
+          token: data.userToken,
+        })
+      );
+
       dispatch({
         type: "SET_IS_LOADER_TYPE",
         payload: "",
@@ -137,42 +312,11 @@ export const getAgents = (data) => {
   };
 };
 
-export const getWishlists = (userId) => {
-  return async (dispatch) => {
+export const resetWishlistData = () => {
+  return (dispatch) => {
     dispatch({
-      type: "SET_IS_LOADER_TYPE",
-      payload: "wishlist",
+      type: "SET_WISHLISTS_DATA",
+      payload: [],
     });
-
-    try {
-      const axiosCall = await axios({
-        method: "get",
-        url: `${baseURL}/wishlist/get-by-user-id/${userId}`,
-        // header of access-token
-      });
-      const response = axiosCall.data;
-
-      dispatch({
-        type: "SET_AGENTS_DATA",
-        payload: response.results,
-      });
-
-      dispatch({
-        type: "SET_IS_LOADER_TYPE",
-        payload: "",
-      });
-    } catch (error) {
-      const errorMessage = error.response.data;
-      console.error(errorMessage);
-
-      toast.error("we're having some issues, can comeback later =)", {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 5000,
-      });
-      dispatch({
-        type: "SET_IS_LOADER_TYPE",
-        payload: "",
-      });
-    }
   };
 };

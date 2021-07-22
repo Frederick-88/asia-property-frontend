@@ -1,13 +1,17 @@
 import { toast } from "react-toastify";
 
 const initialState = {
+  isInitialLoad: false,
   isLoadingType: "", // listing, listing-detail, wishlist, agent
   listingData: [],
   forRentListingData: [],
   forSaleListingData: [],
 
+  listingDetail: {},
+
   agentsData: [],
   wishlistsData: [],
+  hasDidGetWishlist: false,
 };
 
 const triggerNotification = (notifType, message, isMultiple) => {
@@ -52,6 +56,12 @@ const UsersReducer = (state = initialState, action) => {
         };
       }
 
+    case "SET_LISTING_DETAIL":
+      return {
+        ...state,
+        listingDetail: payload,
+      };
+
     case "SET_AGENTS_DATA":
       return {
         ...state,
@@ -62,6 +72,7 @@ const UsersReducer = (state = initialState, action) => {
       return {
         ...state,
         wishlistsData: payload,
+        hasDidGetWishlist: true,
       };
 
     case "SET_IS_LOADER_TYPE":
@@ -69,6 +80,17 @@ const UsersReducer = (state = initialState, action) => {
         ...state,
         isLoadingType: payload,
       };
+
+    case "SET_IS_INITIAL_LOAD":
+      return {
+        ...state,
+        isInitialLoad: payload,
+      };
+
+    case "SHOW_TOGGLE_WISHLIST_NOTIFICATION":
+      triggerNotification("success", payload);
+
+      return state;
 
     case "SHOW_SEARCH_LISTING_NOTIFICATION":
       triggerNotification("success", "Here is your search results.");

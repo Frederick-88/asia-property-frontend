@@ -1,8 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { connect, useDispatch } from "react-redux";
+
+import {
+  setListingDetail,
+  toggleWishlistListing,
+} from "../../../actionCreators/UsersAction";
+
+import { toast } from "react-toastify";
 import "../../../assets/styles/home.scss";
 
 const ListingCard = (props) => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
   const isRentListingType = props.data.is_renting;
   const rentText = isRentListingType ? "For Rent" : "For Sale";
   const imageThumb = props.data.images && props.data.images[0];
@@ -10,6 +21,26 @@ const ListingCard = (props) => {
   const priceText = isRentListingType
     ? `$${props.data.price}/month`
     : `$${props.data.price}`;
+
+  const isWishlist = () => {
+    const isWishlistListing = props.wishlistsData.find(
+      (wishlistListing) => wishlistListing._id === props.data._id
+    );
+
+    return !!isWishlistListing;
+  };
+
+  const wishlistButtonClass = () => {
+    const classArray = ["card__wishlist-button"];
+
+    if (isWishlist()) {
+      classArray.push("icon-favourite-solid");
+    } else {
+      classArray.push("icon-favourite-line");
+    }
+
+    return classArray.join(" ");
+  };
 
   const featuredTagComponent = () => {
     if (props.data.is_featured) {
@@ -19,33 +50,51 @@ const ListingCard = (props) => {
     return null;
   };
 
-  const wishlistButtonClass = () => {
-    const classArray = ["card__wishlist-button"];
-    if (props.data.is_wishlist) {
-      classArray.push("icon-favourite-solid");
-    } else {
-      classArray.push("icon-favourite-line");
-    }
+  const wishlistListing = (data) => {
+    const realEstateId = data._id;
 
-    return classArray.join(" ");
+    if (!props.isAuthenticated) {
+      toast.warn("You need to be logged in to access this feature.", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 5000,
+      });
+    } else {
+      dispatch(
+        toggleWishlistListing({
+          userToken: props.userToken,
+          user_id: props.userData.id,
+          real_estate_id: realEstateId,
+          is_wishlisted: isWishlist(),
+        })
+      );
+    }
   };
 
-  const listingRoute = () => {
-    return `/listing/${props.data._id}`;
+  const routeToListingDetail = () => {
+    dispatch(setListingDetail(props.data));
+    history.push(`/listing/${props.data._id}`);
   };
 
   return (
     <div className="listing-card">
       <div className="card__image-wrapper">
-        <Link to={listingRoute()} className="card__image">
+        <button
+          type="button"
+          className="card__image"
+          onClick={routeToListingDetail}
+        >
           <img className="image" src={imageThumb} alt="real-estate" />
-        </Link>
+        </button>
         {featuredTagComponent()}
         <span className="card__image-count">
           <i className="icon-pictures" />
           <p className="count-text">{imageCount}</p>
         </span>
-        <button type="button" className={wishlistButtonClass()} />
+        <button
+          type="button"
+          className={wishlistButtonClass()}
+          onClick={() => wishlistListing(props.data)}
+        />
       </div>
 
       <div className="card__content-wrapper">
@@ -81,4 +130,18 @@ const ListingCard = (props) => {
   );
 };
 
-export default ListingCard;
+const mapDispatchToProps = {
+  setListingDetail,
+  toggleWishlistListing,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.LoginReducer.isAuthenticated,
+    userData: state.LoginReducer.userData,
+    userToken: state.LoginReducer.userToken,
+    wishlistsData: state.UsersReducer.wishlistsData,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListingCard);

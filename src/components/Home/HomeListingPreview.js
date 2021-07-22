@@ -9,7 +9,7 @@ import Slider from "react-slick";
 const HomeListingPreview = (props) => {
   const history = useHistory();
   const customSlider = useRef();
-  const isLoading = props.isLoadingType === "listing";
+  const isLoading = props.isLoadingType === "listing" || props.isInitialLoad;
 
   const settings = {
     dots: true,
@@ -131,6 +131,7 @@ const HomeListingPreview = (props) => {
 const mapStateToProps = (state) => {
   return {
     isLoadingType: state.UsersReducer.isLoadingType,
+    isInitialLoad: state.UsersReducer.isInitialLoad,
     forRentListingData: state.UsersReducer.forRentListingData,
     forSaleListingData: state.UsersReducer.forSaleListingData,
   };

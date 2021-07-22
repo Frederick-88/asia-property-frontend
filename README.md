@@ -48,9 +48,10 @@ Frontend & Concept References :
 React Technical References :
 
 - React Class & Functional Component, Lifecycle & Docs https://reactjs.org
+- Responsive Screen Sizes Reference https://www.hobo-web.co.uk/best-screen-size/
 - Skeleton Loader CSS Example https://codepen.io/Ba5nanas/pen/yLeJXGG
 - Setting up SCSS Github https://github.com/Mediumtutorial/sass-react-medium
 - Pug HTML with React ( if needed ) https://stackoverflow.com/questions/56513346/how-to-use-pug-templating-engine-with-reactjs
 - Creating Reusable Component similar to Vue Slots in React https://medium.com/@srph/react-imitating-vue-slots-eab8393f96fd
 - React Get Current Path for Class Component https://reactrouter.com/core/api/withRouter
-- Responsive Screen Sizes Reference https://www.hobo-web.co.uk/best-screen-size/
+- React useHistory in class component https://stackoverflow.com/questions/58122219/constructor-props-equivalent-in-react-hooks-for-history-push

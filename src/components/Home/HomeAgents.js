@@ -16,7 +16,7 @@ const HomeAgents = (props) => {
     slidesToShow: 3,
     slidesToScroll: 1,
   };
-  const isLoading = props.isLoadingType === "agent";
+  const isLoading = props.isLoadingType === "agent" || props.isInitialLoad;
 
   const carouselWrapperClass = () => {
     return isLoading
@@ -87,6 +87,7 @@ const HomeAgents = (props) => {
 const mapStateToProps = (state) => {
   return {
     isLoadingType: state.UsersReducer.isLoadingType,
+    isInitialLoad: state.UsersReducer.isInitialLoad,
     agentsData: state.UsersReducer.agentsData,
   };
 };

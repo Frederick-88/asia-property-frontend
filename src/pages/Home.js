@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
 import {
+  getListing,
   getListingWithQueries,
   getAgents,
 } from "../actionCreators/UsersAction";
@@ -19,17 +20,20 @@ const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(getListing());
     dispatch(
       getListingWithQueries({
+        isInitial: true,
         type: "for-sale",
       })
     );
     dispatch(
       getListingWithQueries({
+        isInitial: true,
         type: "for-rent",
       })
     );
-    dispatch(getAgents());
+    dispatch(getAgents({ isInitial: true }));
   }, [dispatch]);
 
   return (
@@ -45,6 +49,7 @@ const Home = () => {
 };
 
 const mapDispatchToProps = {
+  getListing,
   getListingWithQueries,
   getAgents,
 };

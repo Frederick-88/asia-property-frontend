@@ -101,8 +101,8 @@ const Footer = () => {
       <div className="footer-section">
         <p className="footer-title">Sign Up for Our Newsletter</p>
         <p className="footer-text">
-          Lorem ipsum dolor sit amet, consecte tur cing elit. Suspe ndisse
-          suscipit sagittis
+          Sign up to Asia Property's newsletter & receive any latest
+          informations about real-estates and what's new here.
         </p>
         <div className="subscribe-section">
           <input

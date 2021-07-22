@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
+import { connect } from "react-redux";
 
 import SkeletonList from "../SkeletonList";
 import ListingCard from "../Home/children/ListingCard";
@@ -10,11 +11,16 @@ import banner from "../../assets/images/banner-bg.jpg";
 const WishlistComponent = (props) => {
   const history = useHistory();
   const currentQueryUrl = useLocation().search;
-  const isLoading = false;
+  const isAuthenticated = props.isAuthenticated;
+  const isLoading = props.isLoadingType === "wishlist" || props.isInitialLoad;
 
   // -----------------------------------
   // < ------------------------------- >
   // -----------------------------------
+
+  const wishlistList = () => {
+    return props.wishlistsData;
+  };
 
   const backgroundStyle = (image) => {
     return {
@@ -24,16 +30,16 @@ const WishlistComponent = (props) => {
     };
   };
 
-  const ListingListComponent = () => {
+  const WishlistListComponent = () => {
     if (isLoading) {
       return <SkeletonList quantity={6} />;
     } else {
       return (
         <div className="wishlist-list__container">
-          <h4 className="list-title">45 Wishlists</h4>
+          <h4 className="list-title">{wishlistList().length} Wishlists</h4>
           <div className="wishlist-list">
-            {sampleListingData(10).map((listing, index) => {
-              return <ListingCard data={listing} key={index} />;
+            {wishlistList().map((wishlist, index) => {
+              return <ListingCard data={wishlist} key={index} />;
             })}
           </div>
         </div>
@@ -41,33 +47,15 @@ const WishlistComponent = (props) => {
     }
   };
 
-  const sampleListingData = (quantity) => {
-    const array = [];
-
-    for (let index = 0; index < quantity; index++) {
-      array.push({
-        id: 1001 + index,
-        name: `Apartment Boulevard - ${index}`,
-        price: "20,000",
-        status: "available",
-        address: "393 Lewis Ave, Brooklyn, New York",
-        is_renting: true,
-        bathroom_count: 3,
-        bedroom_count: 3,
-        square_feet_size: 900,
-        type: "apartment",
-      });
-    }
-
-    return array;
-  };
-
   useEffect(() => {
+    if (!isAuthenticated) {
+      history.push("/");
+    }
     if (!currentQueryUrl) {
       // always need to have '?page={page_num}'
       history.push("?page=1");
     }
-  }, [currentQueryUrl, history]);
+  }, [currentQueryUrl, history, isAuthenticated]);
 
   return (
     <div className="wishlist__container">
@@ -85,7 +73,7 @@ const WishlistComponent = (props) => {
         </div>
       </div>
       <div className="wishlist__content">
-        <ListingListComponent />
+        <WishlistListComponent />
 
         {/* Coming Soon Feature */}
         {/* <Pagination paginationCount={paginationCount} /> */}
@@ -94,4 +82,13 @@ const WishlistComponent = (props) => {
   );
 };
 
-export default WishlistComponent;
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.LoginReducer.isAuthenticated,
+    isLoadingType: state.UsersReducer.isLoadingType,
+    isInitialLoad: state.UsersReducer.isInitialLoad,
+    wishlistsData: state.UsersReducer.wishlistsData,
+  };
+};
+
+export default connect(mapStateToProps, null)(WishlistComponent);

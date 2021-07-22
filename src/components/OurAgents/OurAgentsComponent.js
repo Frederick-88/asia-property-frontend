@@ -13,7 +13,7 @@ const OurAgentsComponent = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const currentQueryUrl = useLocation().search;
-  const isLoading = props.isLoadingType === "agent";
+  const isLoading = props.isLoadingType === "agent" || props.isInitialLoad;
 
   // -----------------------------------
   // < ------------------------------- >
@@ -27,7 +27,7 @@ const OurAgentsComponent = (props) => {
     };
   };
 
-  const ListingListComponent = () => {
+  const AgentListComponent = () => {
     if (isLoading) {
       return <SkeletonList quantity={6} />;
     } else {
@@ -70,7 +70,7 @@ const OurAgentsComponent = (props) => {
         </div>
       </div>
       <div className="our-agents__content">
-        <ListingListComponent />
+        <AgentListComponent />
 
         {/* Coming Soon Feature */}
         {/* <Pagination paginationCount={paginationCount} /> */}
@@ -86,6 +86,7 @@ const mapDispatchToProps = {
 const mapStateToProps = (state) => {
   return {
     isLoadingType: state.UsersReducer.isLoadingType,
+    isInitialLoad: state.UsersReducer.isInitialLoad,
     agentsData: state.UsersReducer.agentsData,
   };
 };

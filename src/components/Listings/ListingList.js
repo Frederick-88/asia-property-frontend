@@ -16,7 +16,7 @@ const ListingList = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const currentQueryUrl = useLocation().search;
-  const isLoading = props.isLoadingType === "listing";
+  const isLoading = props.isLoadingType === "listing" || props.isInitialLoad;
 
   const dropdownOptions = [
     {
@@ -211,6 +211,7 @@ const mapDispatchToProps = {
 const mapStateToProps = (state) => {
   return {
     isLoadingType: state.UsersReducer.isLoadingType,
+    isInitialLoad: state.UsersReducer.isInitialLoad,
     listingData: state.UsersReducer.listingData,
     forRentListingData: state.UsersReducer.forRentListingData,
     forSaleListingData: state.UsersReducer.forSaleListingData,

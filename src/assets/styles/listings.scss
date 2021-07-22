@@ -342,6 +342,7 @@
           font-size: 1.25rem;
           font-weight: 500;
           color: $darkGrey;
+          text-transform: capitalize;
         }
 
         .header-icons {
@@ -426,6 +427,13 @@
             font-weight: 600;
             font-size: 0.875rem;
             color: $darkGrey;
+            text-transform: capitalize;
+
+            &.value--id {
+              width: 75%;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
           }
         }
       }
@@ -462,6 +470,12 @@
 
             .value {
               width: 60%;
+
+              &.value--id {
+                width: 50%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+              }
             }
           }
 
@@ -485,6 +499,7 @@
           .value {
             font-size: 0.825rem;
             color: $textGrey;
+            text-transform: capitalize;
           }
         }
       }
@@ -548,7 +563,8 @@
       .agent-image {
         width: 200px;
         height: 200px;
-        object-fit: cover;
+        object-fit: contain;
+        background: $lightGrey2;
         border-radius: 50%;
       }
 

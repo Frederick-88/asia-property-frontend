@@ -10,6 +10,10 @@ import {
   setIsAuthModalShow,
 } from "../actionCreators/LoginAction";
 
+import { getWishlists, resetWishlistData } from "../actionCreators/UsersAction";
+
+import { toast } from "react-toastify";
+
 import Logo from "../assets/images/logo.png";
 import "../assets/styles/navbar.scss";
 import AuthModal from "./AuthModal";
@@ -30,11 +34,12 @@ class Navbar extends Component {
   }
 
   componentDidMount() {
-    this.setState({ currentRoute: this.props.location.pathname });
-    window.addEventListener("scroll", this.handleScroll);
     const route = this.state.currentRoute;
     const withBgRoute =
       route !== "/" && route !== "/wishlists" && route !== "/our-agents";
+
+    this.setState({ currentRoute: this.props.location.pathname });
+    window.addEventListener("scroll", this.handleScroll);
 
     if (withBgRoute) {
       this.setState({ withBg: true });
@@ -43,13 +48,23 @@ class Navbar extends Component {
 
   componentDidUpdate(previousProps, previousState) {
     const currentPath = this.props.location.pathname;
-    const route = this.state.currentRoute;
-    const withBgRoute =
-      route !== "/" && route !== "/wishlists" && route !== "/our-agents";
 
     // catch changes in url/route, added if() to avoid maximum stack error
     // read this for detail -> https://stackoverflow.com/questions/30528348/setstate-inside-of-componentdidupdate
     if (previousState.currentRoute !== currentPath) {
+      const isAuthenticated = this.props.isAuthenticated;
+      const hasDidGetWishlist = this.props.hasDidGetWishlist;
+      const userId = this.props.userData && this.props.userData.id;
+      const userToken = this.props.userToken;
+
+      const route = this.state.currentRoute;
+      const withBgRoute =
+        route !== "/" && route !== "/wishlists" && route !== "/our-agents";
+
+      if (isAuthenticated && !hasDidGetWishlist) {
+        this.props.getWishlists({ user_id: userId, token: userToken });
+      }
+
       this.setState({ currentRoute: currentPath });
 
       if (withBgRoute) {
@@ -149,6 +164,19 @@ class Navbar extends Component {
     this.setState({ isAboutUsModalShow: !currentModalState });
   };
 
+  goToWishlists = () => {
+    if (this.props.isAuthenticated) {
+      this.props.history.push({
+        pathname: "/wishlists",
+      });
+    } else {
+      toast.warn("You need to be logged in to access this feature.", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 5000,
+      });
+    }
+  };
+
   handleAuthInputSubmit = (data) => {
     if (data.type === "register") {
       this.props.doRegister(data);
@@ -161,13 +189,14 @@ class Navbar extends Component {
 
   logout = () => {
     this.props.doLogout();
+    this.props.resetWishlistData();
     this.setState({ isProfileModalShow: false });
   };
 
   render() {
     const { isAboutUsModalShow, selectedAuthType } = this.state;
 
-    const { isAuthModalShow } = this.props;
+    const { isAuthModalShow, isAuthenticated } = this.props;
 
     // some react functions doesn't use "()" to avoid error -> read this: https://stackoverflow.com/questions/48497358/reactjs-maximum-update-depth-exceeded-error
     // note: // for function that returns must use "()" so can call the function & get the return
@@ -177,6 +206,7 @@ class Navbar extends Component {
       AuthNavComponent,
       hideAuthModal,
       handleAuthInputSubmit,
+      goToWishlists,
     } = this;
 
     return (
@@ -189,9 +219,15 @@ class Navbar extends Component {
           <Link to="/listings" className="nav__item">
             Listing
           </Link>
-          <Link to="/wishlists" className="nav__item">
+          <button
+            type="button"
+            className={
+              !isAuthenticated ? "nav__item nav--disabled" : "nav__item"
+            }
+            onClick={goToWishlists}
+          >
             Wishlists
-          </Link>
+          </button>
           <Link to="/our-agents" className="nav__item">
             Our Agents
           </Link>
@@ -229,12 +265,17 @@ const mapDispatchToProps = {
   doLogout,
   doRegister,
   setIsAuthModalShow,
+  getWishlists,
+  resetWishlistData,
 };
 
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.LoginReducer.isAuthenticated,
     isAuthModalShow: state.LoginReducer.isAuthModalShow,
+    userToken: state.LoginReducer.userToken,
+    userData: state.LoginReducer.userData,
+    hasDidGetWishlist: state.UsersReducer.hasDidGetWishlist,
   };
 };
 

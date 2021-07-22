@@ -1,4 +1,7 @@
 import axios from "axios";
+import { getWishlists } from "./UsersAction";
+import jwt from "jwt-decode";
+
 const baseURL = process.env.REACT_APP_HEROKU_BACKEND_URL;
 
 /* Full Axios Object Parameters :
@@ -29,6 +32,7 @@ export const doLogin = (data) => {
         data: formattedData,
       });
       const response = axiosCall.data;
+      const userId = jwt(response.token).id;
 
       dispatch({
         type: "SET_LOGIN_DATA",
@@ -38,6 +42,12 @@ export const doLogin = (data) => {
         type: "SET_IS_AUTH_MODAL_SHOW",
         payload: false,
       });
+      dispatch(
+        getWishlists({
+          user_id: userId,
+          token: response.token,
+        })
+      );
     } catch (error) {
       const errorMessage = error.response.data;
       dispatch({
