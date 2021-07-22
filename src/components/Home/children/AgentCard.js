@@ -1,5 +1,4 @@
 import React from "react";
-import SampleAgent from "../../../assets/images/sample-agent.jpeg";
 import "../../../assets/styles/home.scss";
 
 const AgentCard = (props) => {
@@ -7,7 +6,7 @@ const AgentCard = (props) => {
 
   return (
     <div className="agent-card">
-      <img className="card__image" src={SampleAgent} alt="agent" />
+      <img className="card__image" src={props.data.image} alt="agent" />
       <div className="card__content">
         <h4 className="title">{props.data.name}</h4>
         <div className="card-detail detail--location">

@@ -1,18 +1,19 @@
 import React, { useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
+import { connect, useDispatch } from "react-redux";
+import { getAgents } from "../../actionCreators/UsersAction";
 
 import SkeletonList from "../SkeletonList";
 import AgentCard from "../Home/children/AgentCard";
-import Pagination from "../../utilities/Pagination";
 
 import ourAgentsVector from "../../assets/images/illustrations/agent.png";
 import banner from "../../assets/images/banner-bg.jpg";
 
 const OurAgentsComponent = (props) => {
+  const dispatch = useDispatch();
   const history = useHistory();
   const currentQueryUrl = useLocation().search;
-  const paginationCount = 4;
-  const isLoading = false;
+  const isLoading = props.isLoadingType === "agent";
 
   // -----------------------------------
   // < ------------------------------- >
@@ -32,31 +33,15 @@ const OurAgentsComponent = (props) => {
     } else {
       return (
         <div className="our-agents-list__container">
-          <h4 className="list-title">88 Agents</h4>
+          <h4 className="list-title">{props.agentsData.length} Agents</h4>
           <div className="our-agents-list">
-            {sampleAgentData(10).map((listing, index) => {
-              return <AgentCard data={listing} key={index} />;
+            {props.agentsData.map((agent, index) => {
+              return <AgentCard data={agent} key={index} />;
             })}
           </div>
         </div>
       );
     }
-  };
-
-  const sampleAgentData = (quantity) => {
-    const array = [];
-
-    for (let index = 0; index < quantity; index++) {
-      array.push({
-        name: "Susan Goh " + index,
-        country: "Indonesia",
-        city: "Batam",
-        phone_number: "085877881000",
-        email: "agent@gmail.com",
-      });
-    }
-
-    return array;
   };
 
   useEffect(() => {
@@ -65,6 +50,10 @@ const OurAgentsComponent = (props) => {
       history.push("?page=1");
     }
   }, [currentQueryUrl, history]);
+
+  useEffect(() => {
+    dispatch(getAgents());
+  }, [dispatch]);
 
   return (
     <div className="our-agents__container">
@@ -82,10 +71,23 @@ const OurAgentsComponent = (props) => {
       </div>
       <div className="our-agents__content">
         <ListingListComponent />
-        <Pagination paginationCount={paginationCount} />
+
+        {/* Coming Soon Feature */}
+        {/* <Pagination paginationCount={paginationCount} /> */}
       </div>
     </div>
   );
 };
 
-export default OurAgentsComponent;
+const mapDispatchToProps = {
+  getAgents,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    isLoadingType: state.UsersReducer.isLoadingType,
+    agentsData: state.UsersReducer.agentsData,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(OurAgentsComponent);

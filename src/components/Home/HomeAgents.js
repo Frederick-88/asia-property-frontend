@@ -1,9 +1,12 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+
 import AgentCard from "./children/AgentCard";
+import SkeletonList from "../SkeletonList";
 import Slider from "react-slick";
 
-const HomeAgents = () => {
+const HomeAgents = (props) => {
   const customSlider = useRef();
   const settings = {
     dots: false,
@@ -13,37 +16,27 @@ const HomeAgents = () => {
     slidesToShow: 3,
     slidesToScroll: 1,
   };
+  const isLoading = props.isLoadingType === "agent";
 
-  const agentData = [
-    {
-      name: "Andy Law",
-      country: "Indonesia",
-      city: "Jakarta",
-      phone_number: "085877881000",
-      email: "agent@gmail.com",
-    },
-    {
-      name: "Bakugo",
-      country: "Japan",
-      city: "Tokyo",
-      phone_number: "085877881008",
-      email: "agent@gmail.com",
-    },
-    {
-      name: "Susan Goh",
-      country: "Indonesia",
-      city: "Jakarta",
-      phone_number: "085877221000",
-      email: "agent@gmail.com",
-    },
-    {
-      name: "Bob Sadino",
-      country: "Indonesia",
-      city: "Batam",
-      phone_number: "085877881000",
-      email: "agent@gmail.com",
-    },
-  ];
+  const carouselWrapperClass = () => {
+    return isLoading
+      ? "carousel__wrapper wrapper--is-loading"
+      : "carousel__wrapper";
+  };
+
+  const AgentPreviewComponent = () => {
+    if (isLoading) {
+      return <SkeletonList quantity={3} />;
+    } else {
+      return (
+        <Slider ref={(slider) => (customSlider.current = slider)} {...settings}>
+          {props.agentsData.map((listing, index) => {
+            return <AgentCard data={listing} key={index} />;
+          })}
+        </Slider>
+      );
+    }
+  };
 
   const setPrevCarousel = () => {
     customSlider.current.slickPrev();
@@ -85,19 +78,17 @@ const HomeAgents = () => {
           </button>
         </div>
 
-        <div className="carousel__wrapper">
-          <Slider
-            ref={(slider) => (customSlider.current = slider)}
-            {...settings}
-          >
-            {agentData.map((agent, index) => {
-              return <AgentCard data={agent} key={index} />;
-            })}
-          </Slider>
-        </div>
+        <div className={carouselWrapperClass()}>{AgentPreviewComponent()}</div>
       </div>
     </section>
   );
 };
 
-export default HomeAgents;
+const mapStateToProps = (state) => {
+  return {
+    isLoadingType: state.UsersReducer.isLoadingType,
+    agentsData: state.UsersReducer.agentsData,
+  };
+};
+
+export default connect(mapStateToProps, null)(HomeAgents);
