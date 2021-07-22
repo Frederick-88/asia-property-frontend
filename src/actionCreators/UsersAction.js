@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-const baseURL = process.env.REACT_APP_HEROKU_BACKEND_URL;
+const apiURL = process.env.REACT_APP_HEROKU_BACKEND_URL;
 
 export const getListing = () => {
   return async (dispatch) => {
@@ -12,7 +12,7 @@ export const getListing = () => {
     try {
       const axiosCall = await axios({
         method: "get",
-        url: `${baseURL}/real-estate/get`,
+        url: `${apiURL}/real-estate/get`,
       });
       const response = axiosCall.data;
 
@@ -66,7 +66,7 @@ export const getListingWithQueries = (data) => {
     try {
       const axiosCall = await axios({
         method: "get",
-        url: `${baseURL}/real-estate/search`,
+        url: `${apiURL}/real-estate/search`,
         params: formattedParams,
       });
       const response = axiosCall.data;
@@ -145,7 +145,7 @@ export const getAgents = (data) => {
     try {
       const axiosCall = await axios({
         method: "get",
-        url: `${baseURL}/agents/get`,
+        url: `${apiURL}/agents/get`,
       });
       const response = axiosCall.data;
 
@@ -205,7 +205,7 @@ export const getWishlists = (data) => {
     try {
       const axiosCall = await axios({
         method: "get",
-        url: `${baseURL}/wishlist/get-by-user-id/${data.user_id}`,
+        url: `${apiURL}/wishlist/get-by-user-id/${data.user_id}`,
         headers: { "access-token": data.token },
       });
       const response = axiosCall.data;
@@ -267,11 +267,11 @@ export const toggleWishlistListing = (data) => {
         headers: { "access-token": data.userToken },
       };
       if (isRemoveFromWishlist) {
-        axiosObj.url = `${baseURL}/wishlist/delete`;
+        axiosObj.url = `${apiURL}/wishlist/delete`;
         axiosObj.method = "delete";
         axiosObj.params = formattedData;
       } else {
-        axiosObj.url = `${baseURL}/wishlist/create`;
+        axiosObj.url = `${apiURL}/wishlist/create`;
         axiosObj.method = "post";
         axiosObj.data = formattedData;
       }

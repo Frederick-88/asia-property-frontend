@@ -2,12 +2,12 @@ import axios from "axios";
 import { getWishlists } from "./UsersAction";
 import jwt from "jwt-decode";
 
-const baseURL = process.env.REACT_APP_HEROKU_BACKEND_URL;
+const apiURL = process.env.REACT_APP_HEROKU_BACKEND_URL;
 
 /* Full Axios Object Parameters :
     axios({
         method: 'post',
-        url: `${baseURL}/${version}/upload-file`,
+        url: `${apiURL}/${version}/upload-file`,
         data: loginData,
         params: loginParams
         headers: {
@@ -28,7 +28,7 @@ export const doLogin = (data) => {
     try {
       const axiosCall = await axios({
         method: "post",
-        url: `${baseURL}/users/login`,
+        url: `${apiURL}/users/login`,
         data: formattedData,
       });
       const response = axiosCall.data;
@@ -70,7 +70,7 @@ export const doRegister = (data) => {
     try {
       const axiosCall = await axios({
         method: "post",
-        url: `${baseURL}/users/register`,
+        url: `${apiURL}/users/register`,
         data: formattedData,
       });
       const response = axiosCall.data;
