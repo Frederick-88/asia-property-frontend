@@ -242,6 +242,13 @@
       &.icon--right {
         right: 0;
       }
+
+      &.icon--disabled {
+        pointer-events: none;
+        cursor: default;
+        background: $disabledGrey;
+        color: $white;
+      }
     }
   }
 }
@@ -669,6 +676,13 @@
 
       &:hover {
         background: $blue;
+        color: $white;
+      }
+
+      &.icon--disabled {
+        pointer-events: none;
+        cursor: default;
+        background: $disabledGrey;
         color: $white;
       }
     }

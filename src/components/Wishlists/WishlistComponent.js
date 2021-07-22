@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
+import Aos from "aos";
 import { connect } from "react-redux";
 
 import SkeletonList from "../SkeletonList";
@@ -57,10 +58,14 @@ const WishlistComponent = (props) => {
     }
   }, [currentQueryUrl, history, isAuthenticated]);
 
+  useEffect(() => {
+    Aos.init({ duration: 1500 });
+  }, []);
+
   return (
     <div className="wishlist__container">
       <div className="wishlist__banner" style={backgroundStyle(banner)}>
-        <div className="banner-container">
+        <div className="banner-container" data-aos="fade-up">
           <img className="banner-image" src={wishlistVector} alt="cover" />
           <div className="banner-text">
             <h4 className="banner-title">Wishlists</h4>

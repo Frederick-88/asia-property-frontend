@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
+import Aos from "aos";
 import { connect, useDispatch } from "react-redux";
 import { getAgents } from "../../actionCreators/UsersAction";
 
@@ -52,13 +53,14 @@ const OurAgentsComponent = (props) => {
   }, [currentQueryUrl, history]);
 
   useEffect(() => {
+    Aos.init({ duration: 1500 });
     dispatch(getAgents());
   }, [dispatch]);
 
   return (
     <div className="our-agents__container">
       <div className="our-agents__banner" style={backgroundStyle(banner)}>
-        <div className="banner-container">
+        <div className="banner-container" data-aos="fade-up">
           <img className="banner-image" src={ourAgentsVector} alt="cover" />
           <div className="banner-text">
             <h4 className="banner-title">Our Agents</h4>

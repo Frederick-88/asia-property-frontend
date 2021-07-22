@@ -129,6 +129,7 @@ const ListingList = (props) => {
       setPageQuery(urlPageQuery);
       setTypeQuery(urlTypeQuery);
       setSearchQuery(urlSearchQuery);
+      setSearchQueryInput(urlSearchQuery || "");
     }
   }, [currentQueryUrl, history]);
 
@@ -169,7 +170,7 @@ const ListingList = (props) => {
               <input
                 className="search-input"
                 placeholder="Enter Keyword ..."
-                value={searchQuery}
+                value={searchQueryInput}
                 onChange={(event) => handleSearchInput(event)}
               />
               <button

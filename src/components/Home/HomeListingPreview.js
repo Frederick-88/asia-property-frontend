@@ -106,7 +106,11 @@ const HomeListingPreview = (props) => {
       <div className="preview__list-carousel">
         <button
           type="button"
-          className="carousel-icon icon--left"
+          className={
+            isLoading
+              ? "carousel-icon icon--left icon--disabled"
+              : "carousel-icon icon--left"
+          }
           onClick={setPrevCarousel}
         >
           <i className="icon-chevron-left" />
@@ -118,7 +122,11 @@ const HomeListingPreview = (props) => {
 
         <button
           type="button"
-          className="carousel-icon icon--right"
+          className={
+            isLoading
+              ? "carousel-icon icon--right icon--disabled"
+              : "carousel-icon icon--right"
+          }
           onClick={setNextCarousel}
         >
           <i className="icon-chevron-right" />

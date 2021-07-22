@@ -64,14 +64,18 @@ const HomeAgents = (props) => {
         <div className="carousel__button-list">
           <button
             type="button"
-            className="carousel-icon"
+            className={
+              isLoading ? "carousel-icon icon--disabled" : "carousel-icon"
+            }
             onClick={setPrevCarousel}
           >
             <i className="icon-chevron-left" />
           </button>
           <button
             type="button"
-            className="carousel-icon"
+            className={
+              isLoading ? "carousel-icon icon--disabled" : "carousel-icon"
+            }
             onClick={setNextCarousel}
           >
             <i className="icon-chevron-right" />

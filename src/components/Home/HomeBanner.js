@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import Aos from "aos";
 
 const HomeBanner = () => {
   const history = useHistory();
@@ -39,12 +40,20 @@ const HomeBanner = () => {
     setSearchQueryInput(value);
   };
 
+  useEffect(() => {
+    Aos.init({ duration: 1500 });
+  }, []);
+
   return (
     <section className="home-banner">
-      <h4 className="subtitle uppercase--all">Let us guide your home</h4>
-      <h2 className="title">Find Your Dream Home</h2>
+      <h4 className="subtitle uppercase--all" data-aos="fade-up">
+        Let us guide your home
+      </h4>
+      <h2 className="title" data-aos="fade-up">
+        Find Your Dream Home
+      </h2>
 
-      <div className="banner-navbar">
+      <div className="banner-navbar" data-aos="fade-up">
         <button
           type="button"
           className={navbarClass("all-real-estate")}
@@ -68,7 +77,7 @@ const HomeBanner = () => {
         </button>
       </div>
 
-      <div className="search-bar">
+      <div className="search-bar" data-aos="fade-up">
         <i className="icon-search search-icon" />
         <input
           className="search-input"
