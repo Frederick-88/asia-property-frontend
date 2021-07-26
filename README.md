@@ -1,6 +1,6 @@
 ## Asia-Property-Frontend
 
-Content Structure :
+#### Content Structure :
 
 1. Homepage
 
@@ -18,7 +18,6 @@ Content Structure :
 - search with for rent/sale options & title ( fixed position )
 - listing like airbnb but 2 grids
 - skeleton loader
-- see more
 
 3. Wishlists
 
@@ -34,7 +33,51 @@ Content Structure :
 
 - standard about us page
 
-Frontend & Concept References :
+#### Admin Site Content Structure :
+
+1. Dashboard
+
+- with Charts & Metrics informing quantity of users registered, featured count & total visitors ( by API )
+
+2. Listing List
+
+- sorting & search
+- skeleton loader
+- edit & delete
+
+3. Users
+
+- sorting & search
+- skeleton loader
+- edit & delete
+
+4. Our Agents
+
+- sorting & search
+- skeleton loader
+- edit & delete
+
+5. Wishlists
+
+- sorting & search
+- skeleton loader
+- edit & delete
+
+6. Featured List ( optional - can try implement payment logic here )
+
+- sorting & search
+- skeleton loader
+- edit & delete
+
+7. About Us
+
+- about us page like in public site
+
+8. Settings
+
+- Add Options ( Listing, Wishlists, Agents, FeaturedList, Users etc )
+
+#### Frontend & Concept References :
 
 - http://demos.ui-lib.com/gull/html/layout2/dashboard1.html ( admin website with 2 roles, viewer & admin )
 - https://admin-redq.vercel.app/customers ( admin website with 2 roles, viewer & admin )
@@ -45,7 +88,7 @@ Frontend & Concept References :
 - https://dribbble.com/search/real%20estate%20web ( landing page )
 - https://dribbble.com/shots/14608177-Socialup-Web-App ( auth modal )
 
-React Technical References :
+#### React Technical References :
 
 - React Class & Functional Component, Lifecycle & Docs https://reactjs.org
 - Responsive Screen Sizes Reference https://www.hobo-web.co.uk/best-screen-size/
