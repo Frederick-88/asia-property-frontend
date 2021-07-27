@@ -37,7 +37,7 @@
 
 1. Dashboard
 
-- with Charts & Metrics informing quantity of users registered, featured count & total visitors ( by API )
+- with Charts & Metrics informing quantity of users registered, featured count & total visitors ( track with API )
 
 2. Listing List
 

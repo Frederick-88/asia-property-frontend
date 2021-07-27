@@ -16,6 +16,7 @@ import Listings from "./pages/Listings";
 import ListingDetail from "./pages/ListingDetail";
 import Wishlist from "./pages/Wishlist";
 import OurAgents from "./pages/OurAgents";
+import AdminDashboard from "./pages/AdminDashboard";
 
 const App = () => {
   const backgroundStyle = (image) => {
@@ -52,6 +53,10 @@ const App = () => {
               </Route>
               <Route exact path="/our-agents">
                 <OurAgents />
+              </Route>
+
+              <Route exact path="/admin">
+                <AdminDashboard />
               </Route>
             </Switch>
             <Footer />
