@@ -30,6 +30,7 @@ class Navbar extends Component {
       isAboutUsModalShow: false,
       selectedAuthType: "login",
       currentRoute: "",
+      isOnAdminPage: false,
     };
   }
 
@@ -58,20 +59,27 @@ class Navbar extends Component {
       const userToken = this.props.userToken;
 
       const route = this.state.currentRoute;
+      const isAdminRoute = route.includes("/admin");
       const withBgRoute =
         route !== "/" && route !== "/wishlists" && route !== "/our-agents";
 
-      if (isAuthenticated && !hasDidGetWishlist) {
-        this.props.getWishlists({ user_id: userId, token: userToken });
+      if (isAdminRoute) {
+        this.setState({ isOnAdminPage: true });
+      } else {
+        this.setState({ isOnAdminPage: false });
       }
-
-      this.setState({ currentRoute: currentPath });
 
       if (withBgRoute) {
         this.setState({ withBg: true });
       } else {
         this.setState({ withBg: false });
       }
+
+      if (isAuthenticated && !hasDidGetWishlist) {
+        this.props.getWishlists({ user_id: userId, token: userToken });
+      }
+
+      this.setState({ currentRoute: currentPath });
     }
   }
 
@@ -194,7 +202,7 @@ class Navbar extends Component {
   };
 
   render() {
-    const { isAboutUsModalShow, selectedAuthType } = this.state;
+    const { isAboutUsModalShow, selectedAuthType, isOnAdminPage } = this.state;
 
     const { isAuthModalShow, isAuthenticated } = this.props;
 
@@ -210,52 +218,56 @@ class Navbar extends Component {
     } = this;
 
     return (
-      <section className={navClass()}>
-        <div className="navigation__list">
-          <Link to="/" className="nav-image__wrapper">
-            <img className="nav__image" src={Logo} alt="logo" />
-            <h4 className="nav__logo-title">Asia Property</h4>
-          </Link>
-          <Link to="/listings" className="nav__item">
-            Listing
-          </Link>
-          <button
-            type="button"
-            className={
-              !isAuthenticated ? "nav__item nav--disabled" : "nav__item"
-            }
-            onClick={goToWishlists}
-          >
-            Wishlists
-          </button>
-          <Link to="/our-agents" className="nav__item">
-            Our Agents
-          </Link>
-          <button
-            type="button"
-            className="nav__item"
-            onClick={() => toggleAboutUsModal(isAboutUsModalShow)}
-          >
-            About Us
-          </button>
-        </div>
+      <div>
+        {!isOnAdminPage ? (
+          <section className={navClass()}>
+            <div className="navigation__list">
+              <Link to="/" className="nav-image__wrapper">
+                <img className="nav__image" src={Logo} alt="logo" />
+                <h4 className="nav__logo-title">Asia Property</h4>
+              </Link>
+              <Link to="/listings" className="nav__item">
+                Listing
+              </Link>
+              <button
+                type="button"
+                className={
+                  !isAuthenticated ? "nav__item nav--disabled" : "nav__item"
+                }
+                onClick={goToWishlists}
+              >
+                Wishlists
+              </button>
+              <Link to="/our-agents" className="nav__item">
+                Our Agents
+              </Link>
+              <button
+                type="button"
+                className="nav__item"
+                onClick={() => toggleAboutUsModal(isAboutUsModalShow)}
+              >
+                About Us
+              </button>
+            </div>
 
-        {AuthNavComponent()}
+            {AuthNavComponent()}
 
-        {/* 
+            {/* 
           in Event/Emits from Child, Binding into Function can use "()=>" if you're going to send a param.
          */}
-        <AuthModal
-          isAuthModalShow={isAuthModalShow}
-          type={selectedAuthType}
-          hideModal={hideAuthModal}
-          handleAuthInputSubmit={handleAuthInputSubmit}
-        />
-        <AboutUsModal
-          isAboutUsModalShow={isAboutUsModalShow}
-          hideModal={() => toggleAboutUsModal(isAboutUsModalShow)}
-        />
-      </section>
+            <AuthModal
+              isAuthModalShow={isAuthModalShow}
+              type={selectedAuthType}
+              hideModal={hideAuthModal}
+              handleAuthInputSubmit={handleAuthInputSubmit}
+            />
+            <AboutUsModal
+              isAboutUsModalShow={isAboutUsModalShow}
+              hideModal={() => toggleAboutUsModal(isAboutUsModalShow)}
+            />
+          </section>
+        ) : null}
+      </div>
     );
   }
 }
