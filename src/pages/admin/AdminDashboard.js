@@ -1,7 +1,7 @@
 import React from "react";
-import AdminDashboardComponent from "../components/Admin/AdminDashboardComponent";
+import AdminDashboardComponent from "../../components/Admin/AdminDashboardComponent";
 
-import "../assets/styles/admin/admindashboard.scss";
+import "../../assets/styles/admin/admindashboard.scss";
 
 const AdminDashboard = (props) => {
   return (
