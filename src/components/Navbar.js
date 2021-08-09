@@ -53,10 +53,9 @@ class Navbar extends Component {
     // catch changes in url/route, added if() to avoid maximum stack error
     // read this for detail -> https://stackoverflow.com/questions/30528348/setstate-inside-of-componentdidupdate
     if (previousState.currentRoute !== currentPath) {
-      const isAuthenticated = this.props.isAuthenticated;
-      const hasDidGetWishlist = this.props.hasDidGetWishlist;
       const userId = this.props.userData && this.props.userData.id;
-      const userToken = this.props.userToken;
+      const { adminToken, userToken, hasDidGetWishlist, isAuthenticated } =
+        this.props;
 
       const route = this.state.currentRoute;
       const isAdminRoute = route.includes("/admin");
@@ -75,7 +74,7 @@ class Navbar extends Component {
         this.setState({ withBg: false });
       }
 
-      if (isAuthenticated && !hasDidGetWishlist) {
+      if (isAuthenticated && !hasDidGetWishlist && !adminToken) {
         this.props.getWishlists({ user_id: userId, token: userToken });
       }
 
@@ -285,6 +284,7 @@ const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.LoginReducer.isAuthenticated,
     isAuthModalShow: state.LoginReducer.isAuthModalShow,
+    adminToken: state.LoginReducer.adminToken,
     userToken: state.LoginReducer.userToken,
     userData: state.LoginReducer.userData,
     hasDidGetWishlist: state.UsersReducer.hasDidGetWishlist,

@@ -12,25 +12,35 @@ const AdminRouteHandler = (props) => {
   // console.log({ routeMatcher });
 
   return (
-    <div>
-      <Switch>
-        <Route exact path={routeMatcher.path}>
-          {props.tokenAdmin ? <AdminDashboard /> : <h4>Bro, let's login</h4>}
-        </Route>
+    <main className="admin-site__container">
+      <div className="admin-sidebar">Sidebar Here</div>
+      <section className="admin-content__container">
+        <div className="admin-navbar">Navbar Here</div>
+        <div className="admin-content">
+          <Switch>
+            <Route exact path={routeMatcher.path}>
+              {props.adminToken ? (
+                <AdminDashboard />
+              ) : (
+                <h4>Bro, let's login</h4>
+              )}
+            </Route>
 
-        <Route exact path={`${routeMatcher.path}/settings`}>
-          {props.tokenAdmin ? <AdminSettings /> : <h4>Bro, let's login</h4>}
-        </Route>
+            <Route exact path={`${routeMatcher.path}/settings`}>
+              {props.adminToken ? <AdminSettings /> : <h4>Bro, let's login</h4>}
+            </Route>
 
-        <Route exact path={`${routeMatcher.path}/users`}>
-          {props.tokenAdmin ? <AdminUsers /> : <h4>Bro, let's login</h4>}
-        </Route>
+            <Route exact path={`${routeMatcher.path}/users`}>
+              {props.adminToken ? <AdminUsers /> : <h4>Bro, let's login</h4>}
+            </Route>
 
-        <Route exact path={`${routeMatcher.path}/listings`}>
-          {props.tokenAdmin ? <AdminListing /> : <h4>Bro, let's login</h4>}
-        </Route>
-      </Switch>
-    </div>
+            <Route exact path={`${routeMatcher.path}/listings`}>
+              {props.adminToken ? <AdminListing /> : <h4>Bro, let's login</h4>}
+            </Route>
+          </Switch>
+        </div>
+      </section>
+    </main>
   );
 };
 

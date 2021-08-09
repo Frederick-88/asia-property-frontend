@@ -33,6 +33,29 @@ body {
     width: 100%;
   }
 
+  .admin-site__container {
+    display: flex;
+    background: $light;
+
+    .admin-sidebar {
+      width: 200px;
+      min-height: 100vh;
+    }
+
+    .admin-content__container {
+      width: calc(100% - 200px);
+      min-height: 100vh;
+
+      .admin-content {
+        background: $light2;
+        height: 90vh;
+        margin-right: 50px;
+        margin-bottom: 50px;
+        border-radius: 30px;
+      }
+    }
+  }
+
   // scroll customization styling soon
   // &::-webkit-scrollbar-track {
   //   background-color: var(--background-color);
