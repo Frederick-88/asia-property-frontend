@@ -353,7 +353,7 @@ const AuthModal = (props) => {
 
   const proceedAsVisitor = () => {
     toast.success(
-      "Proceed as visitor for admin page feature will be available around late Q3 2021.",
+      "Proceed as visitor for admin page feature will be available around late Q4 2021.",
       {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 7000,
