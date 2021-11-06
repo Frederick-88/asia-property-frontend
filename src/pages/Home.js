@@ -6,7 +6,6 @@ import {
   getAgents,
 } from "../actionCreators/UsersAction";
 
-import "aos/dist/aos.css";
 import "../assets/styles/home.scss";
 import HomeBanner from "../components/Home/HomeBanner";
 import HomeListingPreview from "../components/Home/HomeListingPreview";
