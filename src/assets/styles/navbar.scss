@@ -9,6 +9,7 @@
   width: 100%;
   transition: margin-top 0.3s, background 0.3s;
   z-index: 100;
+  animation: fade-down 2.5s;
 
   &.nav--scrolled {
     background: $darkBlue2;
