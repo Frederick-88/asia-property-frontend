@@ -82,6 +82,8 @@
 - http://demos.ui-lib.com/gull/html/layout2/dashboard1.html ( admin website with 2 roles, viewer & admin )
 - https://admin-redq.vercel.app/customers ( admin website with 2 roles, viewer & admin )
 - https://dribbble.com/shots/14715367-Wallet-Dashboard-Design ( admin navigation structure )
+- https://dribbble.com/shots/15216951-Finance-Dashboard-Design ( admin website UI reference )
+- https://dribbble.com/shots/15501287-Finance-Dashboard-Design ( admin website UI reference )
 - https://www.realtor.com/ ( standard real estate web contents )
 - https://www.airbnb.com/ ( landing page & dashboard site )
 - https://preview.themeforest.net/item/wp-residence-real-estate-wordpress-theme/full_screen_preview/7896392?_ga=2.113331008.694251961.1623680163-1787504979.1614307227 ( landing page & dashboard site )
