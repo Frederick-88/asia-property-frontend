@@ -1,24 +1,7 @@
 import React from 'react';
 
 const AdminNavbar = (props) => {
-    const navButtonList = [
-        {
-            class: 'icon-notification-bell',
-            value: 'notification',
-        },
-        {
-            class: 'icon-notification-bell',
-            value: 'notification',
-        },
-        {
-            class: 'icon-notification-bell',
-            value: 'notification',
-        },
-        {
-            class: 'icon-notification-bell',
-            value: 'notification',
-        },
-    ];
+    const navIcons = ['icon-notification-line', 'icon-message', 'icon-gift', 'icon-settings-line']
     const handleSearchInput = (event) => {
         let { value } = event.currentTarget;
         // setSearchQueryInput(value);
@@ -37,10 +20,10 @@ const AdminNavbar = (props) => {
             </div>
 
             <div className='navbar__button-list'>
-                {navButtonList.map((button, index) => {
+                {navIcons.map((iconClass, index) => {
                     return (
                         <button type='button' className='navbar-button' key={index}>
-                            <i className={button.class} />
+                            <i className={iconClass} />
                         </button>
                     );
                 })}

@@ -1,0 +1,60 @@
+@import "../variables.scss";
+
+.admin-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .navbar__search-bar {
+        display: flex;
+        height: 42px;
+        width: 300px;
+        position: relative;
+        margin-left: 30px;
+
+        .search-icon {
+            position: absolute;
+            font-size: 1.25rem;
+            top: 10px;
+            left: 20px;
+            color: $blue;
+        }
+
+        .search-input {
+            display: block;
+            padding: 0 20px 0 60px;
+            font-weight: 500;
+            font-size: 0.75rem;
+            height: 100%;
+            outline: 0;
+            border: 0;
+            width: 100%;
+            background: $white;
+            border-radius: 20px;
+            letter-spacing: 1.5px;
+
+            &::placeholder {
+                color: $textGrey2;
+            }
+        }
+    }
+
+    .navbar-button {
+        margin-left: 15px;
+        border-radius: 50%;
+        background-color: $white;
+        color: $blue;
+        font-size: 1.125rem;
+        height: 42px;
+        width: 42px;
+        border: 0;
+        outline: 0;
+        cursor: pointer;
+
+        &:hover {
+            transition: background-color 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955), color 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+            color: $white;
+            background-color: $blue;
+        }
+    }
+}
