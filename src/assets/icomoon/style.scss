@@ -2,11 +2,11 @@
 
 @font-face {
   font-family: '#{$icomoon-font-family}';
-  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?kykx7a');
-  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?kykx7a#iefix') format('embedded-opentype'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?kykx7a') format('truetype'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?kykx7a') format('woff'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?kykx7a##{$icomoon-font-family}') format('svg');
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?7v7icv');
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?7v7icv#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?7v7icv') format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?7v7icv') format('woff'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?7v7icv##{$icomoon-font-family}') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -27,6 +27,176 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-add {
+  &:before {
+    content: $icon-add; 
+  }
+}
+.icon-delete-line {
+  &:before {
+    content: $icon-delete-line; 
+  }
+}
+.icon-delete-solid {
+  &:before {
+    content: $icon-delete-solid; 
+  }
+}
+.icon-edit {
+  &:before {
+    content: $icon-edit; 
+  }
+}
+.icon-upload {
+  &:before {
+    content: $icon-upload; 
+  }
+}
+.icon-coins {
+  &:before {
+    content: $icon-coins; 
+  }
+}
+.icon-wallet {
+  &:before {
+    content: $icon-wallet; 
+  }
+}
+.icon-money {
+  &:before {
+    content: $icon-money; 
+  }
+}
+.icon-statistic {
+  &:before {
+    content: $icon-statistic; 
+  }
+}
+.icon-credit-card {
+  &:before {
+    content: $icon-credit-card; 
+  }
+}
+.icon-cart-arrow-down {
+  &:before {
+    content: $icon-cart-arrow-down; 
+  }
+}
+.icon-settings-solid {
+  &:before {
+    content: $icon-settings-solid; 
+  }
+}
+.icon-star-line {
+  &:before {
+    content: $icon-star-line; 
+  }
+}
+.icon-star-solid {
+  &:before {
+    content: $icon-star-solid; 
+  }
+}
+.icon-speedometer {
+  &:before {
+    content: $icon-speedometer; 
+  }
+}
+.icon-settings-line {
+  &:before {
+    content: $icon-settings-line; 
+  }
+}
+.icon-message {
+  &:before {
+    content: $icon-message; 
+  }
+}
+.icon-close {
+  &:before {
+    content: $icon-close; 
+  }
+}
+.icon-gift {
+  &:before {
+    content: $icon-gift; 
+  }
+}
+.icon-notification-line {
+  &:before {
+    content: $icon-notification-line; 
+  }
+}
+.icon-home {
+  &:before {
+    content: $icon-home; 
+  }
+}
+.icon-notification-solid {
+  &:before {
+    content: $icon-notification-solid; 
+  }
+}
+.icon-search {
+  &:before {
+    content: $icon-search; 
+  }
+}
+.icon-whatsapp {
+  &:before {
+    content: $icon-whatsapp; 
+  }
+}
+.icon-checkmark {
+  &:before {
+    content: $icon-checkmark; 
+  }
+}
+.icon-menu {
+  &:before {
+    content: $icon-menu; 
+  }
+}
+.icon-arrow-down {
+  &:before {
+    content: $icon-arrow-down; 
+  }
+}
+.icon-arrow-left {
+  &:before {
+    content: $icon-arrow-left; 
+  }
+}
+.icon-arrow-right {
+  &:before {
+    content: $icon-arrow-right; 
+  }
+}
+.icon-arrow-up {
+  &:before {
+    content: $icon-arrow-up; 
+  }
+}
+.icon-favourite-solid {
+  &:before {
+    content: $icon-favourite-solid; 
+  }
+}
+.icon-favourite-line {
+  &:before {
+    content: $icon-favourite-line; 
+  }
+}
+.icon-google {
+  &:before {
+    content: $icon-google; 
+  }
+}
+.icon-shift {
+  &:before {
+    content: $icon-shift; 
+  }
+}
 .icon-pagination-arrow-left {
   &:before {
     content: $icon-pagination-arrow-left; 
@@ -147,76 +317,6 @@
     content: $icon-property; 
   }
 }
-.icon-home {
-  &:before {
-    content: $icon-home; 
-  }
-}
-.icon-notification-bell {
-  &:before {
-    content: $icon-notification-bell; 
-  }
-}
-.icon-search {
-  &:before {
-    content: $icon-search; 
-  }
-}
-.icon-whatsapp {
-  &:before {
-    content: $icon-whatsapp; 
-  }
-}
-.icon-checkmark {
-  &:before {
-    content: $icon-checkmark; 
-  }
-}
-.icon-menu {
-  &:before {
-    content: $icon-menu; 
-  }
-}
-.icon-arrow-down {
-  &:before {
-    content: $icon-arrow-down; 
-  }
-}
-.icon-arrow-left {
-  &:before {
-    content: $icon-arrow-left; 
-  }
-}
-.icon-arrow-right {
-  &:before {
-    content: $icon-arrow-right; 
-  }
-}
-.icon-arrow-up {
-  &:before {
-    content: $icon-arrow-up; 
-  }
-}
-.icon-favourite-solid {
-  &:before {
-    content: $icon-favourite-solid; 
-  }
-}
-.icon-favourite-line {
-  &:before {
-    content: $icon-favourite-line; 
-  }
-}
-.icon-google {
-  &:before {
-    content: $icon-google; 
-  }
-}
-.icon-shift {
-  &:before {
-    content: $icon-shift; 
-  }
-}
 .icon-github {
   &:before {
     content: $icon-github; 
@@ -230,6 +330,11 @@
 .icon-linkedin-text {
   &:before {
     content: $icon-linkedin-text; 
+  }
+}
+.icon-agent {
+  &:before {
+    content: $icon-agent; 
   }
 }
 
