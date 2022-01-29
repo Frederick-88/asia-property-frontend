@@ -1,0 +1,105 @@
+@import "../variables.scss";
+
+.admin-sidebar {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 32px 20px;
+
+    .sidebar__logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none !important;
+    
+        &:hover {
+          .logo-title {
+            color: $darkBlue;
+          }
+        }
+    
+        .logo {
+          width: 25px;
+          height: 100%;
+        }
+    
+        .logo-title {
+          font-size: 1.0625rem;
+          font-weight: 500;
+          margin-left: 10px;
+          text-transform: uppercase;
+          color: $blue;
+          transition: color 0.3s;
+        }
+    }
+
+    .sidebar__user-profile {
+        margin-top: 35px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+        .profile-image {
+            width: 50px;
+            border-radius: 50%;
+        }
+
+        .profile-title {
+            font-weight: 600;
+            font-size: 1.25rem;
+            margin: 10px 0 0;
+            color: $blue;
+        }
+
+        .profile-role {
+            font-weight: 400;
+            font-size: 0.875rem;
+            color: $grey;
+        }
+    }
+
+    .sidebar__button-list {
+        margin-top: 35px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 100%;
+
+        .sidebar-button {
+            display: flex;
+            align-items: center;
+            padding: 2px 30px 4px;
+            background: transparent;
+            border: 0;
+            outline: 0;
+            border-left: 3px solid transparent;
+            margin-bottom: 25px;
+            cursor: pointer;
+
+            &.button--active {
+                border-left-color: $blue;
+            }
+
+            &:hover,
+            &.button--active {
+                .button-icon,
+                .button-text {
+                    transition: color 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+                    color: $blue;
+                }
+            }
+        }
+
+        .button-icon {
+            font-size: 1.375rem;
+            margin-right: 25px;
+            color: $grey;
+            width: 20px;
+        }
+
+        .button-text {
+            font-size: 0.875rem;
+            color: $grey;
+            font-weight: 500;
+        }
+    }
+}

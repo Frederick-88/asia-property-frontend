@@ -8,7 +8,7 @@ const AdminSidebar = (props) => {
     const [activeButton, setActiveButton] = useState("dashboard");
     const sidebarButtonList = [
         {
-            class: 'icon-home',
+            class: 'icon-statistic',
             name: 'Dashboard',
             value: 'dashboard',
         },
@@ -18,17 +18,22 @@ const AdminSidebar = (props) => {
             value: 'listings',
         },
         {
-            class: 'icon-user',
+            class: 'icon-team',
             name: 'Users',
             value: 'users',
         },
         {
-            class: 'icon-key',
+            class: 'icon-agent',
+            name: 'Agents',
+            value: 'agents',
+        },
+        {
+            class: 'icon-money',
             name: 'Revenues',
             value: 'revenues',
         },
         {
-            class: 'icon-information-line',
+            class: 'icon-settings-solid',
             name: 'Settings',
             value: 'settings',
         },
