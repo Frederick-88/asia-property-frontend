@@ -2,6 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import { useRouteMatch, Switch, Route } from "react-router-dom";
 
+import AdminNavbar from "../../components/Admin/AdminNavbar";
+import AdminSidebar from "../../components/Admin/AdminSidebar";
+import "../../assets/styles/admin/adminnavbar.scss";
+import "../../assets/styles/admin/adminsidebar.scss";
+
 import AdminDashboard from "./AdminDashboard";
 import AdminSettings from "./AdminSettings";
 import AdminUsers from "./AdminUsers";
@@ -13,9 +18,9 @@ const AdminRouteHandler = (props) => {
 
   return (
     <main className="admin-site__container">
-      <div className="admin-sidebar">Sidebar Here</div>
+      <AdminSidebar />
       <section className="admin-content__container">
-        <div className="admin-navbar">Navbar Here</div>
+        <AdminNavbar />
         <div className="admin-content">
           <Switch>
             <Route exact path={routeMatcher.path}>
