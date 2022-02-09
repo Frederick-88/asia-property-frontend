@@ -38,12 +38,15 @@
 1. Dashboard
 
 - with Charts & Metrics informing quantity of users registered, featured count & total visitors ( track with API )
+- 1 month backtrack - total revenues, featured listings, new users, and new listings
+- if the url has `?is_visitor=true`, then directly set at redux store
 
 2. Listing List
 
 - sorting & search
 - skeleton loader
 - edit & delete
+- (?) featured listings - optional - can try implement payment logic here
 
 3. Users
 
@@ -57,23 +60,16 @@
 - skeleton loader
 - edit & delete
 
-5. Wishlists
+5. Revenue/Payment History
 
-- sorting & search
-- skeleton loader
-- edit & delete
+- mock revenue chart
+- paid how many percent with card number, by bank transfers, by cash
 
-6. Featured List ( optional - can try implement payment logic here )
-
-- sorting & search
-- skeleton loader
-- edit & delete
-
-7. About Us
+6. About Us
 
 - about us page like in public site
 
-8. Settings
+7. Settings
 
 - Add Options ( Listing, Wishlists, Agents, FeaturedList, Users etc )
 
@@ -83,7 +79,7 @@
 - https://admin-redq.vercel.app/customers ( admin website with 2 roles, viewer & admin )
 - https://dribbble.com/shots/14715367-Wallet-Dashboard-Design ( admin navigation structure )
 - https://dribbble.com/shots/15216951-Finance-Dashboard-Design ( admin website UI reference )
-- https://dribbble.com/shots/15501287-Finance-Dashboard-Design ( admin website UI reference )
+- https://dribbble.com/shots/15501287-Finance-Dashboard-Design ( admin revenue UI reference )
 - https://www.realtor.com/ ( standard real estate web contents )
 - https://www.airbnb.com/ ( landing page & dashboard site )
 - https://preview.themeforest.net/item/wp-residence-real-estate-wordpress-theme/full_screen_preview/7896392?_ga=2.113331008.694251961.1623680163-1787504979.1614307227 ( landing page & dashboard site )
@@ -101,3 +97,10 @@
 - Creating Reusable Component similar to Vue Slots in React https://medium.com/@srph/react-imitating-vue-slots-eab8393f96fd
 - React Get Current Path for Class Component https://reactrouter.com/core/api/withRouter
 - React useHistory in class component https://stackoverflow.com/questions/58122219/constructor-props-equivalent-in-react-hooks-for-history-push
+
+
+#### Development Plan :
+- Admin Site (ongoing)
+- Payment Integrations
+- Revamp User Profile Modal
+- Weglot / Language (Indonesia & English)
