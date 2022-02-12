@@ -17,7 +17,7 @@
             font-size: 1.25rem;
             top: 10px;
             left: 20px;
-            color: $blue;
+            color: $white;
         }
 
         .search-input {
@@ -29,12 +29,13 @@
             outline: 0;
             border: 0;
             width: 100%;
-            background: $white;
+            background: $darkGrey5;
             border-radius: 20px;
             letter-spacing: 1.5px;
+            color: $white;
 
             &::placeholder {
-                color: $textGrey2;
+                color: $textGrey;
             }
         }
     }
@@ -42,8 +43,8 @@
     .navbar-button {
         margin-left: 15px;
         border-radius: 50%;
-        background-color: $white;
-        color: $blue;
+        background-color: $darkGrey5;
+        color: $white;
         font-size: 1.125rem;
         height: 42px;
         width: 42px;
@@ -53,8 +54,8 @@
 
         &:hover {
             transition: background-color 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955), color 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
-            color: $white;
-            background-color: $blue;
+            color: $darkGrey5;
+            background-color: $white;
         }
     }
 }
