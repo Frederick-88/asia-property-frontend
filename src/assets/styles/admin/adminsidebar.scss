@@ -2,9 +2,17 @@
 
 .admin-sidebar {
     display: flex;
-    align-items: center;
     flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     padding: 32px 20px;
+
+    .sidebar__content {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        flex-direction: column;
+    }
 
     .sidebar__logo {
         display: flex;
@@ -13,7 +21,7 @@
     
         &:hover {
           .logo-title {
-            color: $darkBlue;
+            color: $white;
           }
         }
     
@@ -23,12 +31,13 @@
         }
     
         .logo-title {
-          font-size: 1.0625rem;
+          font-size: 1rem;
           font-weight: 500;
           margin-left: 10px;
           text-transform: uppercase;
-          color: $blue;
+          color: $grey2;
           transition: color 0.3s;
+          letter-spacing: 2px;
         }
     }
 
@@ -39,21 +48,21 @@
         align-items: center;
         
         .profile-image {
-            width: 50px;
+            width: 55px;
             border-radius: 50%;
         }
 
         .profile-title {
             font-weight: 600;
-            font-size: 1.25rem;
-            margin: 10px 0 0;
-            color: $blue;
+            font-size: 1.125rem;
+            margin: 12px 0 2px;
+            color: $greenBlue;
         }
 
         .profile-role {
-            font-weight: 400;
+            font-weight: 500;
             font-size: 0.875rem;
-            color: $grey;
+            color: $textGrey;
         }
     }
 
@@ -75,16 +84,12 @@
             margin-bottom: 25px;
             cursor: pointer;
 
-            &.button--active {
-                border-left-color: $blue;
-            }
-
             &:hover,
             &.button--active {
                 .button-icon,
                 .button-text {
                     transition: color 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
-                    color: $blue;
+                    color: $greenBlue;
                 }
             }
         }
@@ -92,14 +97,71 @@
         .button-icon {
             font-size: 1.375rem;
             margin-right: 25px;
-            color: $grey;
+            color: $textGrey;
             width: 20px;
         }
 
         .button-text {
             font-size: 0.875rem;
-            color: $grey;
+            color: $textGrey;
             font-weight: 500;
+        }
+    }
+
+    // gradient rounded border codepen reference -> https://codepen.io/Noliani/pen/xxwZOdM
+    .sidebar__reminder-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        box-shadow: -2px 2px 20px 5px rgba(0, 0, 0, 0.15);
+        width: 95%;
+        background-image: linear-gradient(40deg, $darkGrey6 0%, $darkGrey6 55%, $greenBlue 100%);
+        z-index: 1;
+        border-radius: 30px;
+    
+        &::before {
+            content: '';
+            display: block;
+            background: linear-gradient(45deg, $darkGrey6 0%, $darkGrey6 50%, $darkGreenBlue 100%);
+            position: absolute;
+            border-radius: calc(30px - 1%);
+            height: 98%;
+            width: 98%;
+            z-index: -1;
+        }
+
+        .sidebar__reminder-content {
+            padding: 15px 20px 30px;
+            height: 100%;
+        }
+
+        .content-icon {
+            color: $white;
+            font-size: 2.75rem;
+        }
+
+        .icon-shift {
+            position: absolute;
+            color: $white;
+            font-size: 1rem;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+        }
+
+        .title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 15px 0 10px;
+            color: $white;
+        }
+
+        .subtitle {
+            font-size: 0.75rem;
+            font-weight: 400;
+            line-height: 1.6;
+            color: $grey2;
         }
     }
 }
