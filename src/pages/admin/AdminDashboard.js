@@ -4,11 +4,7 @@ import AdminDashboardComponent from "../../components/Admin/AdminDashboardCompon
 import "../../assets/styles/admin/admindashboard.scss";
 
 const AdminDashboard = (props) => {
-  return (
-    <div className="admin-dashboard__container">
-      <AdminDashboardComponent />
-    </div>
-  );
+  return <AdminDashboardComponent />
 };
 
 export default AdminDashboard;
