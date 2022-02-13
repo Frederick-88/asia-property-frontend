@@ -37,8 +37,7 @@
 
 1. Dashboard
 
-- with Charts & Metrics informing quantity of users registered, featured count & total visitors ( track with API )
-- 1 month backtrack - total revenues, featured listings, new users, and new listings
+- informations & various type of charts
 - if the url has `?is_visitor=true`, then directly set at redux store
 
 2. Listing List
