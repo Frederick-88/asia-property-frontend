@@ -53,6 +53,8 @@
   }
 
   .dashboard__overview {
+    justify-content: center;
+
     // gradient rounded border codepen reference -> https://codepen.io/Noliani/pen/xxwZOdM
     .overview-box {
       display: flex;
@@ -60,10 +62,11 @@
       align-items: center;
       position: relative;
       box-shadow: -4px 4px 30px 8px rgba(0, 0, 0, 0.35);
-      background-image: linear-gradient(35deg, $darkGrey3 0%, $darkGrey3 55%, $greenBlue 100%);
+      background-image: linear-gradient(20deg, $darkGrey3 0%, $darkGrey3 55%, $greenBlue 100%);
       z-index: 1;
       border-radius: 30px;
       height: 180px;
+      max-width: 500px;
 
       &::before {
         content: '';
@@ -74,6 +77,10 @@
         height: 98%;
         width: 98%;
         z-index: -1;
+      }
+
+      @media only screen and (max-width: 1440px) {
+        height: 170px;
       }
     }
 
@@ -112,7 +119,7 @@
           font-size: 1rem;
           font-weight: 600;
           margin-bottom: 1px;
-          color: $grey2;
+          color: $white;
         }
 
         .header-subtitle {

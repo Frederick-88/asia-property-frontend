@@ -191,16 +191,33 @@ const AdminDashboardComponent = (props) => {
 
   const [oneColumnWidth, setOneColumnWidth] = useState(0);
   const [twoColumnWidth, setTwoColumnWidth] = useState(0);
+  const [chartHeight, setChartHeight] = useState(300);
+
+  // --------------------------
+  // --------------------------
+
+  const setupChartSize = () => {
+    const desktopHeight = (window && window.innerHeight) || 0;
+    const oneColumn = oneColumnRef && oneColumnRef.current.offsetWidth;
+    const twoColumn = twoColumnRef && twoColumnRef.current.offsetWidth;
+    // console.log(desktopHeight, oneColumnRef, twoColumnRef, oneColumn, twoColumn);
+
+    setOneColumnWidth(oneColumn);
+    setTwoColumnWidth(twoColumn);
+
+    if (desktopHeight > 1100) {
+      setChartHeight(450);
+    } else if (desktopHeight > 900) {
+      setChartHeight(400);
+    }
+  }
 
   // --------------------------
   // --------------------------
 
   useEffect(() => {
-    // console.log(oneColumnRef, twoColumnRef, twoColumnRef.current.offsetWidth, oneColumnRef.current.offsetWidth);
-    const oneColumn = oneColumnRef && oneColumnRef.current.offsetWidth;
-    const twoColumn = twoColumnRef && twoColumnRef.current.offsetWidth;
-    setOneColumnWidth(oneColumn);
-    setTwoColumnWidth(twoColumn);
+    setupChartSize();
+    window.addEventListener('resize', setupChartSize);
   }, [oneColumnRef, twoColumnRef]);
     
   return (
@@ -247,6 +264,7 @@ const AdminDashboardComponent = (props) => {
             series={visitorChartData.series}
             type="area"
             width={twoColumnWidth}
+            height={chartHeight}
           />
         </div>
         <div className="dashboard-column">
@@ -262,6 +280,7 @@ const AdminDashboardComponent = (props) => {
             series={registeredAgentChartData.series}
             type="area"
             width={twoColumnWidth}
+            height={chartHeight}
           />
         </div>
       </div>
@@ -279,7 +298,7 @@ const AdminDashboardComponent = (props) => {
             series={salesChartData.series}
             type="bar"
             width={oneColumnWidth}
-            height="400"
+            height={chartHeight}
           />
       </div>
 
@@ -297,6 +316,7 @@ const AdminDashboardComponent = (props) => {
             series={socialMediaSalesChartData.series}
             type="area"
             width={twoColumnWidth}
+            height={chartHeight}
           />
         </div>
         <div className="dashboard-column column--earnings">
@@ -311,7 +331,7 @@ const AdminDashboardComponent = (props) => {
             options={earningsChartData.options}
             series={earningsChartData.series}
             type="donut"
-            height="400"
+            height={chartHeight}
           />
           <div className="earnings-wrapper wrapper--right">
             <i className="wrapper-icon icon-credit-card icon--red" />
