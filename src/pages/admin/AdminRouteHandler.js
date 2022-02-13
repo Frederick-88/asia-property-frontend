@@ -24,12 +24,15 @@ const AdminRouteHandler = (props) => {
         <div className="admin-content">
           <Switch>
             <Route exact path={routeMatcher.path}>
+              <AdminDashboard />
+            </Route>
+            {/* <Route exact path={routeMatcher.path}>
               {props.adminToken ? (
                 <AdminDashboard />
               ) : (
                 <h4>Bro, let's login</h4>
               )}
-            </Route>
+            </Route> */}
 
             <Route exact path={`${routeMatcher.path}/settings`}>
               {props.adminToken ? <AdminSettings /> : <h4>Bro, let's login</h4>}
