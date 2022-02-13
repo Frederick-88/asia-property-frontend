@@ -37,7 +37,7 @@ body {
 
   .admin-site__container {
     display: flex;
-    background: $light;
+    background: $darkGrey4;
     padding-right: 50px;
 
     .admin-sidebar {
@@ -55,12 +55,38 @@ body {
       min-height: 100vh;
 
       .admin-content {
-        background: $light2;
-        height: calc(100vh - 140px); // 140px (90px of navbar + 50px of margin bottom) so margin bottom can work
-        margin-bottom: 50px;
-        padding: 30px;
+        background: $darkGrey3;
+        height: calc(100vh - 130px); // 130px (90px of navbar + 40px total margin)
+        margin: 5px 0 35px;
+        padding: 30px 30px 50px;
         border-radius: 30px;
-        box-shadow: -2px 2px 20px 4px rgba(100,100,100,0.15);
+        overflow: auto;
+
+        .content__header {
+          font-weight: 600;
+          font-size: 1.125rem;
+          margin-bottom: 20px;
+          color: $blue;
+        }
+
+        &::-webkit-scrollbar-track {
+          background-color: rgba($lightBlue, 0);
+        }
+  
+        &::-webkit-scrollbar {
+          width: 5px;
+        }
+  
+        &::-webkit-scrollbar-thumb {
+          border-radius: 4px;
+          background-color: rgba($greenBlue, 0);
+        }
+
+        &:hover {
+          &::-webkit-scrollbar-thumb {
+            background-color: $greenBlue;
+          }
+        }
       }
     }
   }

@@ -84,7 +84,7 @@ const AdminSidebar = (props) => {
             <div className="sidebar__reminder-box">
                 <div className="sidebar__reminder-content">
                     <i className="icon-shift" />
-                    <i className="content-icon icon-speedometer" />
+                    <i className="content-icon icon-history" />
                     <h4 className="title">History Available</h4>
                     <p className="subtitle">Check your weekly transaction reports</p>
                 </div>

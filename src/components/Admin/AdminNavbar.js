@@ -1,7 +1,7 @@
 import React from 'react';
 
 const AdminNavbar = (props) => {
-    const navIcons = ['icon-notification-line', 'icon-message', 'icon-gift', 'icon-user']
+    const navIcons = ['icon-notification-line', 'icon-message', 'icon-gift', 'icon-user-line']
     const handleSearchInput = (event) => {
         let { value } = event.currentTarget;
         // setSearchQueryInput(value);
