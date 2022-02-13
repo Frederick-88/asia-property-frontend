@@ -1,107 +1,327 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Chart from "react-apexcharts";
 
 const AdminDashboardComponent = (props) => {
-  const [sampleChartData, setSampleChartData] = useState({
-    options: {
-      chart: {
-        id: "basic-bar"
-      },
-      xaxis: {
-        categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
-      }
-    },
-    series: [
-      {
-        name: "series-1",
-        data: [30, 40, 45, 50, 49, 60, 70, 91]
-      }
-    ]
-  });
+  const oneColumnRef = useRef();
+  const twoColumnRef = useRef();
 
-  const [sampleLineChartData, setSampleLineChartData] = useState({
+  const dashboardOverview = [
+    {
+      title: 'Total Revenues',
+      period: '30 Days',
+      isSurplus: true,
+      surplusText: 'Revenue Up',
+      value: '$711.66',
+      icon: 'icon-coins',
+    },
+    {
+      title: 'New Users',
+      period: '30 Days',
+      isSurplus: true,
+      surplusText: 'Users Up',
+      value: '7,288',
+      icon: 'icon-team',
+    },
+    {
+      title: 'New Listings',
+      period: '30 Days',
+      isSurplus: false,
+      surplusText: 'Listing Down',
+      value: '590',
+      icon: 'icon-property',
+    },
+  ];
+
+  const visitorChartData = {
     options: {
       chart: {
-        height: 350,
-        type: 'line',
-        stacked: true,
-        animations: {
-          enabled: true,
-          easing: 'linear',
-          dynamicAnimation: {
-            speed: 1000
-          }
+        zoom: {
+          enabled: false
         },
-        dropShadow: {
-          enabled: true,
-          opacity: 0.2,
-          blur: 3,
-          left: -2,
-          top: 15,
-          color: '#0073e1',
-        },
+        fontFamily: 'Poppins, Helvetica, Arial, sans-serif'
       },
-      xaxis: {
-        categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
+      dataLabels: {
+        enabled: false
       },
       stroke: {
-        curve: "smooth"
-      }
+        curve: 'smooth'
+      },
+      xaxis: {
+        categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun',]
+      },
+      theme: {
+        mode: 'dark',
+      },
+      colors:['#0073e1', '#1fbfa9'],
     },
-    series: [
-      {
-        name: "series-1",
-        data: [30, 50, 49, 60, 70, 91, 40, 45]
-      }
-    ]
-  });
+    series: [{
+      name: 'Target',
+      data: [2000, 3000, 2000, 4000, 6000, 8000, 2000]
+    }, {
+      name: 'Visitors',
+      data: [1780, 4872, 8719, 3200, 531, 4577, 5290]
+    }],
+  };
 
-  const [sampleRadialBarChartData, setSampleRadialBarChartData] = useState({
+  const registeredAgentChartData = {
     options: {
-      plotOptions: {
-        radialBar: {
-          dataLabels: {
-            name: {
-              fontSize: '22px',
-            },
-            value: {
-              fontSize: '16px',
-            },
-            total: {
-              show: true,
-              label: 'Total',
-              formatter: function (w) {
-                // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-                return 249
-              }
+      chart: {
+        zoom: {
+          enabled: false
+        },
+        fontFamily: 'Poppins, Helvetica, Arial, sans-serif'
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        curve: 'smooth'
+      },
+      xaxis: {
+        categories: ['Week 1', 'Week 2', 'Week 3', 'Week 4']
+      },
+      theme: {
+        mode: 'dark',
+      },
+      colors:['#0073e1', '#1fbfa9'],
+    },
+    series: [{
+      name: 'Target',
+      data: [200, 400, 600, 800]
+    }, {
+      name: 'Registered Agent',
+      data: [871, 320, 53, 457]
+    }],
+  };
+
+  const salesChartData = {
+    options: {
+      chart: {
+        zoom: {
+          enabled: false
+        },
+        fontFamily: 'Poppins, Helvetica, Arial, sans-serif'
+      },
+      dataLabels: {
+        enabled: false
+      },
+      xaxis: {
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+      },
+      theme: {
+        mode: 'dark',
+      },
+      colors:['#1fbfa9'],
+    },
+    series: [{
+      name: 'Sales',
+      data: [871, 320, 53, 457, 871, 320, 53, 457, 871, 320, 53, 457]
+    }],
+  };
+
+  const socialMediaSalesChartData = {
+    options: {
+      chart: {
+        zoom: {
+          enabled: false
+        },
+        fontFamily: 'Poppins, Helvetica, Arial, sans-serif'
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        curve: 'smooth'
+      },
+      xaxis: {
+        categories: ['Week 1', 'Week 2', 'Week 3', 'Week 4']
+      },
+      theme: {
+        mode: 'dark',
+      },
+      colors:['#0073e1', '#1fbfa9'],
+    },
+    series: [{
+      name: 'Target',
+      data: [100, 100, 100, 100]
+    }, {
+      name: 'Sales',
+      data: [28, 63, 110, 63]
+    }],
+  };
+
+  const earningsChartData = {
+    options: {
+      chart: {
+        zoom: {
+          enabled: false
+        },
+        fontFamily: 'Poppins, Helvetica, Arial, sans-serif',
+      },
+      legend: {
+        show: false
+      },
+      theme: {
+        mode: 'dark',
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      colors:['#fc6687', '#1fbfa9'],
+      labels: ['Expenses', 'Profit'],
+      tooltip: {
+          y: {
+          formatter: function(value, opts) {
+            const getLabel = opts.globals.labels[opts.seriesIndex];
+            return "This Month's " + getLabel + ' : ' + value + ' %';
+          },
+          title: {
+            formatter: function () {
+              return '';
             }
           }
         }
       },
-      labels: ['Apples', 'Oranges'],
     },
-    series: [44, 67],
-  });
+    series: [28, 72],
+  };
+
+  // --------------------------
+  // --------------------------
+
+  const [oneColumnWidth, setOneColumnWidth] = useState(0);
+  const [twoColumnWidth, setTwoColumnWidth] = useState(0);
+
+  // --------------------------
+  // --------------------------
+
+  useEffect(() => {
+    // console.log(oneColumnRef, twoColumnRef, twoColumnRef.current.offsetWidth, oneColumnRef.current.offsetWidth);
+    const oneColumn = oneColumnRef && oneColumnRef.current.offsetWidth;
+    const twoColumn = twoColumnRef && twoColumnRef.current.offsetWidth;
+    setOneColumnWidth(oneColumn);
+    setTwoColumnWidth(twoColumn);
+  }, [oneColumnRef, twoColumnRef]);
     
   return (
-    <div>
-      <Chart
-        options={sampleChartData.options}
-        series={sampleChartData.series}
-        type="bar"
-        width="500"
-      />
-      <Chart
-        options={sampleLineChartData.options}
-        series={sampleLineChartData.series}
-        width="500"
-      />
-      <Chart
-        options={sampleRadialBarChartData.options}
-        series={sampleRadialBarChartData.series}
-        type="radialBar"
-        width="500"
-      />
+    <div className="admin-dashboard__container">
+      <div className="dashboard-row row--3 dashboard__overview">
+        {dashboardOverview.map((overview, index) => {
+          return (
+            <div className="dashboard-column overview-box" key={index}>
+              <div className="overview-box__content">
+                <i className="icon-shift" />
+
+                <div className="box__header">
+                  <i className={overview.icon + ' header-icon'} />
+                  <div>
+                    <h4 className="header-title">{overview.title}</h4>
+                    <h6 className="header-subtitle">(Last {overview.period})</h6>
+                  </div>
+                </div>
+
+                <div className="box__value">
+                  <h4 className="value-text">{overview.value}</h4>
+                  <div className={'surplus-indicator ' + (overview.isSurplus ? 'indicator--green' : 'indicator--red')}>
+                    <i className={'indicator-icon icon-arrow-' + (overview.isSurplus ? 'up' : 'down')} />
+                    <p className="indicator-text">{overview.surplusText}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="dashboard-row row--2 dashboard__visitors">
+        <div className="dashboard-column" ref={twoColumnRef}>
+          <div className="visitors__header">
+            <h4 className="header__title">Visitors</h4>
+            <button type="button" className="header__dropdown">
+              <p>Daily (2022)</p>
+              <i className="icon-chevron-down" />
+            </button>
+          </div>
+          <Chart
+            options={visitorChartData.options}
+            series={visitorChartData.series}
+            type="area"
+            width={twoColumnWidth}
+          />
+        </div>
+        <div className="dashboard-column">
+          <div className="visitors__header">
+            <h4 className="header__title">Registered Agents</h4>
+            <button type="button" className="header__dropdown">
+              <p>Weekly (2022)</p>
+              <i className="icon-chevron-down" />
+            </button>
+          </div>
+          <Chart
+            options={registeredAgentChartData.options}
+            series={registeredAgentChartData.series}
+            type="area"
+            width={twoColumnWidth}
+          />
+        </div>
+      </div>
+
+      <div className="dashboard-row row--1 dashboard__sales" ref={oneColumnRef}>
+        <div className="sales__header">
+          <h4 className="header__title">Sales / Transactions</h4>
+          <button type="button" className="header__dropdown">
+            <p>Monthly (2021)</p>
+            <i className="icon-chevron-down" />
+          </button>
+        </div>
+        <Chart
+            options={salesChartData.options}
+            series={salesChartData.series}
+            type="bar"
+            width={oneColumnWidth}
+            height="400"
+          />
+      </div>
+
+      <div className="dashboard-row row--2 dashboard__earnings">
+        <div className="dashboard-column">
+          <div className="earnings__header">
+            <h4 className="header__title">Sales from Social Media</h4>
+            <button type="button" className="header__dropdown">
+              <p>Weekly (2022)</p>
+              <i className="icon-chevron-down" />
+            </button>
+          </div>
+          <Chart
+            options={socialMediaSalesChartData.options}
+            series={socialMediaSalesChartData.series}
+            type="area"
+            width={twoColumnWidth}
+          />
+        </div>
+        <div className="dashboard-column column--earnings">
+          <div className="earnings-wrapper">
+            <i className="wrapper-icon icon-moneybag icon--green" />
+            <div className="wrapper-content">
+              <h4 className="content-title">$7200</h4>
+              <p className="content-subtitle">This Month Earnings</p>
+            </div>
+          </div>
+          <Chart
+            options={earningsChartData.options}
+            series={earningsChartData.series}
+            type="donut"
+            height="400"
+          />
+          <div className="earnings-wrapper wrapper--right">
+            <i className="wrapper-icon icon-credit-card icon--red" />
+            <div className="wrapper-content">
+              <h4 className="content-title">$2800</h4>
+              <p className="content-subtitle">This Month Expenses</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
