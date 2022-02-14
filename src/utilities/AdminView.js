@@ -1,9 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./styles/adminView.scss";
 
-const Dropdown = (props) => {
-  const [isActive, setIsActive] = useState(false);
-  const [selectedValue, setSelectedValue] = useState("");
+// Vue Slot in React Reference -> https://medium.com/@srph/react-imitating-vue-slots-eab8393f96fd
+// Important! Header, Body & Footer are necessary part in React, removing 1 of them either in this component / on the usage will lead to an error
+
+const Header = () => {
+  return null;
+};
+
+const Body = () => {
+  return null;
+};
+
+const Footer = () => {
+  return null;
+};
+
+class AdminView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  static Header = Header;
+  static Body = Body;
+  static Footer = Footer;
 
   /* content :
   a. navbar
@@ -31,97 +52,64 @@ const Dropdown = (props) => {
   c. props.addButtonClick -> clicked add button
   */
 
-  // -----------------------------------------------------
-  const { options, placeholder, value, maxWidth, maxHeight } = props;
+  // ----------------------
+  // < ---- Computed ---- >
+  // ----------------------
 
-  // -------------------------------------------------
-  // < --------------------------------------------- >
-  // -------------------------------------------------
+  //
 
-  const dropdownContentStyle = () => {
-    const styleObject = {};
-    let maxHeightValue = "300px";
+  // ---------------------
+  // < ---- Methods ---- >
+  // ---------------------
 
-    if (maxHeight) {
-      // check if user send "100px" or just 100
-      maxHeightValue =
-        typeof maxHeight === "string" ? maxHeight : `${maxHeight}px`;
-    }
-
-    styleObject.maxHeight = maxHeightValue;
-
-    return styleObject;
+  dropdownChange = () => {
+    this.props.dropdownChange(); // emit event to parent
   };
 
-  const dropdownClass = () => {
-    return isActive ? "global-dropdown is-active" : "global-dropdown";
+  searchbarChange = () => {
+    this.props.searchbarChange(); // emit event to parent
   };
 
-  // -------------------------------------------------
-  // < --------------------------------------------- >
-  // -------------------------------------------------
-
-  const closeDropdown = () => {
-    setIsActive(false);
+  addButtonClick = () => {
+    this.props.addButtonClick(); // emit event to parent
   };
 
-  const setValue = (value) => {
-    // if nothing is passed, use the first option in given options
-    const isValueExist = value || options[0].value;
-    if (!isValueExist) {
-      console.error("Missing value");
-      return;
-    }
+  render() {
+    const { children } = this.props;
+    const header = children.find((child) => child.type === Header);
+    const body = children.find((child) => child.type === Body);
+    const footer = children.find((child) => child.type === Footer);
 
-    setSelectedValue(isValueExist);
-    props.getDropdownValue(isValueExist); // emit value to parent
-    closeDropdown();
-  };
+    const {
+      title,
+      dropdown1,
+      dropdown2, 
+      searchPlaceholder, 
+      addButtonText 
+    } = this.props;
 
-  // -------------------------------------------------
-  // < --------------------------------------------- >
-  // -------------------------------------------------
+    return (
+      <div className="admin-view">
+        <header>{header ? header.props.children : null}</header>
 
-  useEffect(() => {
-    // if there is no placeholder,
-    // use value or first option in the list given
-    if (placeholder) {
-      return;
-    } else if (!placeholder && value) {
-      setSelectedValue(value);
-    } else {
-      setSelectedValue(options[0].value);
-    }
-  }, [options, placeholder, value]);
+        <div className="admin-view__navbar">
+          <h4 className="navbar-title">{title}</h4>
 
-  return (
-    <div
-      className={dropdownClass()}
-    >
-      <button
-        type="button"
-        className="global-dropdown__selected"
-        onClick={() => setIsActive(!isActive)}
-      >
-        <i className="icon icon-chevron-down"></i>
-      </button>
+          <div className="navbar-tools">
+            <div className="dropdown" />
+            <div className="search-bar" />
+            <div className="add-button" />
+          </div>
+        </div>
 
-      <div className="global-dropdown__content" style={dropdownContentStyle()}>
-        <ul className="global-dropdown__list">
-          {options.map((option) => {
-            return (
-              <li
-                key={option.value}
-                onClick={() => setValue(option.value)}
-              >
-                {option.name}
-              </li>
-            );
-          })}
-        </ul>
+        <div className="admin-view__content">
+          {body ? body.props.children : null}
+        </div>
+
+        <footer>{footer ? footer.props.children : null}</footer>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
-export default Dropdown;
+export default AdminView;
