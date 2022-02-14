@@ -28,8 +28,8 @@ const AdminSidebar = (props) => {
         },
         {
             class: 'icon-money',
-            name: 'Revenues',
-            value: 'revenues',
+            name: 'Inquiries',
+            value: 'inquiries',
         },
         {
             class: 'icon-settings-solid',
