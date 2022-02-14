@@ -122,7 +122,7 @@ class Navbar extends Component {
   };
 
   // ----------------------
-  //  < ---- Computed ---- >
+  // < ---- Computed ---- >
   // ----------------------
 
   navClass = () => {
@@ -135,9 +135,9 @@ class Navbar extends Component {
     return classArray.join(" "); // creating result like `navigation__bar nav--scrolled` so usable in react's className
   };
 
-  // ----------------------
-  //  < ---- Methods ---- >
-  // ----------------------
+  // ---------------------
+  // < ---- Methods ---- >
+  // ---------------------
 
   toggleIsProfileModalShow = () => {
     this.setState({ isProfileModalShow: !this.state.isProfileModalShow });

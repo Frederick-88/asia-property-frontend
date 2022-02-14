@@ -40,7 +40,7 @@ class Modal extends React.Component {
   };
 
   hideModal = () => {
-    this.props.hideModal();
+    this.props.hideModal(); // emit event to parent
   };
 
   render() {
