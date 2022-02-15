@@ -198,8 +198,8 @@ const AdminDashboardComponent = (props) => {
 
   const setupChartSize = () => {
     const desktopHeight = (window && window.innerHeight) || 0;
-    const oneColumn = oneColumnRef && oneColumnRef.current.offsetWidth;
-    const twoColumn = twoColumnRef && twoColumnRef.current.offsetWidth;
+    const oneColumn = oneColumnRef && oneColumnRef.current && oneColumnRef.current.offsetWidth;
+    const twoColumn = twoColumnRef && twoColumnRef.current && twoColumnRef.current.offsetWidth;
     // console.log(desktopHeight, oneColumnRef, twoColumnRef, oneColumn, twoColumn);
 
     setOneColumnWidth(oneColumn);
@@ -217,7 +217,6 @@ const AdminDashboardComponent = (props) => {
 
   useEffect(() => {
     setupChartSize();
-    window.addEventListener('resize', setupChartSize);
   }, [oneColumnRef, twoColumnRef]);
     
   return (
