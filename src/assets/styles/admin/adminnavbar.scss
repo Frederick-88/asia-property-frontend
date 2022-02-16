@@ -30,12 +30,17 @@
             border: 0;
             width: 100%;
             background: $darkGrey5;
+            border: 1px solid $darkGrey5;
             border-radius: 20px;
             letter-spacing: 1.5px;
             color: $white;
 
             &::placeholder {
                 color: $textGrey;
+            }
+
+            &:focus {
+                border-color: $greenBlue;
             }
         }
     }
