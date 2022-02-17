@@ -59,10 +59,11 @@
 - skeleton loader
 - edit & delete
 
-5. Revenue/Payment History
+5. Featured/Inquiries
 
-- mock revenue chart
-- paid how many percent with card number, by bank transfers, by cash
+- sorting & search
+- skeleton loader
+- edit & delete
 
 6. About Us
 
