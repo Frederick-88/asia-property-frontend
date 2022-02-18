@@ -1,58 +1,82 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 import Logo from "../../assets/images/logo.png";
 
 const AdminSidebar = (props) => {
+    const currentUrl = window.location.pathname;
+    const currentQueryUrl = useLocation().search;
+
     const [activeButton, setActiveButton] = useState("dashboard");
     const sidebarButtonList = [
         {
             class: 'icon-statistic',
             name: 'Dashboard',
             value: 'dashboard',
+            url: '/admin',
         },
         {
             class: 'icon-property',
             name: 'Listings',
             value: 'listings',
+            url: '/admin/listings',
         },
         {
             class: 'icon-team',
             name: 'Users',
             value: 'users',
+            url: '/admin/users',
         },
         {
             class: 'icon-agent',
             name: 'Agents',
             value: 'agents',
+            url: '/admin/agents',
         },
         {
             class: 'icon-money',
             name: 'Inquiries',
             value: 'inquiries',
+            url: '/admin/inquiries',
         },
         {
             class: 'icon-settings-solid',
             name: 'Settings',
             value: 'settings',
+            url: '/admin/settings',
         },
     ];
 
-  // ----------------------
-  //  < ---- Methods ---- >
-  // ----------------------
+    // ----------------------
+    //  < ---- Methods ---- >
+    // ----------------------
     const isActiveButton = (button) => {
         return button === activeButton ? 'button--active' : '';
     }
-    const selectButton = (button) => {
-        setActiveButton(button);
-    }
+
+    useEffect(()=> {
+        const urlToActiveButton = {
+            '/admin': 'dashboard',
+            '/admin/listings': 'listings',
+            '/admin/users': 'users',
+            '/admin/agents': 'agents',
+            '/admin/inquiries': 'inquiries',
+            '/admin/settings': 'settings',
+        }
+        
+        const getActiveButtonName = urlToActiveButton[currentUrl];
+        if (getActiveButtonName) setActiveButton(getActiveButtonName)
+    }, [currentUrl])
+
+    useEffect(()=> {
+        console.log(currentQueryUrl, 'checking is_visitor query');
+    }, [currentQueryUrl])
 
     return (
         <div className='admin-sidebar'>
             <div className="sidebar__content">
                 <div className='sidebar__logo'>
-                <Link to="/admin" className="sidebar__logo">
+                <Link to="/" className="sidebar__logo">
                     <img className='logo' src={Logo} alt="logo"/>
                     <h4 className="logo-title">Asia Property</h4>
                 </Link>
@@ -67,15 +91,14 @@ const AdminSidebar = (props) => {
                 <div className='sidebar__button-list'>
                     {sidebarButtonList.map((button, index) => {
                         return (
-                            <button 
-                                type='button' 
+                            <Link 
+                                to={button.url}
                                 className={'sidebar-button ' + isActiveButton(button.value)} 
                                 key={index}
-                                onClick={() => selectButton(button.value)}
                             >
                                 <i className={'button-icon ' + button.class} />
                                 <p className="button-text">{button.name}</p>
-                            </button>
+                            </Link>
                         );
                     })}
                 </div>
