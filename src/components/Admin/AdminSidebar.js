@@ -4,8 +4,8 @@ import { Link, useLocation } from "react-router-dom";
 import Logo from "../../assets/images/logo.png";
 
 const AdminSidebar = (props) => {
-    const currentUrl = window.location.pathname;
-    const currentQueryUrl = useLocation().search;
+    const currentUrlPath = window.location.pathname;
+    const currentUrlQuery = useLocation().search;
 
     const [activeButton, setActiveButton] = useState("dashboard");
     const sidebarButtonList = [
@@ -64,13 +64,13 @@ const AdminSidebar = (props) => {
             '/admin/settings': 'settings',
         }
         
-        const getActiveButtonName = urlToActiveButton[currentUrl];
+        const getActiveButtonName = urlToActiveButton[currentUrlPath];
         if (getActiveButtonName) setActiveButton(getActiveButtonName)
-    }, [currentUrl])
+    }, [currentUrlPath])
 
     useEffect(()=> {
-        console.log(currentQueryUrl, 'checking is_visitor query');
-    }, [currentQueryUrl])
+        console.log(currentUrlQuery, 'checking ?is_visitor query');
+    }, [currentUrlQuery])
 
     return (
         <div className='admin-sidebar'>
