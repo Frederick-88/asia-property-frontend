@@ -328,6 +328,7 @@
       left: 8px;
       margin-top: 0;
       background: $darkGold;
+      // background: rgba($darkGold, 0.75);
     }
   }
 
@@ -358,15 +359,15 @@
     border: 0;
     background: transparent;
     cursor: pointer;
-    color: $textGrey;
+    color: $blue;
     border-radius: 50%;
     padding: 8px;
-    background: rgba($white, 0.15);
+    background: rgba($white, 0.75);
     transition: background 0.3s, color 0.3s;
 
     &.icon-favourite-line {
       &:hover {
-        background: rgba($white, 0.65);
+        background: rgba($white, 1);
       }
     }
 
