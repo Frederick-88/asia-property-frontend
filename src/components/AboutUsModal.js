@@ -18,7 +18,9 @@ const AboutUsModal = (props) => {
       <Modal.Header />
 
       <Modal.Body>
-        <main className="about-us__modal">
+        <main
+          className={"about-us__modal " + (props.isDark ? "modal--dark" : "")}
+        >
           <img
             className="developer-image"
             src={myPicture}

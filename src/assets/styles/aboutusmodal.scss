@@ -6,6 +6,32 @@
   flex-direction: column;
   padding: 60px;
 
+  &.modal--dark {
+    background-color: $darkGrey4;
+
+    .developer-title {
+      color: $white;
+    }
+
+    .developer-subtitle {
+      color: $grey2;
+    }
+
+    .icon {
+      border-color: $greenBlue !important;
+      color: $greenBlue !important;
+
+      &:hover {
+        background: $greenBlue !important;
+        color: $white !important;
+      }
+    }
+
+    .developer-description {
+      color: $grey2;
+    }
+  }
+
   .developer-image {
     width: 200px;
     height: 200px;
