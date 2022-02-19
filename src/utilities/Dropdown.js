@@ -5,7 +5,7 @@ import "./styles/dropdown.scss";
 const Dropdown = (props) => {
   const [isActive, setIsActive] = useState(false);
   const [selectedValue, setSelectedValue] = useState("");
-  const { options, placeholder, value, maxWidth, maxHeight } = props;
+  const { options, placeholder, value, maxWidth, maxHeight, isDark } = props;
 
   // -------------------------------------------------
   // < --------------------------------------------- >
@@ -50,7 +50,12 @@ const Dropdown = (props) => {
   };
 
   const dropdownClass = () => {
-    return isActive ? "global-dropdown is-active" : "global-dropdown";
+    const cssClass = ['global-dropdown'];
+
+    if (isDark) cssClass.push('is-dark');
+    if (isActive) cssClass.push('is-active');
+
+    return cssClass.join(" ");
   };
 
   const liClass = (option) => {

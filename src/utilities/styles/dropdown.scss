@@ -5,6 +5,34 @@
   font-size: 0.875rem;
   color: $lightGrey3;
   height: 100%;
+
+  &.is-dark {
+    color: $white;
+
+    .global-dropdown__selected {
+      background: $darkGrey4;
+      color: $white;
+      border-color: $darkGrey4 !important;
+
+      &:focus,
+      .global-dropdown.is-active & {
+        border-color: $greenBlue !important;
+      }
+    }
+
+    .global-dropdown__content {
+      background: $darkGrey4;
+    }
+
+    .global-dropdown__item {
+      border-bottom: 0;
+
+      &:hover,
+      &.is-selected {
+        background: $darkGrey5;
+      }
+    }
+  }
 }
 
 .global-dropdown__selected {
