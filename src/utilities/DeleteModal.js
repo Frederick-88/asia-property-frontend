@@ -18,7 +18,7 @@ const DeleteModal = (props) => {
   return (
     <Modal
       isShow={isShowDeleteModal}
-      hideDeleteModal={hideDeleteModal}
+      hideModal={hideDeleteModal}
       maxWidth="500px"
     >
       <Modal.Header />
