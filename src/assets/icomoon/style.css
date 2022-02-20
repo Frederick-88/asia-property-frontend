@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?x6bq0m');
-  src:  url('fonts/icomoon.eot?x6bq0m#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?x6bq0m') format('truetype'),
-    url('fonts/icomoon.woff?x6bq0m') format('woff'),
-    url('fonts/icomoon.svg?x6bq0m#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?wds7xc');
+  src:  url('fonts/icomoon.eot?wds7xc#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?wds7xc') format('truetype'),
+    url('fonts/icomoon.woff?wds7xc') format('woff'),
+    url('fonts/icomoon.svg?wds7xc#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-logout:before {
+  content: "\e92f";
+}
 .icon-moneybag:before {
   content: "\e92c";
 }
