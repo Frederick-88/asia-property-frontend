@@ -19,6 +19,7 @@ import "../assets/styles/navbar.scss";
 import AuthModal from "./AuthModal";
 import AboutUsModal from "./AboutUsModal";
 import UserProfileModal from "./UserProfileModal";
+import AccountSettingsModal from "./AccountSettingsModal";
 
 class Navbar extends Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class Navbar extends Component {
       isScrolled: false,
       withBg: false,
       isProfileModalShow: false,
+      isAccountSettingsModalShow: false,
       isAboutUsModalShow: false,
       selectedAuthType: "login",
       currentRoute: "",
@@ -93,6 +95,7 @@ class Navbar extends Component {
           isProfileModalShow={this.state.isProfileModalShow}
           toggleIsProfileModalShow={this.toggleIsProfileModalShow}
           hideIsProfileModalShow={this.hideIsProfileModalShow}
+          goToAccountSettings={this.goToAccountSettings}
           goToAboutDeveloper={this.goToAboutDeveloper}
           logout={this.logout}
         />
@@ -162,13 +165,22 @@ class Navbar extends Component {
     this.props.setIsAuthModalShow(false);
   };
 
-  goToAboutDeveloper = () => {
-    this.toggleAboutUsModal(false);
+  goToAccountSettings = () => {
+    this.setAccountSettingsModal(true);
     this.setState({ isProfileModalShow: false });
   };
 
-  toggleAboutUsModal = (currentModalState) => {
-    this.setState({ isAboutUsModalShow: !currentModalState });
+  goToAboutDeveloper = () => {
+    this.setAboutUsModal(true);
+    this.setState({ isProfileModalShow: false });
+  };
+
+  setAccountSettingsModal = (boolean) => {
+    this.setState({ isAccountSettingsModalShow: boolean });
+  };
+
+  setAboutUsModal = (boolean) => {
+    this.setState({ isAboutUsModalShow: boolean });
   };
 
   goToWishlists = () => {
@@ -201,14 +213,20 @@ class Navbar extends Component {
   };
 
   render() {
-    const { isAboutUsModalShow, selectedAuthType, isOnAdminPage } = this.state;
+    const {
+      isAboutUsModalShow,
+      isAccountSettingsModalShow,
+      selectedAuthType,
+      isOnAdminPage,
+    } = this.state;
 
     const { isAuthModalShow, isAuthenticated } = this.props;
 
     // some react functions doesn't use "()" to avoid error -> read this: https://stackoverflow.com/questions/48497358/reactjs-maximum-update-depth-exceeded-error
     // note: // for function that returns must use "()" so can call the function & get the return
     const {
-      toggleAboutUsModal,
+      setAboutUsModal,
+      setAccountSettingsModal,
       navClass,
       AuthNavComponent,
       hideAuthModal,
@@ -243,7 +261,7 @@ class Navbar extends Component {
               <button
                 type="button"
                 className="nav__item"
-                onClick={() => toggleAboutUsModal(isAboutUsModalShow)}
+                onClick={() => setAboutUsModal(true)}
               >
                 About Us
               </button>
@@ -252,8 +270,8 @@ class Navbar extends Component {
             {AuthNavComponent()}
 
             {/* 
-          in Event/Emits from Child, Binding into Function can use "()=>" if you're going to send a param.
-         */}
+              in Event/Emits from Child, Binding into Function can use "()=>" if you're going to send a param.
+            */}
             <AuthModal
               isAuthModalShow={isAuthModalShow}
               type={selectedAuthType}
@@ -262,7 +280,12 @@ class Navbar extends Component {
             />
             <AboutUsModal
               isAboutUsModalShow={isAboutUsModalShow}
-              hideModal={() => toggleAboutUsModal(isAboutUsModalShow)}
+              hideModal={() => setAboutUsModal(false)}
+            />
+            <AccountSettingsModal
+              isAdmin={false}
+              isAccountSettingsModalShow={isAccountSettingsModalShow}
+              hideModal={() => setAccountSettingsModal(false)}
             />
           </section>
         ) : null}
