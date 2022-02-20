@@ -1,0 +1,79 @@
+@import "../../assets/styles/variables.scss";
+
+.delete-modal {
+  background-color: $darkGrey6;
+  color: $white;
+  width: 100%;
+  position: relative;
+
+  .modal__content {
+    width: 100%;
+    padding: 40px 30px 10px;
+
+    .delete-modal__title {
+      font-weight: 600;
+      font-size: 1.125rem;
+    }
+
+    .delete-modal__text {
+      font-weight: 400;
+      font-size: 0.9375rem;
+      margin-top: 10px;
+    }
+  }
+
+  .modal__content-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 25px;
+
+    .delete-modal__button {
+      border: 0;
+      outline: 0;
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 10px 15px;
+      width: 120px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+
+      &.button--confirm {
+        background-color: $greenBlue;
+        color: $white;
+
+        &:hover {
+          background-color: darken($greenBlue, 7%);
+        }
+      }
+
+      &.button--cancel {
+        background-color: $lightGrey5;
+        color: $darkGrey6;
+        margin-right: 15px;
+
+        &:hover {
+          background-color: darken($lightGrey5, 7%);
+        }
+      }
+    }
+  }
+
+  .delete-modal__close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: 0;
+    outline: 0;
+    color: $white;
+    background-color: transparent;
+    font-size: 1.125rem;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+
+    &:hover {
+      color: $grey2;
+    }
+  }
+}
