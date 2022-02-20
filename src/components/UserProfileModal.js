@@ -1,6 +1,5 @@
 import React from "react";
 import { useDetectClickOutside } from "react-detect-click-outside";
-import { toast } from "react-toastify";
 import { connect } from "react-redux";
 
 const UserProfileModal = (props) => {
@@ -21,10 +20,7 @@ const UserProfileModal = (props) => {
   });
 
   const goToAccountSettings = () => {
-    toast.success("Account settings feature will come soon.", {
-      position: toast.POSITION.TOP_CENTER,
-      autoClose: 5000,
-    });
+    props.goToAccountSettings();
   };
 
   const goToAboutDeveloper = () => {
