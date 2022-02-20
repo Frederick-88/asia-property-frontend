@@ -1,0 +1,576 @@
+@import "../variables.scss";
+
+.admin-listings__container {
+  .listing-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    .listing-card-container {
+      padding-right: 10px;
+
+      @media only screen and (min-width: 0px) and (max-width: 1380px) {
+        // -- 0px to 1366px --
+        width: 33%;
+
+        &:nth-of-type(3) {
+          padding-right: 0;
+        }
+      }
+
+      @media only screen and (min-width: 1380px) and (max-width: 1900px) {
+        // -- 1366px to 1900px --
+        width: 25%;
+
+        &:nth-of-type(4) {
+          padding-right: 0;
+        }
+      }
+
+      @media only screen and (min-width: 1900px) and (max-width: 4320px) {
+        // -- 1920px to 4320px --
+        width: 20%;
+
+        &:nth-of-type(5) {
+          padding-right: 0;
+        }
+      }
+    }
+  }
+
+  .admin-listing-card {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 30px;
+    border: 2px solid $greenBlue;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s;
+
+    &:hover {
+      transform: translateY(-8px);
+    }
+
+    .card__image-wrapper {
+      position: relative;
+      height: 200px;
+    }
+
+    .card__image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+
+      .image {
+        width: 100%;
+        height: 100%;
+        min-height: 200px;
+        display: block;
+        object-fit: cover;
+      }
+    }
+
+    .card-tag {
+      padding: 5px 15px;
+      background: $greenBlue;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.75rem;
+      border-radius: 4px;
+      color: $white;
+      margin-top: 20px;
+
+      @media only screen and (max-width: 1380px) {
+        font-size: 0.6875rem;
+        padding: 5px 12px;
+      }
+
+      @media only screen and (max-width: 1280px) {
+        margin-top: 15px;
+      }
+
+      &.tag--featured {
+        position: absolute;
+        bottom: 8px;
+        right: 8px;
+        margin-top: 0;
+        background: rgba($darkGold, 0.75);
+      }
+    }
+
+    .admin-checkbox {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      height: 25px;
+      width: 25px;
+
+      .checkmark {
+        background-color: rgba($greenBlue, 0.5);
+        height: 25px;
+        width: 25px;
+
+        &:after {
+          top: 3px;
+          left: calc(calc(100% / 2) - 4px);
+        }
+      }
+
+      input {
+        &:checked {
+          + .checkmark {
+            background-color: $greenBlue;
+            border: 1px solid $greenBlue;
+
+            &:after {
+              border-color: $white;
+            }
+          }
+        }
+      }
+
+      &:hover {
+        .checkmark {
+          border-color: rgba($white, 0.75) !important;
+          background-color: rgba($white, 0.75) !important;
+          transition: border-color 0.3s ease-in-out,
+            background-color 0.3s ease-in-out;
+
+          &:after {
+            border-color: $greenBlue !important;
+            transition: border-color 0.3s ease-in-out;
+          }
+        }
+      }
+    }
+
+    .card__action-button-list {
+      display: flex;
+      align-items: center;
+      position: absolute;
+      top: 4px;
+      right: 8px;
+
+      .card__action-button {
+        font-size: 1.125rem;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+        color: $white;
+        border-radius: 50%;
+        padding: 8px;
+        background: rgba($greenBlue, 0.5);
+        transition: background 0.3s, color 0.3s;
+        margin-right: 8px;
+
+        &:hover {
+          background: rgba($greenBlue, 0.85);
+        }
+
+        &:last-of-type {
+          margin-right: 0;
+        }
+      }
+    }
+
+    .card__content {
+      padding: 15px 15px 0;
+
+      .title {
+        font-size: 1rem;
+        font-weight: 500;
+        color: $greenBlue;
+      }
+    }
+
+    .card-detail__wrapper {
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+
+      .card-detail {
+        display: flex;
+        align-items: center;
+        margin-right: 15px;
+
+        @media only screen and (max-width: 1380px) {
+          margin-right: 10px;
+        }
+
+        &:last-of-type {
+          margin-right: 0;
+        }
+
+        .detail-icon {
+          font-size: 0.875rem;
+          color: $greenBlue;
+          margin-right: 5px;
+
+          &.icon-size {
+            margin-right: 3px;
+            font-size: 1rem;
+          }
+
+          @media only screen and (max-width: 1380px) {
+            margin-right: 5px;
+            font-size: 0.6125rem;
+
+            &.icon-size {
+              font-size: 0.8125rem;
+            }
+          }
+        }
+
+        .detail-text {
+          font-size: 0.75rem;
+          font-weight: 500;
+          color: $grey2;
+
+          @media only screen and (max-width: 1280px) {
+            font-size: 0.75rem;
+          }
+        }
+      }
+    }
+
+    .card-price__wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 15px 15px;
+      flex-wrap: wrap;
+
+      .card-price {
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: $grey2;
+        margin-top: 20px;
+
+        @media only screen and (max-width: 1380px) {
+          font-size: 0.8125rem;
+        }
+
+        @media only screen and (max-width: 1280px) {
+          margin-top: 15px;
+        }
+      }
+    }
+  }
+}
+
+// --------------
+// Admin Settings
+// --------------
+
+.admin-settings__container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .setting-button {
+    height: 150px;
+    width: calc(50% - 15px);
+    margin-bottom: 30px;
+    background-color: transparent;
+    outline: 0;
+    border: 2px solid $greenBlue;
+    border-radius: 30px;
+    color: $greenBlue;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding-left: 50px;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: $greenBlue;
+      color: $white;
+
+      .item-subtitle {
+        color: $lightGrey6 !important;
+      }
+    }
+
+    .setting-icon {
+      font-size: 2.75rem;
+
+      &.icon-coins {
+        font-size: 3.25rem;
+      }
+    }
+
+    .setting-header {
+      text-align: left;
+      margin-left: 30px;
+    }
+
+    .item-title {
+      font-weight: 600;
+      font-size: 1.375rem;
+    }
+
+    .item-subtitle {
+      color: $grey2;
+      font-weight: 400;
+      font-size: 0.875rem;
+      transition: color 0.3s ease-in-out;
+    }
+  }
+}
+
+// ----------------------
+// Account Settings Modal
+// ----------------------
+
+.account-settings__modal {
+  background-color: $darkGrey6;
+  color: $white;
+  width: 100%;
+
+  &.modal--user {
+    background-color: $white;
+    color: $darkGrey6;
+
+    .modal__content-header {
+      border-bottom: 1px solid $lightGrey5;
+
+      .header__close-button {
+        color: $darkGrey6;
+
+        &:hover {
+          color: $grey;
+        }
+      }
+    }
+
+    .modal__content {
+      .account-picture {
+        border-color: $blue !important;
+      }
+
+      .account-picture__edit-overlay {
+        border-color: $blue !important;
+
+        .edit-button {
+          color: $blue !important;
+        }
+      }
+
+      .content__input-list {
+        .input {
+          color: $darkGrey6;
+
+          &:hover,
+          &:focus {
+            border-color: $blue;
+          }
+        }
+
+        .input-label {
+          color: $textGrey;
+        }
+      }
+    }
+
+    .modal__content-footer {
+      border-top: 1px solid $lightGrey5;
+
+      .button--save {
+        background-color: $blue !important;
+
+        &:hover {
+          background-color: darken($blue, 7%) !important;
+        }
+      }
+    }
+  }
+
+  .modal__content-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px;
+    border-bottom: 1px solid $darkGrey5;
+
+    .header-title {
+      font-weight: 500;
+      font-size: 1.25rem;
+    }
+
+    .header__close-button {
+      border: 0;
+      outline: 0;
+      color: $white;
+      background-color: transparent;
+      font-size: 1.25rem;
+      cursor: pointer;
+      transition: color 0.3s ease-in-out;
+
+      &:hover {
+        color: $grey2;
+      }
+    }
+  }
+
+  .modal__content {
+    width: 100%;
+    padding: 25px;
+
+    .content__account-picture-wrapper {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+
+      .content__account-picture {
+        width: 150px;
+        height: 150px;
+        background-color: transparent;
+        outline: 0;
+        border: 0;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+        position: relative;
+
+        &:hover {
+          .account-picture__edit-overlay {
+            opacity: 1;
+            visibility: visible;
+          }
+        }
+      }
+
+      .account-picture {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border: 4px solid $greenBlue;
+        border-radius: 50%;
+      }
+
+      .account-picture__edit-overlay {
+        position: absolute;
+        top: 50%;
+        right: 50%;
+        transform: translate(50%, -50%);
+        width: 150px;
+        height: 150px;
+        border: 4px solid $greenBlue;
+        border-radius: 50%;
+        background-color: rgba($darkGrey6, 0.75);
+        z-index: 3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease-in-out;
+
+        .edit-button {
+          color: $greenBlue;
+          font-size: 2rem;
+        }
+      }
+    }
+
+    .content__input-list {
+      margin-top: 40px;
+
+      .input-row {
+        width: 100%;
+        margin-bottom: 25px;
+
+        &.row--1 {
+          .input-column {
+            width: 100%;
+          }
+        }
+
+        &.row--2 {
+          display: flex;
+          justify-content: space-between;
+
+          .input-column {
+            width: calc(50% - 12px);
+          }
+        }
+      }
+
+      .input-label__container {
+        display: flex;
+
+        .required-mark {
+          color: $red;
+          margin-right: 5px;
+        }
+      }
+
+      .input {
+        width: 100%;
+        padding: 15px;
+        font-size: 0.875rem;
+        background-color: transparent;
+        border: 1px solid $grey2;
+        outline: 0;
+        transition: border-color 0.3s ease-in-out;
+        border-radius: 4px;
+        color: $white;
+        margin-top: 5px;
+
+        &:hover,
+        &:focus {
+          border-color: $greenBlue;
+        }
+      }
+
+      .input-label {
+        font-size: 0.875rem;
+        color: $grey2;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .modal__content-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 25px;
+    border-top: 1px solid $darkGrey5;
+
+    .header__button {
+      border: 0;
+      outline: 0;
+      font-size: 0.875rem;
+      padding: 10px 15px;
+      width: 120px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+
+      &.button--save {
+        background-color: $greenBlue;
+        color: $white;
+
+        &:hover {
+          background-color: darken($greenBlue, 7%);
+        }
+      }
+
+      &.button--cancel {
+        background-color: $lightGrey5;
+        color: $darkGrey6;
+        margin-right: 15px;
+
+        &:hover {
+          background-color: darken($lightGrey5, 7%);
+        }
+      }
+    }
+  }
+}
