@@ -27,7 +27,7 @@ body {
 
   // -------------------------------------
   // -------------------------------------
-  
+
   .main-section {
     height: 100vh;
     background-attachment: static;
@@ -56,7 +56,9 @@ body {
 
       .admin-content {
         background: $darkGrey3;
-        height: calc(100vh - 130px); // 130px (90px of navbar + 40px total margin)
+        height: calc(
+          100vh - 130px
+        ); // 130px (90px of navbar + 40px total margin)
         margin: 5px 0 35px;
         padding: 30px 30px 50px;
         border-radius: 30px;
@@ -72,11 +74,11 @@ body {
         &::-webkit-scrollbar-track {
           background-color: rgba($lightBlue, 0);
         }
-  
+
         &::-webkit-scrollbar {
           width: 5px;
         }
-  
+
         &::-webkit-scrollbar-thumb {
           border-radius: 4px;
           background-color: rgba($greenBlue, 0);
@@ -101,23 +103,6 @@ body {
       transform: translateY(0);
     }
   }
-
-  // scroll customization styling soon
-  // &::-webkit-scrollbar-track {
-  //   background-color: var(--background-color);
-  //   width: 10px;
-  // }
-
-  // &::-webkit-scrollbar {
-  //   border-radius: 4px;
-  //   width: 6px;
-  //   background-color: var(--background-color);
-  // }
-
-  // &::-webkit-scrollbar-thumb {
-  //   border-radius: 4px;
-  //   background-color: var(--scroll-color);
-  // }
 
   // -------------------------------------
   // -------------------------------------
