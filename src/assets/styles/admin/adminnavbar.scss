@@ -1,66 +1,119 @@
 @import "../variables.scss";
 
 .admin-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+
+  .navbar__search-bar {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    height: 42px;
+    width: 300px;
+    position: relative;
+    margin-left: 30px;
 
-    .navbar__search-bar {
-        display: flex;
-        height: 42px;
-        width: 300px;
-        position: relative;
-        margin-left: 30px;
-
-        .search-icon {
-            position: absolute;
-            font-size: 1.25rem;
-            top: 10px;
-            left: 20px;
-            color: $white;
-        }
-
-        .search-input {
-            display: block;
-            padding: 0 20px 0 60px;
-            font-weight: 500;
-            font-size: 0.75rem;
-            height: 100%;
-            outline: 0;
-            border: 0;
-            width: 100%;
-            background: $darkGrey5;
-            border: 1px solid $darkGrey5;
-            border-radius: 20px;
-            letter-spacing: 1.5px;
-            color: $white;
-
-            &::placeholder {
-                color: $textGrey;
-            }
-
-            &:focus {
-                border-color: $greenBlue;
-            }
-        }
+    .search-icon {
+      position: absolute;
+      font-size: 1.25rem;
+      top: 10px;
+      left: 20px;
+      color: $white;
     }
 
-    .navbar-button {
-        margin-left: 15px;
-        border-radius: 50%;
+    .search-input {
+      display: block;
+      padding: 0 20px 0 60px;
+      font-weight: 500;
+      font-size: 0.75rem;
+      height: 100%;
+      outline: 0;
+      border: 0;
+      width: 100%;
+      background: $darkGrey5;
+      border: 1px solid $darkGrey5;
+      border-radius: 20px;
+      letter-spacing: 1.5px;
+      color: $white;
+
+      &::placeholder {
+        color: $textGrey;
+      }
+
+      &:focus {
+        border-color: $greenBlue;
+      }
+    }
+  }
+
+  .navbar-button {
+    margin-left: 15px;
+    border-radius: 50%;
+    background-color: $darkGrey5;
+    color: $white;
+    font-size: 1.125rem;
+    height: 42px;
+    width: 42px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+
+    &:hover {
+      transition: background-color 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955),
+        color 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+      color: $darkGrey5;
+      background-color: $white;
+    }
+  }
+
+  .admin-navbar__profile-modal {
+    position: absolute;
+    right: 0;
+    top: 85px;
+    padding: 0;
+    background-color: $darkGrey6;
+    border-radius: 4px;
+    width: 220px;
+    box-shadow: 0 10px 40px 10px rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-30px);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+
+    &.is-show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .modal-button {
+      width: 100%;
+      padding: 15px 0;
+      background-color: transparent;
+      border: 0;
+      border-bottom: 1px solid $darkGrey5;
+      color: $white;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      outline: 0;
+      transition: background-color 0.3s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: left;
+      padding-left: 35px;
+
+      &:hover {
         background-color: $darkGrey5;
-        color: $white;
-        font-size: 1.125rem;
-        height: 42px;
-        width: 42px;
-        border: 0;
-        outline: 0;
-        cursor: pointer;
+      }
 
-        &:hover {
-            transition: background-color 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955), color 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
-            color: $darkGrey5;
-            background-color: $white;
-        }
+      &:last-of-type {
+        border-bottom: 0;
+      }
+
+      i {
+        margin-right: 10px;
+      }
     }
+  }
 }
