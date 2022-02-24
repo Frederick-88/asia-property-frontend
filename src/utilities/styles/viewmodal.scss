@@ -1,0 +1,85 @@
+@import "../../assets/styles/variables.scss";
+
+.view-modal {
+  background-color: $darkGrey6;
+  color: $white;
+  width: 100%;
+  position: relative;
+
+  .modal__content {
+    width: 100%;
+    padding: 50px;
+
+    .view-modal__header {
+      font-weight: 500;
+      font-size: 1.25rem;
+    }
+
+    .view-modal__section {
+      margin-top: 30px;
+
+      &.section--row {
+        display: flex;
+        flex-wrap: nowrap;
+
+        &.row--2 {
+          .view-modal__column {
+            width: 50%;
+            padding-right: 15px;
+
+            &:last-of-type {
+              padding-right: 0;
+              padding-left: 15px;
+            }
+          }
+        }
+      }
+
+      .view-modal__title {
+        font-weight: 600;
+        font-size: 0.9375rem;
+      }
+
+      .view-modal__subtitle {
+        font-weight: 500;
+        font-size: 0.875rem;
+        margin-top: 4px;
+        word-break: break-word;
+      }
+
+      .list__image-preview {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+
+        .image {
+          width: 100px;
+          height: 100px;
+          object-fit: contain;
+          background: $lightGrey2;
+          padding: 3px;
+          border: 1px solid $greenBlue;
+          margin-top: 10px;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+
+  .view-modal__close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: 0;
+    outline: 0;
+    color: $white;
+    background-color: transparent;
+    font-size: 1.125rem;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+
+    &:hover {
+      color: $grey2;
+    }
+  }
+}
