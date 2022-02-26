@@ -1,0 +1,246 @@
+@import "../../assets/styles/variables.scss";
+
+.edit-add-modal {
+  padding: 30px 50px 0;
+
+  .modal__content {
+    // height calculation = 100vh minus with editAddModal's padding-top (30px), title (80px), footer (100px), blank space needed between footer and content (30px)
+    height: calc(100vh - 30px - 80px - 100px - 30px);
+    width: 100%;
+    overflow: auto;
+
+    &::-webkit-scrollbar-track {
+      background-color: rgba($lightBlue, 0);
+    }
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 4px;
+      background-color: rgba($grey2, 1);
+    }
+
+    .content__image-upload-section,
+    .content__details-section {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .content__image-upload-section {
+      margin-bottom: 30px;
+    }
+
+    .section-title {
+      width: 30%;
+      font-weight: 400;
+      color: $grey2;
+      font-size: 0.875rem;
+    }
+
+    .section-controller {
+      background-color: $darkGrey5;
+      width: 65%;
+      border-radius: 4px;
+      padding: 15px;
+    }
+
+    .controller__file-preview-list {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+
+      &.list--margin-top {
+        margin-top: 10px;
+      }
+
+      .list__image-preview {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        padding: 3px;
+        border: 1px solid $greenBlue;
+        margin-right: 10px;
+        margin-top: 10px;
+
+        &:hover {
+          .image__delete-button {
+            opacity: 1;
+            visibility: visible;
+          }
+        }
+
+        .image {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          background: $lightGrey2;
+        }
+
+        .image__delete-button {
+          position: absolute;
+          top: 5px;
+          left: 5px;
+          font-size: 0.6875rem;
+          border-radius: 50%;
+          outline: 0;
+          border: 0;
+          background: rgba($darkGrey6, 0.75);
+          padding: 5px;
+          color: $white;
+          opacity: 0;
+          cursor: pointer;
+          visibility: hidden;
+          transition: color 0.3s ease-in-out, opacity 0.3s ease-in-out;
+
+          &:hover {
+            color: $lightGrey5;
+          }
+        }
+      }
+    }
+
+    .controller__file-upload-container {
+      width: 100%;
+      height: 150px;
+      position: relative;
+
+      &:hover {
+        .controller__file-upload-input {
+          border-color: $white;
+          transition: border-color 0.3s ease-in-out;
+
+          .text--normal,
+          .input-icon {
+            color: $white !important;
+            transition: color 0.3s ease-in-out;
+          }
+        }
+      }
+
+      .controller__file-upload-input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 5;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        border: 2px dashed $grey2;
+
+        .input-icon {
+          font-size: 3rem;
+          color: $grey2;
+          margin-bottom: 10px;
+        }
+
+        .input-text {
+          display: flex;
+          align-items: center;
+
+          p {
+            font-weight: 500;
+            font-size: 0.875rem;
+
+            &.text--green {
+              color: $greenBlue;
+              margin-right: 4px;
+            }
+
+            &.text--normal {
+              color: $grey2;
+            }
+          }
+        }
+      }
+
+      // label = FileUploader
+      label {
+        height: 100% !important;
+        width: 100% !important;
+        max-width: none;
+        opacity: 0;
+        z-index: 7;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    }
+
+    .content__input-list {
+      .input-row {
+        width: 100%;
+        margin-bottom: 25px;
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+
+        &.row--1 {
+          .input-column {
+            width: 100%;
+          }
+        }
+
+        &.row--2 {
+          display: flex;
+          justify-content: space-between;
+
+          .input-column {
+            width: calc(50% - 12px);
+          }
+        }
+      }
+
+      .input-label__container {
+        display: flex;
+
+        .required-mark {
+          color: $red;
+          margin-right: 5px;
+        }
+      }
+
+      .dropdown {
+        margin-top: 5px;
+
+        .global-dropdown__selected {
+          max-height: none;
+        }
+      }
+
+      .input {
+        width: 100%;
+        padding: 15px;
+        font-size: 0.875rem;
+        background-color: transparent;
+        border: 1px solid $white;
+        outline: 0;
+        transition: border-color 0.3s ease-in-out;
+        border-radius: 4px;
+        color: $white;
+        margin-top: 5px;
+
+        &:hover,
+        &:focus {
+          border-color: $greenBlue;
+        }
+
+        &.input--textarea {
+          resize: none;
+        }
+      }
+
+      .input-label {
+        font-size: 0.875rem;
+        color: $white;
+        cursor: pointer;
+      }
+    }
+  }
+}
