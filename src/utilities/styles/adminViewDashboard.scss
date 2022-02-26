@@ -48,6 +48,11 @@
       &::placeholder {
         color: $white;
       }
+
+      &.bar--no-margin-right {
+        margin: 0;
+        margin-left: 20px;
+      }
     }
 
     .bulk-button-list {
