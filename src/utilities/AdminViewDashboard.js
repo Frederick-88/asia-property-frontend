@@ -23,7 +23,7 @@ class AdminViewDashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchQueryInput: '',
+      searchQueryInput: "",
     };
   }
 
@@ -39,17 +39,25 @@ class AdminViewDashboard extends React.Component {
     if (this.props.showBulkActions) {
       return (
         <div className="bulk-button-list">
-          <button type="text" className="action-button button--margin-y" onClick={this.comingSoonNotification}>
+          <button
+            type="text"
+            className="action-button button--margin-y"
+            onClick={this.comingSoonNotification}
+          >
             <i className="icon-edit" />
             <p>Bulk Update</p>
           </button>
-          <button type="text" className="action-button" onClick={this.comingSoonNotification}>
+          <button
+            type="text"
+            className="action-button"
+            onClick={this.comingSoonNotification}
+          >
             <i className="icon-delete-solid" />
             <p>Bulk Delete</p>
           </button>
         </div>
       );
-    } 
+    }
 
     return null;
   };
@@ -57,7 +65,7 @@ class AdminViewDashboard extends React.Component {
   // ---------------------
   // < ---- Methods ---- >
   // ---------------------
-  
+
   getDropdownChange = (value) => {
     this.props.getDropdownChange(value); // emit event to parent
   };
@@ -68,7 +76,7 @@ class AdminViewDashboard extends React.Component {
 
   handleSearchKeyDown = (event) => {
     const searchQueryInput = this.state.searchQueryInput;
-    if (event.key === 'Enter') this.props.searchbarChange(searchQueryInput); // emit event to parent
+    if (event.key === "Enter") this.props.searchbarChange(searchQueryInput); // emit event to parent
   };
 
   handleSearchInput = (event) => {
@@ -77,7 +85,7 @@ class AdminViewDashboard extends React.Component {
   };
 
   comingSoonNotification = () => {
-    toast.success('Bulk actions feature will come soon.', {
+    toast.success("Bulk actions feature will come soon.", {
       position: toast.POSITION.TOP_CENTER,
       autoClose: 5000,
     });
@@ -92,10 +100,11 @@ class AdminViewDashboard extends React.Component {
     const {
       title,
       dropdownOptions,
-      searchPlaceholder, 
+      searchPlaceholder,
       subjectText,
       showBulkActions,
       noScroller,
+      noAddButton,
     } = this.props;
 
     const {
@@ -122,22 +131,35 @@ class AdminViewDashboard extends React.Component {
               />
             </div>
             <input
-              className="search-bar"
+              className={
+                "search-bar " + (noAddButton ? "bar--no-margin-right" : "")
+              }
               placeholder={searchPlaceholder}
               onChange={(event) => handleSearchInput(event)}
               onKeyDown={(event) => handleSearchKeyDown(event)}
             />
-            <button type="text" className={"action-button " + (!showBulkActions ? "button--long" : '')} onClick={addButtonClick}>
-              <i className="icon-add" />
-              <p>Add {subjectText}</p>
-            </button>
+            {!noAddButton && (
+              <button
+                type="text"
+                className={
+                  "action-button " + (!showBulkActions ? "button--long" : "")
+                }
+                onClick={addButtonClick}
+              >
+                <i className="icon-add" />
+                <p>Add {subjectText}</p>
+              </button>
+            )}
 
             {BulkActionSection()}
-
           </div>
         </div>
 
-        <div className={"admin-view__content " + (noScroller ? 'content--no-scroller' : '')}>
+        <div
+          className={
+            "admin-view__content " + (noScroller ? "content--no-scroller" : "")
+          }
+        >
           {body ? body.props.children : null}
         </div>
 
@@ -147,6 +169,6 @@ class AdminViewDashboard extends React.Component {
       </div>
     );
   }
-};
+}
 
 export default AdminViewDashboard;
