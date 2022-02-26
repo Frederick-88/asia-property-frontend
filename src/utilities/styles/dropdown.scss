@@ -22,6 +22,7 @@
 
     .global-dropdown__content {
       background: $darkGrey4;
+      box-shadow: 0 0 30px rgba($black, 0.5);
     }
 
     .global-dropdown__item {
