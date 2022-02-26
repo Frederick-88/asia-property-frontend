@@ -15,10 +15,12 @@
   opacity: 0;
   visibility: hidden;
   transition: all 0.5s;
+  pointer-events: none;
 
   &.is-show {
     visibility: visible;
     opacity: 1;
+    pointer-events: initial;
 
     .global-dialog-modal__content {
       opacity: 1;
