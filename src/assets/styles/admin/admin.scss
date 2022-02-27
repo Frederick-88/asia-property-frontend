@@ -419,6 +419,21 @@
   .modal__content {
     width: 100%;
     padding: 25px;
+    max-height: 68vh;
+    overflow: auto;
+
+    &::-webkit-scrollbar-track {
+      background-color: rgba($lightBlue, 0);
+    }
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 4px;
+      background-color: rgba($grey2, 1);
+    }
 
     .content__account-picture-wrapper {
       width: 100%;
@@ -484,6 +499,10 @@
       .input-row {
         width: 100%;
         margin-bottom: 25px;
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
 
         &.row--1 {
           .input-column {
