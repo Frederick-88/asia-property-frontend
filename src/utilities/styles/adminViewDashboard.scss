@@ -98,9 +98,17 @@
     color: $white;
     margin-top: 50px;
 
+    @media only screen and (max-width: 1380px) {
+      margin-top: 35px;
+    }
+
     &:not(.content--no-scroller) {
-      height: 600px;
+      height: calc(100vh - 330px);
       overflow: auto;
+
+      @media only screen and (max-width: 1380px) {
+        height: calc(100vh - 300px);
+      }
     }
 
     &::-webkit-scrollbar-track {
