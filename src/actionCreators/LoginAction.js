@@ -105,3 +105,12 @@ export const setIsAuthModalShow = (boolean) => {
     });
   };
 };
+
+export const setUserRole = (item) => {
+  return (dispatch) => {
+    dispatch({
+      type: "SET_USER_ROLE",
+      payload: item,
+    });
+  };
+};
