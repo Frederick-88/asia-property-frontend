@@ -51,6 +51,7 @@ class Navbar extends Component {
 
   componentDidUpdate(previousProps, previousState) {
     const currentPath = this.props.location.pathname;
+    const currentUrlParams = new URLSearchParams(this.props.location.search);
 
     // catch changes in url/route, added if() to avoid maximum stack error
     // read this for detail -> https://stackoverflow.com/questions/30528348/setstate-inside-of-componentdidupdate
@@ -63,6 +64,10 @@ class Navbar extends Component {
       const isAdminRoute = route.includes("/admin");
       const withBgRoute =
         route !== "/" && route !== "/wishlists" && route !== "/our-agents";
+
+      const getShowAdminAuthModalUrlQuery = currentUrlParams.get(
+        "show_admin_login_modal"
+      );
 
       if (isAdminRoute) {
         this.setState({ isOnAdminPage: true });
@@ -79,6 +84,8 @@ class Navbar extends Component {
       if (isAuthenticated && !hasDidGetWishlist && !adminToken) {
         this.props.getWishlists({ user_id: userId, token: userToken });
       }
+
+      if (getShowAdminAuthModalUrlQuery) this.showAuthModal("login-admin");
 
       this.setState({ currentRoute: currentPath });
     }
@@ -237,37 +244,39 @@ class Navbar extends Component {
     return (
       <div>
         {!isOnAdminPage ? (
-          <section className={navClass()}>
-            <div className="navigation__list">
-              <Link to="/" className="nav-image__wrapper">
-                <img className="nav__image" src={Logo} alt="logo" />
-                <h4 className="nav__logo-title">Asia Property</h4>
-              </Link>
-              <Link to="/listings" className="nav__item">
-                Listing
-              </Link>
-              <button
-                type="button"
-                className={
-                  !isAuthenticated ? "nav__item nav--disabled" : "nav__item"
-                }
-                onClick={goToWishlists}
-              >
-                Wishlists
-              </button>
-              <Link to="/our-agents" className="nav__item">
-                Our Agents
-              </Link>
-              <button
-                type="button"
-                className="nav__item"
-                onClick={() => setAboutUsModal(true)}
-              >
-                About Us
-              </button>
-            </div>
+          <div>
+            <section className={navClass()}>
+              <div className="navigation__list">
+                <Link to="/" className="nav-image__wrapper">
+                  <img className="nav__image" src={Logo} alt="logo" />
+                  <h4 className="nav__logo-title">Asia Property</h4>
+                </Link>
+                <Link to="/listings" className="nav__item">
+                  Listing
+                </Link>
+                <button
+                  type="button"
+                  className={
+                    !isAuthenticated ? "nav__item nav--disabled" : "nav__item"
+                  }
+                  onClick={goToWishlists}
+                >
+                  Wishlists
+                </button>
+                <Link to="/our-agents" className="nav__item">
+                  Our Agents
+                </Link>
+                <button
+                  type="button"
+                  className="nav__item"
+                  onClick={() => setAboutUsModal(true)}
+                >
+                  About Us
+                </button>
+              </div>
 
-            {AuthNavComponent()}
+              {AuthNavComponent()}
+            </section>
 
             {/* 
               in Event/Emits from Child, Binding into Function can use "()=>" if you're going to send a param.
@@ -287,7 +296,7 @@ class Navbar extends Component {
               isAccountSettingsModalShow={isAccountSettingsModalShow}
               hideModal={() => setAccountSettingsModal(false)}
             />
-          </section>
+          </div>
         ) : null}
       </div>
     );
