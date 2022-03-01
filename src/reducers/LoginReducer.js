@@ -8,6 +8,7 @@ const getUserToken = cookies.get("asia-property-user-token");
 
 const initialState = {
   isAuthenticated: !!getAdminToken || !!getUserToken, // for initial state check if there is any token in cookie
+  userRole: getAdminToken ? "admin" : getUserToken ? "user" : "",
   userData: getUserToken ? jwt(getUserToken) : "",
   adminData: getAdminToken ? jwt(getAdminToken) : "",
   adminToken: getAdminToken || "",
@@ -55,6 +56,7 @@ const LoginReducer = (state = initialState, action) => {
           isAuthenticated: true,
           userToken: payload.token,
           userData: jwt(payload.token),
+          userRole: "user",
         };
       } else {
         return {
@@ -62,6 +64,7 @@ const LoginReducer = (state = initialState, action) => {
           isAuthenticated: true,
           adminToken: payload.token,
           adminData: jwt(payload.token),
+          userRole: "admin",
         };
       }
 
@@ -122,6 +125,18 @@ const LoginReducer = (state = initialState, action) => {
       return {
         ...state,
         isAuthModalShow: payload,
+      };
+
+    case "SET_USER_ROLE":
+      if (payload === "visitor")
+        triggerNotification(
+          "success",
+          "You are now accessing admin site of asia property as visitor."
+        );
+
+      return {
+        ...state,
+        userRole: payload,
       };
 
     default:
