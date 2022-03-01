@@ -1,10 +1,26 @@
 import React from "react";
 import Modal from "./Modal";
+import { connect } from "react-redux";
 
 import "./styles/deletemodal.scss";
 
 const DeleteModal = (props) => {
   const { isShowDeleteModal, deleteModalTitle, deleteModalText } = props;
+
+  // ----------------------
+  // < ---- Computed ---- >
+  // ----------------------
+
+  const confirmButtonClass = () => {
+    const cssClass = ["delete-modal__button", "button--confirm"];
+    if (props.userRole === "visitor") cssClass.push("button--disabled");
+
+    return cssClass.join(" ");
+  };
+
+  // ---------------------
+  // < ---- Methods ---- >
+  // ---------------------
 
   const onClickDeleteModalConfirmButton = () => {
     props.onClickDeleteModalConfirmButton();
@@ -47,7 +63,7 @@ const DeleteModal = (props) => {
 
             <button
               type="button"
-              className="delete-modal__button button--confirm"
+              className={confirmButtonClass()}
               title="Confirm"
               onClick={onClickDeleteModalConfirmButton}
             >
@@ -62,4 +78,10 @@ const DeleteModal = (props) => {
   );
 };
 
-export default DeleteModal;
+const mapStateToProps = (state) => {
+  return {
+    userRole: state.LoginReducer.userRole,
+  };
+};
+
+export default connect(mapStateToProps, null)(DeleteModal);
