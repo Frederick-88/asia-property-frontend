@@ -89,6 +89,11 @@
         &:hover {
           background-color: darken($greenBlue, 7%);
         }
+
+        &.button--disabled {
+          opacity: 0.5;
+          pointer-events: none;
+        }
       }
 
       &.button--cancel {
