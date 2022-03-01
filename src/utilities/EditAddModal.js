@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import "./styles/sidemodal.scss";
 import "./styles/editaddmodal.scss";
@@ -41,6 +42,13 @@ class EditAddModal extends React.Component {
     return classArray.join(" "); // creating result like `navigation__bar nav--scrolled` so usable in react's className
   };
 
+  confirmButtonClass = () => {
+    const cssClass = ["footer__button", "button--confirm"];
+    if (this.props.userRole === "visitor") cssClass.push("button--disabled");
+
+    return cssClass.join(" ");
+  };
+
   editAddModalActionText = () => {
     const actionText =
       this.props.editAddModalObjType === "create" ? "Create" : "Update";
@@ -67,7 +75,12 @@ class EditAddModal extends React.Component {
     const body = children.find((child) => child.type === Body);
     const footer = children.find((child) => child.type === Footer);
 
-    const { sideModalClass, hideEditAddModal, editAddModalActionText } = this;
+    const {
+      sideModalClass,
+      confirmButtonClass,
+      hideEditAddModal,
+      editAddModalActionText,
+    } = this;
 
     return (
       <div className={sideModalClass()}>
@@ -98,7 +111,7 @@ class EditAddModal extends React.Component {
 
             <button
               type="button"
-              className="footer__button button--confirm"
+              className={confirmButtonClass()}
               title={editAddModalActionText()}
               onClick={() => this.onClickEditAddModalConfirmButton()}
             >
@@ -112,4 +125,10 @@ class EditAddModal extends React.Component {
   }
 }
 
-export default EditAddModal;
+const mapStateToProps = (state) => {
+  return {
+    userRole: state.LoginReducer.userRole,
+  };
+};
+
+export default connect(mapStateToProps, null)(EditAddModal);
