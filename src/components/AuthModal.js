@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import Modal from "../utilities/Modal";
 import Slider from "react-slick";
 import { toast } from "react-toastify";
@@ -13,6 +14,8 @@ import inspiration06 from "../assets/images/auth-modal/inspiration6.jpg";
 import "../assets/styles/authmodal.scss";
 
 const AuthModal = (props) => {
+  const history = useHistory();
+
   // -------------------------------------------
   // < ---- Conditional Component Renders ---- >
   // -------------------------------------------
@@ -142,7 +145,7 @@ const AuthModal = (props) => {
             />
             <button
               type="button"
-              tabIndex="1"
+              tabIndex="0"
               className={passwordInputIcon()}
               onClick={togglePasswordType}
             />
@@ -184,7 +187,7 @@ const AuthModal = (props) => {
             />
             <button
               type="button"
-              tabIndex="1"
+              tabIndex="0"
               className={passwordInputIcon()}
               onClick={togglePasswordType}
             />
@@ -352,13 +355,7 @@ const AuthModal = (props) => {
   };
 
   const proceedAsVisitor = () => {
-    toast.success(
-      "Proceed as visitor for admin page feature will be available around late Q4 2021.",
-      {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 7000,
-      }
-    );
+    history.push("/admin?is_visitor=true");
   };
 
   // -----------------------
