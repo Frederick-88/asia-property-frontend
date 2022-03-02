@@ -39,14 +39,14 @@ const HomeBanner = () => {
     setSearchQueryInput(value);
   };
 
+  const handleSearchKeyDown = (event) => {
+    if (event.key === "Enter") searchListing();
+  };
+
   return (
     <section className="home-banner">
-      <h4 className="subtitle uppercase--all">
-        Let us guide your home
-      </h4>
-      <h2 className="title">
-        Find Your Dream Home
-      </h2>
+      <h4 className="subtitle uppercase--all">Let us guide your home</h4>
+      <h2 className="title">Find Your Dream Home</h2>
 
       <div className="banner-navbar">
         <button
@@ -78,6 +78,7 @@ const HomeBanner = () => {
           className="search-input"
           placeholder="Enter Keyword ..."
           onChange={(event) => handleSearchInput(event)}
+          onKeyDown={(event) => handleSearchKeyDown(event)}
         />
         <button type="button" className="search-button" onClick={searchListing}>
           Search
