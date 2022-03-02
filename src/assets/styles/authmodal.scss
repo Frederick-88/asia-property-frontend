@@ -85,7 +85,6 @@
           transform: translateY(-50%);
           right: 8px;
           border: 0;
-          outline: 0;
           background: transparent;
           color: $textGrey;
           cursor: pointer;
@@ -129,7 +128,6 @@
         text-decoration: underline;
         cursor: pointer;
         border: 0;
-        outline: 0;
         transition: color 0.3s;
 
         &:hover {
@@ -149,7 +147,6 @@
       border-radius: 4px;
       cursor: pointer;
       margin-top: 30px;
-      outline: 0;
       border: 0;
       transition: background 0.3s, color 0.3s;
 
@@ -198,7 +195,6 @@
         text-decoration: underline;
         cursor: pointer;
         border: 0;
-        outline: 0;
         transition: color 0.3s;
 
         &:hover {
