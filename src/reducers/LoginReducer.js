@@ -115,6 +115,7 @@ const LoginReducer = (state = initialState, action) => {
       return {
         ...state,
         isAuthenticated: false,
+        userRole: "",
         userToken: "",
         adminToken: "",
         userData: {},
