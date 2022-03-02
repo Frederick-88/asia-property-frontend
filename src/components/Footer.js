@@ -20,6 +20,10 @@ const Footer = () => {
     setEmailInput(value);
   };
 
+  const handleSearchKeyDown = (event) => {
+    if (event.key === "Enter") subscribe();
+  };
+
   const subscribe = () => {
     if (!emailInput) {
       toast.warn("Please check your email address.", {
@@ -113,6 +117,7 @@ const Footer = () => {
                 placeholder="Your email"
                 value={emailInput}
                 onChange={(event) => onChangeSubscribeInput(event)}
+                onKeyDown={(event) => handleSearchKeyDown(event)}
               />
               <button
                 type="button"
