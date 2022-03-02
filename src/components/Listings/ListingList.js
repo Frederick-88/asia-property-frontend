@@ -97,6 +97,10 @@ const ListingList = (props) => {
     setSearchQueryInput(value);
   };
 
+  const handleSearchKeyDown = (event) => {
+    if (event.key === "Enter") searchListing();
+  };
+
   const searchListing = () => {
     const params = new URLSearchParams(currentQueryUrl);
     const urlPageQuery = params.get("page");
@@ -172,6 +176,7 @@ const ListingList = (props) => {
                 placeholder="Enter Keyword ..."
                 value={searchQueryInput}
                 onChange={(event) => handleSearchInput(event)}
+                onKeyDown={(event) => handleSearchKeyDown(event)}
               />
               <button
                 type="button"
