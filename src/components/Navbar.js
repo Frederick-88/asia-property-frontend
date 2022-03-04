@@ -73,6 +73,7 @@ class Navbar extends Component {
         this.setState({ isOnAdminPage: true });
       } else {
         this.setState({ isOnAdminPage: false });
+        this.hideAuthModal();
       }
 
       if (withBgRoute) {
@@ -85,7 +86,17 @@ class Navbar extends Component {
         this.props.getWishlists({ user_id: userId, token: userToken });
       }
 
-      if (getShowAdminAuthModalUrlQuery) this.showAuthModal("login-admin");
+      if (getShowAdminAuthModalUrlQuery) {
+        this.showAuthModal("login-admin");
+        toast.warn(
+          "You need to be logged in as an admin or visit as a visitor to access admin site.",
+          {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 5000,
+            toastId: 88, // prevent duplication of toast
+          }
+        );
+      }
 
       this.setState({ currentRoute: currentPath });
     }
