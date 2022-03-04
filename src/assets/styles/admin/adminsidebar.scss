@@ -1,168 +1,191 @@
 @import "../variables.scss";
 
 .admin-sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 20px;
+
+  .sidebar__content {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .sidebar__logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none !important;
+
+    &:hover {
+      .logo-title {
+        color: $white;
+      }
+    }
+
+    .logo {
+      width: 25px;
+      height: 100%;
+    }
+
+    .logo-title {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-left: 10px;
+      text-transform: uppercase;
+      color: $grey2;
+      transition: color 0.3s;
+      letter-spacing: 2px;
+    }
+  }
+
+  .sidebar__user-profile {
+    margin-top: 35px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-    padding: 32px 20px;
 
-    .sidebar__content {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: column;
+    @media only screen and (max-width: 1380px) {
+      margin-top: 25px;
     }
 
-    .sidebar__logo {
-        display: flex;
-        align-items: center;
-        text-decoration: none !important;
-    
-        &:hover {
-          .logo-title {
-            color: $white;
-          }
-        }
-    
-        .logo {
-          width: 25px;
-          height: 100%;
-        }
-    
-        .logo-title {
-          font-size: 1rem;
-          font-weight: 500;
-          margin-left: 10px;
-          text-transform: uppercase;
-          color: $grey2;
-          transition: color 0.3s;
-          letter-spacing: 2px;
-        }
+    .profile-image {
+      width: 55px;
+      border-radius: 50%;
     }
 
-    .sidebar__user-profile {
-        margin-top: 35px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        
-        .profile-image {
-            width: 55px;
-            border-radius: 50%;
-        }
-
-        .profile-title {
-            font-weight: 600;
-            font-size: 1.125rem;
-            margin: 12px 0 2px;
-            color: $greenBlue;
-        }
-
-        .profile-role {
-            font-weight: 500;
-            font-size: 0.875rem;
-            color: $textGrey;
-        }
+    .profile-title {
+      font-weight: 600;
+      font-size: 1.125rem;
+      margin: 12px 0 2px;
+      color: $greenBlue;
     }
 
-    .sidebar__button-list {
-        margin-top: 35px;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        width: 100%;
+    .profile-role {
+      font-weight: 500;
+      font-size: 0.875rem;
+      color: $textGrey;
+      text-transform: capitalize;
+    }
+  }
 
-        .sidebar-button {
-            display: flex;
-            align-items: center;
-            padding: 2px 30px 4px;
-            background: transparent;
-            border: 0;
-            outline: 0;
-            border-left: 3px solid transparent;
-            margin-bottom: 25px;
-            text-decoration: none;
-            cursor: pointer;
+  .sidebar__button-list {
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
 
-            &:hover,
-            &.button--active {
-                .button-icon,
-                .button-text {
-                    transition: color 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
-                    color: $greenBlue;
-                }
-            }
-        }
+    @media only screen and (max-width: 1380px) {
+      margin-top: 25px;
+    }
 
-        .button-icon {
-            font-size: 1.375rem;
-            margin-right: 25px;
-            color: $textGrey;
-            width: 20px;
-        }
+    .sidebar-button {
+      display: flex;
+      align-items: center;
+      padding: 2px 30px 4px;
+      background: transparent;
+      border: 0;
+      outline: 0;
+      border-left: 3px solid transparent;
+      margin-bottom: 25px;
+      text-decoration: none;
+      cursor: pointer;
 
+      &:hover,
+      &.button--active {
+        .button-icon,
         .button-text {
-            font-size: 0.875rem;
-            color: $textGrey;
-            font-weight: 500;
+          transition: color 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+          color: $greenBlue;
         }
+      }
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
     }
 
-    // gradient rounded border codepen reference -> https://codepen.io/Noliani/pen/xxwZOdM
-    .sidebar__reminder-box {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        box-shadow: -2px 2px 20px 5px rgba(0, 0, 0, 0.15);
-        width: 95%;
-        background-image: linear-gradient(40deg, $darkGrey6 0%, $darkGrey6 55%, $greenBlue 100%);
-        z-index: 1;
-        border-radius: 30px;
-    
-        &::before {
-            content: '';
-            display: block;
-            background: linear-gradient(45deg, $darkGrey6 0%, $darkGrey6 50%, $darkGreenBlue 100%);
-            position: absolute;
-            border-radius: calc(30px - 1%);
-            height: 98%;
-            width: 98%;
-            z-index: -1;
-        }
-
-        .sidebar__reminder-content {
-            padding: 15px 20px 30px;
-            height: 100%;
-        }
-
-        .content-icon {
-            color: $white;
-            font-size: 2.75rem;
-        }
-
-        .icon-shift {
-            position: absolute;
-            color: $white;
-            font-size: 1rem;
-            top: 20px;
-            right: 20px;
-            cursor: pointer;
-        }
-
-        .title {
-            font-size: 1rem;
-            font-weight: 600;
-            margin: 15px 0 10px;
-            color: $white;
-        }
-
-        .subtitle {
-            font-size: 0.75rem;
-            font-weight: 400;
-            line-height: 1.6;
-            color: $grey2;
-        }
+    .button-icon {
+      font-size: 1.375rem;
+      margin-right: 25px;
+      color: $textGrey;
+      width: 20px;
     }
+
+    .button-text {
+      font-size: 0.875rem;
+      color: $textGrey;
+      font-weight: 500;
+    }
+  }
+
+  // gradient rounded border codepen reference -> https://codepen.io/Noliani/pen/xxwZOdM
+  .sidebar__reminder-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-shadow: -2px 2px 20px 5px rgba(0, 0, 0, 0.15);
+    width: 95%;
+    background-image: linear-gradient(
+      40deg,
+      $darkGrey6 0%,
+      $darkGrey6 55%,
+      $greenBlue 100%
+    );
+    z-index: 1;
+    border-radius: 30px;
+
+    &::before {
+      content: "";
+      display: block;
+      background: linear-gradient(
+        45deg,
+        $darkGrey6 0%,
+        $darkGrey6 50%,
+        $darkGreenBlue 100%
+      );
+      position: absolute;
+      border-radius: calc(30px - 1%);
+      height: 98%;
+      width: 98%;
+      z-index: -1;
+    }
+
+    .sidebar__reminder-content {
+      padding: 15px 20px 30px;
+      height: 100%;
+    }
+
+    .content-icon {
+      color: $white;
+      font-size: 2.75rem;
+    }
+
+    .icon-shift {
+      position: absolute;
+      color: $white;
+      font-size: 1rem;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+    }
+
+    .title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 15px 0 10px;
+      color: $white;
+    }
+
+    .subtitle {
+      font-size: 0.75rem;
+      font-weight: 400;
+      line-height: 1.6;
+      color: $grey2;
+    }
+  }
 }
