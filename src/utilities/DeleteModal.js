@@ -23,6 +23,8 @@ const DeleteModal = (props) => {
   // ---------------------
 
   const onClickDeleteModalConfirmButton = () => {
+    if (props.userRole !== "admin") return;
+
     props.onClickDeleteModalConfirmButton();
     props.hideDeleteModal();
   };
