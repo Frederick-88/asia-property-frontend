@@ -62,6 +62,7 @@ class EditAddModal extends React.Component {
   // ---------------------
 
   onClickEditAddModalConfirmButton = () => {
+    if (this.props.userRole !== "admin") return;
     this.props.onClickEditAddModalConfirmButton(); // emit event to parent
   };
 
