@@ -36,14 +36,14 @@ const AdminReducer = (state = initialState, action) => {
     // ------
     // Listings
     // ------
-    case "SET_LISTINGS_DATA":
+    case "SET_LISTINGS":
       return {
         ...state,
         listingsData: payload,
         isLoadingData: false,
       };
 
-    case "ADD_LISTINGS_DATA":
+    case "ADD_LISTINGS":
       triggerNotification("success", "Successfully created a new listing.");
 
       return {
@@ -52,7 +52,7 @@ const AdminReducer = (state = initialState, action) => {
         isLoadingData: false,
       };
 
-    case "UPDATE_LISTINGS_DATA":
+    case "UPDATE_LISTINGS":
       const updatedListingsData = state.listingsData.map((listing) => {
         if (listing._id === payload.id) return payload.newData;
         return listing;
@@ -65,7 +65,7 @@ const AdminReducer = (state = initialState, action) => {
         isLoadingData: false,
       };
 
-    case "DELETE_LISTINGS_DATA":
+    case "DELETE_LISTINGS":
       const deletedListingData = state.listingsData.filter((listing) => {
         if (listing._id === payload) return false;
         return true;
@@ -81,14 +81,14 @@ const AdminReducer = (state = initialState, action) => {
     // ------
     // Agents
     // ------
-    case "SET_AGENTS_DATA":
+    case "SET_AGENTS":
       return {
         ...state,
         agentsData: payload,
         isLoadingData: false,
       };
 
-    case "ADD_AGENTS_DATA":
+    case "ADD_AGENTS":
       triggerNotification("success", "Successfully created a new agent.");
 
       return {
@@ -97,7 +97,7 @@ const AdminReducer = (state = initialState, action) => {
         isLoadingData: false,
       };
 
-    case "UPDATE_AGENTS_DATA":
+    case "UPDATE_AGENTS":
       const updatedAgentsData = state.agentsData.map((agent) => {
         if (agent._id === payload.id) return payload.newData;
         return agent;
@@ -110,7 +110,7 @@ const AdminReducer = (state = initialState, action) => {
         isLoadingData: false,
       };
 
-    case "DELETE_AGENTS_DATA":
+    case "DELETE_AGENTS":
       const deletedAgentData = state.agentsData.filter((agent) => {
         if (agent._id === payload) return false;
         return true;
@@ -126,14 +126,14 @@ const AdminReducer = (state = initialState, action) => {
     // -----
     // Users
     // -----
-    case "SET_USERS_DATA":
+    case "SET_USERS":
       return {
         ...state,
         usersData: payload,
         isLoadingData: false,
       };
 
-    case "ADD_USERS_DATA":
+    case "ADD_USERS":
       triggerNotification("success", "Successfully created a new user.");
 
       return {
@@ -142,7 +142,7 @@ const AdminReducer = (state = initialState, action) => {
         isLoadingData: false,
       };
 
-    case "UPDATE_USERS_DATA":
+    case "UPDATE_USERS":
       const updatedUsersData = state.usersData.map((user) => {
         if (user._id === payload.id) return payload.newData;
         return user;
@@ -155,7 +155,7 @@ const AdminReducer = (state = initialState, action) => {
         isLoadingData: false,
       };
 
-    case "DELETE_USERS_DATA":
+    case "DELETE_USERS":
       const deletedUserData = state.usersData.filter((user) => {
         if (user._id === payload) return false;
         return true;
@@ -172,7 +172,12 @@ const AdminReducer = (state = initialState, action) => {
     // Inquiries
     // ---------
 
-    // ...
+    case "SET_INQUIRIES":
+      return {
+        ...state,
+        inquiriesData: payload,
+        isLoadingData: false,
+      };
 
     default:
       return state;
