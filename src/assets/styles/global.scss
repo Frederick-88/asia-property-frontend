@@ -60,7 +60,7 @@ body {
           100vh - 130px
         ); // 130px (90px of navbar + 40px total margin)
         margin: 5px 0 35px;
-        padding: 30px 30px 50px;
+        padding: 30px 15px 50px 30px; // to create scroller gap, but still look symmetrical
         border-radius: 30px;
         overflow: auto;
 

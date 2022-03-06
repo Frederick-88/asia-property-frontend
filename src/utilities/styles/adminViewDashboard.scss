@@ -6,6 +6,7 @@
     justify-content: space-between;
     align-items: center;
     color: $white;
+    padding-right: 15px;
 
     .navbar-title {
       font-weight: 500;
@@ -105,6 +106,7 @@
     &:not(.content--no-scroller) {
       height: calc(100vh - 330px);
       overflow: auto;
+      padding-right: 10px;
 
       @media only screen and (max-width: 1380px) {
         height: calc(100vh - 300px);
