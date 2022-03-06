@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { connect } from "react-redux";
+import { Link, useLocation, useHistory } from "react-router-dom";
+
+import { setUserRole } from "../../actionCreators/LoginAction";
 
 import Logo from "../../assets/images/logo.png";
 
 const AdminSidebar = (props) => {
+  const history = useHistory();
   const currentUrlPath = window.location.pathname;
   const currentUrlQuery = useLocation().search;
 
@@ -48,8 +52,17 @@ const AdminSidebar = (props) => {
   ];
 
   // ----------------------
+  // < ---- Computed ---- >
+  // ----------------------
+
+  const getUserName = () => {
+    return props.userRole === "visitor" ? "John Doe" : "Frederick";
+  };
+
+  // ----------------------
   //  < ---- Methods ---- >
   // ----------------------
+
   const isActiveButton = (button) => {
     return button === activeButton ? "button--active" : "";
   };
@@ -70,14 +83,16 @@ const AdminSidebar = (props) => {
   }, [currentUrlPath]);
 
   useEffect(() => {
+    // ---------------------------------------
+    // check person's role ( admin / visitor ), if it's unclear, direct to homepage that show admin login modal
+    // ---------------------------------------
     const params = new URLSearchParams(currentUrlQuery);
-    const getIsVisitorQuery = params.get("is_visitor");
-    console.log(
-      currentUrlQuery,
-      { getIsVisitorQuery },
-      "checking ?is_visitor query"
-    );
-  }, [currentUrlQuery]);
+    const hasIsVisitorQueryUrl = params.get("is_visitor");
+
+    if (!props.userRole && hasIsVisitorQueryUrl) props.setUserRole("visitor");
+    else if (props.userRole) return;
+    else history.push(`/?show_admin_login_modal=true`);
+  }, [currentUrlQuery, history]); // eslint-disable-line
 
   return (
     <div className="admin-sidebar">
@@ -92,11 +107,11 @@ const AdminSidebar = (props) => {
         <div className="sidebar__user-profile">
           <img
             className="profile-image"
-            src="https://pbs.twimg.com/media/FJYRgy6acAYzXgj.jpg"
+            src="https://i0.wp.com/thefrontierpost.com/wp-content/uploads/2021/09/13-7.jpg?fit=1110%2C624&ssl=1"
             alt="logo"
           />
-          <h4 className="profile-title">Frederick</h4>
-          <p className="profile-role">Admin</p>
+          <h4 className="profile-title">{getUserName()}</h4>
+          <p className="profile-role">{props.userRole}</p>
         </div>
 
         <div className="sidebar__button-list">
@@ -127,4 +142,14 @@ const AdminSidebar = (props) => {
   );
 };
 
-export default AdminSidebar;
+const mapStateToProps = (state) => {
+  return {
+    userRole: state.LoginReducer.userRole,
+  };
+};
+
+const mapDispatchToProps = {
+  setUserRole,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdminSidebar);
