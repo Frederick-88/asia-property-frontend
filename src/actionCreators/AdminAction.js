@@ -31,7 +31,7 @@ export const getListings = () => {
       const response = axiosCall.data;
 
       dispatch({
-        type: "SET_LISTINGS_DATA",
+        type: "SET_LISTINGS",
         payload: response.results,
       });
     } catch (error) {
@@ -64,8 +64,13 @@ export const createListing = (data) => {
       const response = axiosCall.data;
 
       dispatch({
-        type: "ADD_LISTINGS_DATA",
+        type: "ADD_LISTINGS",
         payload: response.results,
+      });
+      // reset inquiries since if listings data are updated, inquiries should receive the updates too
+      dispatch({
+        type: "SET_INQUIRIES",
+        payload: [],
       });
     } catch (error) {
       const errorMessage = error.response.data;
@@ -90,18 +95,23 @@ export const updateListing = (data) => {
     try {
       const axiosCall = await axios({
         method: "PUT",
-        url: `${apiURL}/real-estate/update`,
+        url: `${apiURL}/real-estate/update?id=${data.listingId}`,
         headers: { "access-token": data.token },
         data: data.listingData,
       });
       const response = axiosCall.data;
 
       dispatch({
-        type: "UPDATE_LISTINGS_DATA",
+        type: "UPDATE_LISTINGS",
         payload: {
           id: response.results._id,
           newData: response.results,
         },
+      });
+      // reset inquiries since if listings data are updated, inquiries should receive the updates too
+      dispatch({
+        type: "SET_INQUIRIES",
+        payload: [],
       });
     } catch (error) {
       const errorMessage = error.response.data;
@@ -131,8 +141,13 @@ export const deleteListing = (data) => {
       });
 
       dispatch({
-        type: "DELETE_LISTINGS_DATA",
+        type: "DELETE_LISTINGS",
         payload: data.listingId,
+      });
+      // reset inquiries since if listings data are updated, inquiries should receive the updates too
+      dispatch({
+        type: "SET_INQUIRIES",
+        payload: [],
       });
     } catch (error) {
       const errorMessage = error.response.data;
@@ -165,7 +180,7 @@ export const getAgents = () => {
       const response = axiosCall.data;
 
       dispatch({
-        type: "SET_AGENTS_DATA",
+        type: "SET_AGENTS",
         payload: response.results,
       });
     } catch (error) {
@@ -198,8 +213,13 @@ export const createAgent = (data) => {
       const response = axiosCall.data;
 
       dispatch({
-        type: "ADD_AGENTS_DATA",
+        type: "ADD_AGENTS",
         payload: response.results,
+      });
+      // reset listings since if agents data are updated, listings should receive the updates too
+      dispatch({
+        type: "SET_LISTINGS",
+        payload: [],
       });
     } catch (error) {
       const errorMessage = error.response.data;
@@ -224,18 +244,23 @@ export const updateAgent = (data) => {
     try {
       const axiosCall = await axios({
         method: "PUT",
-        url: `${apiURL}/agents/update`,
+        url: `${apiURL}/agents/update?id=${data.agentId}`,
         headers: { "access-token": data.token },
         data: data.agentData,
       });
       const response = axiosCall.data;
 
       dispatch({
-        type: "UPDATE_AGENTS_DATA",
+        type: "UPDATE_AGENTS",
         payload: {
           id: response.results._id,
           newData: response.results,
         },
+      });
+      // reset listings since if agents data are updated, listings should receive the updates too
+      dispatch({
+        type: "SET_LISTINGS",
+        payload: [],
       });
     } catch (error) {
       const errorMessage = error.response.data;
@@ -265,8 +290,13 @@ export const deleteAgent = (data) => {
       });
 
       dispatch({
-        type: "DELETE_AGENTS_DATA",
+        type: "DELETE_AGENTS",
         payload: data.agentId,
+      });
+      // reset listings since if agents data are updated, listings should receive the updates too
+      dispatch({
+        type: "SET_LISTINGS",
+        payload: [],
       });
     } catch (error) {
       const errorMessage = error.response.data;
@@ -299,7 +329,7 @@ export const getUsers = () => {
       const response = axiosCall.data;
 
       dispatch({
-        type: "SET_USERS_DATA",
+        type: "SET_USERS",
         payload: response.results,
       });
     } catch (error) {
@@ -325,14 +355,14 @@ export const createUser = (data) => {
     try {
       const axiosCall = await axios({
         method: "POST",
-        url: `${apiURL}/users/create`,
+        url: `${apiURL}/users/register`,
         headers: { "access-token": data.token },
         data: data.userData,
       });
       const response = axiosCall.data;
 
       dispatch({
-        type: "ADD_USERS_DATA",
+        type: "ADD_USERS",
         payload: response.results,
       });
     } catch (error) {
@@ -358,14 +388,14 @@ export const updateUser = (data) => {
     try {
       const axiosCall = await axios({
         method: "PUT",
-        url: `${apiURL}/users/update`,
+        url: `${apiURL}/users/update?id=${data.userId}`,
         headers: { "access-token": data.token },
         data: data.userData,
       });
       const response = axiosCall.data;
 
       dispatch({
-        type: "UPDATE_USERS_DATA",
+        type: "UPDATE_USERS",
         payload: {
           id: response.results._id,
           newData: response.results,
@@ -399,7 +429,7 @@ export const deleteUser = (data) => {
       });
 
       dispatch({
-        type: "DELETE_USERS_DATA",
+        type: "DELETE_USERS",
         payload: data.userId,
       });
     } catch (error) {
@@ -419,4 +449,33 @@ export const deleteUser = (data) => {
 // Inquiries
 // ---------
 
-// ...
+export const getInquiries = () => {
+  return async (dispatch) => {
+    dispatch({
+      type: "SET_IS_LOADING_DATA",
+      payload: true,
+    });
+
+    try {
+      const axiosCall = await axios({
+        method: "GET",
+        url: `${apiURL}/real-estate/get-inquiries`,
+      });
+      const response = axiosCall.data;
+
+      dispatch({
+        type: "SET_INQUIRIES",
+        payload: response.results,
+      });
+    } catch (error) {
+      const errorMessage = error.response.data;
+      console.error(errorMessage);
+      showErrorNotification();
+
+      dispatch({
+        type: "SET_IS_LOADING_DATA",
+        payload: false,
+      });
+    }
+  };
+};
