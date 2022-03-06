@@ -60,6 +60,11 @@
         font-size: 0.875rem;
         margin-top: 4px;
         word-break: break-word;
+
+        strong {
+          color: $greenBlue;
+          margin-right: 5px;
+        }
       }
 
       .view-modal__image-list {
@@ -69,18 +74,54 @@
       }
 
       .list__image-preview {
+        position: relative;
         padding: 3px;
         border: 1px solid $greenBlue;
         margin-top: 10px;
         margin-right: 10px;
         width: 100px;
         height: 100px;
+        display: block;
+
+        &:hover {
+          .preview__view-image-sign {
+            opacity: 1;
+          }
+        }
 
         .image {
           width: 100%;
           height: 100%;
           object-fit: contain;
           background: $lightGrey2;
+        }
+
+        .preview__view-image-sign {
+          position: absolute;
+          z-index: 3;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: rgba($black, 0.65);
+          color: $greenBlue;
+          opacity: 0;
+          transition: opacity 0.3s ease-in-out;
+
+          .sign-icon {
+            margin-right: 5px;
+            font-size: 1rem;
+          }
+
+          .sign-text {
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin: 0;
+            padding: 0;
+          }
         }
       }
     }
