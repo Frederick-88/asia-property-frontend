@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 
+import { doLogout } from "../../actionCreators/LoginAction";
+
 import AboutUsModal from "../AboutUsModal";
-import AccountSettingsModal from "../AccountSettingsModal";
 import AdminProfileModal from "./children/AdminProfileModal";
 
 const AdminNavbar = (props) => {
@@ -32,8 +34,6 @@ const AdminNavbar = (props) => {
   ];
 
   const [isProfileModalShow, setIsProfileModalShow] = useState(false);
-  const [isAccountSettingsModalShow, setIsAccountSettingsModalShow] =
-    useState(false);
   const [isAboutUsModalShow, setIsAboutUsModalShow] = useState(false);
 
   // ----------------------
@@ -53,8 +53,11 @@ const AdminNavbar = (props) => {
   const onClickAdminProfileModalButton = (type) => {
     if (type === "about-developer") setAboutUsModal(true);
     else if (type === "staff") history.push("/admin/users");
-    else if (type === "account-settings") setAccountSettingsModal(true);
-    else console.log("clicked profile modal type =", type);
+    else if (type === "account-settings") props.setAccountSettingsModal(true);
+    else if (type === "logout") {
+      if (props.userRole === "admin") props.doLogout();
+      history.push("/");
+    }
 
     toggleAdminUserProfileModal();
   };
@@ -65,10 +68,6 @@ const AdminNavbar = (props) => {
 
   const hideIsProfileModalShow = () => {
     setIsProfileModalShow(false);
-  };
-
-  const setAccountSettingsModal = (boolean) => {
-    setIsAccountSettingsModalShow(boolean);
   };
 
   const setAboutUsModal = (boolean) => {
@@ -113,13 +112,6 @@ const AdminNavbar = (props) => {
         hideIsProfileModalShow={hideIsProfileModalShow}
         onClickAdminProfileModalButton={onClickAdminProfileModalButton}
       />
-
-      <AccountSettingsModal
-        isAdmin={true}
-        isAccountSettingsModalShow={isAccountSettingsModalShow}
-        hideModal={() => setAccountSettingsModal(false)}
-      />
-
       <AboutUsModal
         isDark={true}
         isAboutUsModalShow={isAboutUsModalShow}
@@ -129,4 +121,14 @@ const AdminNavbar = (props) => {
   );
 };
 
-export default AdminNavbar;
+const mapStateToProps = (state) => {
+  return {
+    userRole: state.LoginReducer.userRole,
+  };
+};
+
+const mapDispatchToProps = {
+  doLogout,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdminNavbar);
