@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Chart from "react-apexcharts";
+import { toast } from "react-toastify";
 
 const AdminDashboardComponent = (props) => {
   const oneColumnRef = useRef();
@@ -7,28 +8,28 @@ const AdminDashboardComponent = (props) => {
 
   const dashboardOverview = [
     {
-      title: 'Total Revenues',
-      period: '30 Days',
+      title: "Total Revenues",
+      period: "30 Days",
       isSurplus: true,
-      surplusText: 'Revenue Up',
-      value: '$711.66',
-      icon: 'icon-coins',
+      surplusText: "Revenue Up",
+      value: "$711.66",
+      icon: "icon-coins",
     },
     {
-      title: 'New Users',
-      period: '30 Days',
+      title: "New Users",
+      period: "30 Days",
       isSurplus: true,
-      surplusText: 'Users Up',
-      value: '7,288',
-      icon: 'icon-team',
+      surplusText: "Users Up",
+      value: "7,288",
+      icon: "icon-team",
     },
     {
-      title: 'New Listings',
-      period: '30 Days',
+      title: "New Listings",
+      period: "30 Days",
       isSurplus: false,
-      surplusText: 'Listing Down',
-      value: '590',
-      icon: 'icon-property',
+      surplusText: "Listing Down",
+      value: "590",
+      icon: "icon-property",
     },
   ];
 
@@ -36,151 +37,175 @@ const AdminDashboardComponent = (props) => {
     options: {
       chart: {
         zoom: {
-          enabled: false
+          enabled: false,
         },
-        fontFamily: 'Poppins, Helvetica, Arial, sans-serif'
+        fontFamily: "Poppins, Helvetica, Arial, sans-serif",
       },
       dataLabels: {
-        enabled: false
+        enabled: false,
       },
       stroke: {
-        curve: 'smooth'
+        curve: "smooth",
       },
       xaxis: {
-        categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun',]
+        categories: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
       },
       theme: {
-        mode: 'dark',
+        mode: "dark",
       },
-      colors:['#0073e1', '#1fbfa9'],
+      colors: ["#0073e1", "#1fbfa9"],
     },
-    series: [{
-      name: 'Target',
-      data: [2000, 3000, 2000, 4000, 6000, 8000, 2000]
-    }, {
-      name: 'Visitors',
-      data: [1780, 4872, 8719, 3200, 531, 4577, 5290]
-    }],
+    series: [
+      {
+        name: "Target",
+        data: [2000, 3000, 2000, 4000, 6000, 8000, 2000],
+      },
+      {
+        name: "Visitors",
+        data: [1780, 4872, 8719, 3200, 531, 4577, 5290],
+      },
+    ],
   };
 
   const registeredAgentChartData = {
     options: {
       chart: {
         zoom: {
-          enabled: false
+          enabled: false,
         },
-        fontFamily: 'Poppins, Helvetica, Arial, sans-serif'
+        fontFamily: "Poppins, Helvetica, Arial, sans-serif",
       },
       dataLabels: {
-        enabled: false
+        enabled: false,
       },
       stroke: {
-        curve: 'smooth'
+        curve: "smooth",
       },
       xaxis: {
-        categories: ['Week 1', 'Week 2', 'Week 3', 'Week 4']
+        categories: ["Week 1", "Week 2", "Week 3", "Week 4"],
       },
       theme: {
-        mode: 'dark',
+        mode: "dark",
       },
-      colors:['#0073e1', '#1fbfa9'],
+      colors: ["#0073e1", "#1fbfa9"],
     },
-    series: [{
-      name: 'Target',
-      data: [200, 400, 600, 800]
-    }, {
-      name: 'Registered Agent',
-      data: [871, 320, 53, 457]
-    }],
+    series: [
+      {
+        name: "Target",
+        data: [200, 400, 600, 800],
+      },
+      {
+        name: "Registered Agent",
+        data: [871, 320, 53, 457],
+      },
+    ],
   };
 
   const salesChartData = {
     options: {
       chart: {
         zoom: {
-          enabled: false
+          enabled: false,
         },
-        fontFamily: 'Poppins, Helvetica, Arial, sans-serif'
+        fontFamily: "Poppins, Helvetica, Arial, sans-serif",
       },
       dataLabels: {
-        enabled: false
+        enabled: false,
       },
       xaxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        categories: [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec",
+        ],
       },
       theme: {
-        mode: 'dark',
+        mode: "dark",
       },
-      colors:['#1fbfa9'],
+      colors: ["#1fbfa9"],
     },
-    series: [{
-      name: 'Sales',
-      data: [871, 320, 53, 457, 871, 320, 53, 457, 871, 320, 53, 457]
-    }],
+    series: [
+      {
+        name: "Sales",
+        data: [871, 320, 53, 457, 871, 320, 53, 457, 871, 320, 53, 457],
+      },
+    ],
   };
 
   const socialMediaSalesChartData = {
     options: {
       chart: {
         zoom: {
-          enabled: false
+          enabled: false,
         },
-        fontFamily: 'Poppins, Helvetica, Arial, sans-serif'
+        fontFamily: "Poppins, Helvetica, Arial, sans-serif",
       },
       dataLabels: {
-        enabled: false
+        enabled: false,
       },
       stroke: {
-        curve: 'smooth'
+        curve: "smooth",
       },
       xaxis: {
-        categories: ['Week 1', 'Week 2', 'Week 3', 'Week 4']
+        categories: ["Week 1", "Week 2", "Week 3", "Week 4"],
       },
       theme: {
-        mode: 'dark',
+        mode: "dark",
       },
-      colors:['#0073e1', '#1fbfa9'],
+      colors: ["#0073e1", "#1fbfa9"],
     },
-    series: [{
-      name: 'Target',
-      data: [100, 100, 100, 100]
-    }, {
-      name: 'Sales',
-      data: [28, 63, 110, 63]
-    }],
+    series: [
+      {
+        name: "Target",
+        data: [100, 100, 100, 100],
+      },
+      {
+        name: "Sales",
+        data: [28, 63, 110, 63],
+      },
+    ],
   };
 
   const earningsChartData = {
     options: {
       chart: {
         zoom: {
-          enabled: false
+          enabled: false,
         },
-        fontFamily: 'Poppins, Helvetica, Arial, sans-serif',
+        fontFamily: "Poppins, Helvetica, Arial, sans-serif",
       },
       legend: {
-        show: false
+        show: false,
       },
       theme: {
-        mode: 'dark',
+        mode: "dark",
       },
       dataLabels: {
         enabled: false,
       },
-      colors:['#fc6687', '#1fbfa9'],
-      labels: ['Expenses', 'Profit'],
+      colors: ["#fc6687", "#1fbfa9"],
+      labels: ["Expenses", "Profit"],
       tooltip: {
-          y: {
-          formatter: function(value, opts) {
+        y: {
+          formatter: function (value, opts) {
             const getLabel = opts.globals.labels[opts.seriesIndex];
-            return "This Month's " + getLabel + ' : ' + value + ' %';
+            return "This Month's " + getLabel + " : " + value + " %";
           },
           title: {
             formatter: function () {
-              return '';
-            }
-          }
-        }
+              return "";
+            },
+          },
+        },
       },
     },
     series: [28, 72],
@@ -198,8 +223,10 @@ const AdminDashboardComponent = (props) => {
 
   const setupChartSize = () => {
     const desktopHeight = (window && window.innerHeight) || 0;
-    const oneColumn = oneColumnRef && oneColumnRef.current && oneColumnRef.current.offsetWidth;
-    const twoColumn = twoColumnRef && twoColumnRef.current && twoColumnRef.current.offsetWidth;
+    const oneColumn =
+      oneColumnRef && oneColumnRef.current && oneColumnRef.current.offsetWidth;
+    const twoColumn =
+      twoColumnRef && twoColumnRef.current && twoColumnRef.current.offsetWidth;
     // console.log(desktopHeight, oneColumnRef, twoColumnRef, oneColumn, twoColumn);
 
     setOneColumnWidth(oneColumn);
@@ -210,7 +237,18 @@ const AdminDashboardComponent = (props) => {
     } else if (desktopHeight > 900) {
       setChartHeight(400);
     }
-  }
+  };
+
+  const onClickDropdown = (dropdownType) => {
+    comingSoonNotification(`${dropdownType} periodic chart`);
+  };
+
+  const comingSoonNotification = (featureName) => {
+    toast.success(`${featureName} feature will come soon.`, {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 7000,
+    });
+  };
 
   // --------------------------
   // --------------------------
@@ -218,7 +256,7 @@ const AdminDashboardComponent = (props) => {
   useEffect(() => {
     setupChartSize();
   }, [oneColumnRef, twoColumnRef]);
-    
+
   return (
     <div className="admin-dashboard__container">
       <div className="dashboard-row row--3 dashboard__overview">
@@ -229,17 +267,31 @@ const AdminDashboardComponent = (props) => {
                 <i className="icon-shift" />
 
                 <div className="box__header">
-                  <i className={overview.icon + ' header-icon'} />
+                  <i className={overview.icon + " header-icon"} />
                   <div>
                     <h4 className="header-title">{overview.title}</h4>
-                    <h6 className="header-subtitle">(Last {overview.period})</h6>
+                    <h6 className="header-subtitle">
+                      (Last {overview.period})
+                    </h6>
                   </div>
                 </div>
 
                 <div className="box__value">
                   <h4 className="value-text">{overview.value}</h4>
-                  <div className={'surplus-indicator ' + (overview.isSurplus ? 'indicator--green' : 'indicator--red')}>
-                    <i className={'indicator-icon icon-arrow-' + (overview.isSurplus ? 'up' : 'down')} />
+                  <div
+                    className={
+                      "surplus-indicator " +
+                      (overview.isSurplus
+                        ? "indicator--green"
+                        : "indicator--red")
+                    }
+                  >
+                    <i
+                      className={
+                        "indicator-icon icon-arrow-" +
+                        (overview.isSurplus ? "up" : "down")
+                      }
+                    />
                     <p className="indicator-text">{overview.surplusText}</p>
                   </div>
                 </div>
@@ -253,7 +305,11 @@ const AdminDashboardComponent = (props) => {
         <div className="dashboard-column" ref={twoColumnRef}>
           <div className="visitors__header">
             <h4 className="header__title">Visitors</h4>
-            <button type="button" className="header__dropdown">
+            <button
+              type="button"
+              className="header__dropdown"
+              onClick={() => onClickDropdown("Visitor")}
+            >
               <p>Daily (2022)</p>
               <i className="icon-chevron-down" />
             </button>
@@ -269,7 +325,11 @@ const AdminDashboardComponent = (props) => {
         <div className="dashboard-column">
           <div className="visitors__header">
             <h4 className="header__title">Registered Agents</h4>
-            <button type="button" className="header__dropdown">
+            <button
+              type="button"
+              className="header__dropdown"
+              onClick={() => onClickDropdown("Registered agent")}
+            >
               <p>Weekly (2022)</p>
               <i className="icon-chevron-down" />
             </button>
@@ -287,25 +347,33 @@ const AdminDashboardComponent = (props) => {
       <div className="dashboard-row row--1 dashboard__sales" ref={oneColumnRef}>
         <div className="sales__header">
           <h4 className="header__title">Sales / Transactions</h4>
-          <button type="button" className="header__dropdown">
+          <button
+            type="button"
+            className="header__dropdown"
+            onClick={() => onClickDropdown("Transaction")}
+          >
             <p>Monthly (2021)</p>
             <i className="icon-chevron-down" />
           </button>
         </div>
         <Chart
-            options={salesChartData.options}
-            series={salesChartData.series}
-            type="bar"
-            width={oneColumnWidth}
-            height={chartHeight}
-          />
+          options={salesChartData.options}
+          series={salesChartData.series}
+          type="bar"
+          width={oneColumnWidth}
+          height={chartHeight}
+        />
       </div>
 
       <div className="dashboard-row row--2 dashboard__earnings">
         <div className="dashboard-column">
           <div className="earnings__header">
             <h4 className="header__title">Sales from Social Media</h4>
-            <button type="button" className="header__dropdown">
+            <button
+              type="button"
+              className="header__dropdown"
+              onClick={() => onClickDropdown("Social media sales")}
+            >
               <p>Weekly (2022)</p>
               <i className="icon-chevron-down" />
             </button>
