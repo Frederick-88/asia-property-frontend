@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import AdminInquiriesComponent from "../../components/Admin/AdminInquiriesComponent";
 
-import "../../assets/styles/admin/admin.scss";
+import { getInquiries } from "../../actionCreators/AdminAction";
 
-const AdminDashboard = (props) => {
-  return <AdminInquiriesComponent />
+const AdminInquiries = (props) => {
+  useEffect(() => {
+    if (!props.inquiriesData.length) props.getInquiries();
+  }, [props]);
+
+  return <AdminInquiriesComponent />;
 };
 
-export default AdminDashboard;
+const mapStateToProps = (state) => {
+  return {
+    inquiriesData: state.AdminReducer.inquiriesData,
+  };
+};
+
+const mapDispatchToProps = {
+  getInquiries,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdminInquiries);
