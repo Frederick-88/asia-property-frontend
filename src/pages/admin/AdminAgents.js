@@ -1,10 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import AdminAgentsComponent from "../../components/Admin/AdminAgentsComponent";
 
-import "../../assets/styles/admin/admindashboard.scss";
+import { getAgents } from "../../actionCreators/AdminAction";
 
-const AdminDashboard = (props) => {
-  return <AdminAgentsComponent />
+const AdminAgents = (props) => {
+  const setDeleteModalObjData = (data) => {
+    props.setDeleteModalObjData(data);
+  };
+
+  useEffect(() => {
+    if (!props.agentsData.length) props.getAgents();
+  }, [props]);
+
+  return <AdminAgentsComponent setDeleteModalObjData={setDeleteModalObjData} />;
 };
 
-export default AdminDashboard;
+const mapStateToProps = (state) => {
+  return {
+    agentsData: state.AdminReducer.agentsData,
+  };
+};
+
+const mapDispatchToProps = {
+  getAgents,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdminAgents);
