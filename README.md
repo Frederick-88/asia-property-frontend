@@ -118,4 +118,4 @@
 
 1. Non-Desktop Work In Progress Page
 2. Table Width Structures, for a better appearance on 1366 x 768 screens
-3. Add More Keyboard Keys Support for Modals ( detect esc key to close modal )
+3. Update the SEO, currently when share link, only can see "Web site created using create-react-app"
