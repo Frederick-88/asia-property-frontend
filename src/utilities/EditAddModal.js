@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 import { connect } from "react-redux";
 
 import "./styles/sidemodal.scss";
@@ -62,12 +63,19 @@ class EditAddModal extends React.Component {
   // ---------------------
 
   onClickEditAddModalConfirmButton = () => {
-    if (this.props.userRole !== "admin") return;
-    this.props.onClickEditAddModalConfirmButton(); // emit event to parent
+    if (this.props.userRole !== "admin") this.onlyForAdminNotification();
+    else this.props.onClickEditAddModalConfirmButton(); // emit event to parent
   };
 
   hideEditAddModal = () => {
     this.props.hideEditAddModal(); // emit event to parent
+  };
+
+  onlyForAdminNotification = () => {
+    toast.success("This action is only accessible by admin.", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 5000,
+    });
   };
 
   render() {

@@ -1,6 +1,7 @@
 import React from "react";
-import Modal from "./Modal";
 import { connect } from "react-redux";
+import { toast } from "react-toastify";
+import Modal from "./Modal";
 
 import "./styles/deletemodal.scss";
 
@@ -23,14 +24,23 @@ const DeleteModal = (props) => {
   // ---------------------
 
   const onClickDeleteModalConfirmButton = () => {
-    if (props.userRole !== "admin") return;
-
-    props.onClickDeleteModalConfirmButton();
-    props.hideDeleteModal();
+    if (props.userRole !== "admin") {
+      onlyForAdminNotification();
+    } else {
+      props.onClickDeleteModalConfirmButton();
+      props.hideDeleteModal();
+    }
   };
 
   const hideDeleteModal = () => {
     props.hideDeleteModal();
+  };
+
+  const onlyForAdminNotification = () => {
+    toast.success("This action is only accessible by admin.", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 5000,
+    });
   };
 
   return (
