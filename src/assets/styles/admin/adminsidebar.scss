@@ -141,6 +141,10 @@
     z-index: 1;
     border-radius: 30px;
 
+    @media only screen and (max-height: 750px) {
+      display: none;
+    }
+
     &::before {
       content: "";
       display: block;
