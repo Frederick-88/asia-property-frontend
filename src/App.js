@@ -1,5 +1,4 @@
-import React from "react";
-import { BrowserView, MobileView } from "react-device-detect";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { ToastContainer } from "react-toastify";
@@ -11,6 +10,8 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./utilities/ScrollToTop";
 
+import UnsupportedDevice from "./components/UnsupportedDevice";
+
 import Home from "./pages/Home";
 import Listings from "./pages/Listings";
 import ListingDetail from "./pages/ListingDetail";
@@ -19,6 +20,7 @@ import OurAgents from "./pages/OurAgents";
 import AdminRouteHandler from "./pages/admin/AdminRouteHandler";
 
 const App = () => {
+  const [isShowWorkInProgress, setIsShowWorkInProgress] = useState(false);
   const backgroundStyle = (image) => {
     return {
       backgroundImage: `linear-gradient(to bottom, rgba(29,41,62,0.6) 0%,rgba(29,41,62,0.6) 100%), url("${image}")`,
@@ -27,47 +29,59 @@ const App = () => {
     };
   };
 
+  const detectScreenSize = () => {
+    // smallest width on popular used desktop resolution is 1280
+    if (window.innerWidth < 1200) {
+      setIsShowWorkInProgress(true);
+    } else {
+      setIsShowWorkInProgress(false);
+    }
+  };
+
+  useEffect(() => {
+    detectScreenSize();
+  }, []);
+
   return (
     <main>
-      <BrowserView>
-        <Router>
-          <main
-            className="main-section"
-            style={backgroundStyle(mainBackground)}
-          >
-            <ScrollToTop />
-            <Navbar />
-            <ToastContainer />
-            <Switch>
-              <Route exact path="/">
-                <Home />
-              </Route>
-              <Route exact path="/listings">
-                <Listings />
-              </Route>
-              <Route exact path="/listing/:id">
-                <ListingDetail />
-              </Route>
-              <Route exact path="/wishlists">
-                <Wishlist />
-              </Route>
-              <Route exact path="/our-agents">
-                <OurAgents />
-              </Route>
+      {!isShowWorkInProgress && (
+        <div>
+          <Router>
+            <main
+              className="main-section"
+              style={backgroundStyle(mainBackground)}
+            >
+              <ScrollToTop />
+              <Navbar />
+              <ToastContainer />
+              <Switch>
+                <Route exact path="/">
+                  <Home />
+                </Route>
+                <Route exact path="/listings">
+                  <Listings />
+                </Route>
+                <Route exact path="/listing/:id">
+                  <ListingDetail />
+                </Route>
+                <Route exact path="/wishlists">
+                  <Wishlist />
+                </Route>
+                <Route exact path="/our-agents">
+                  <OurAgents />
+                </Route>
 
-              <Route path="/admin">
-                <AdminRouteHandler />
-              </Route>
-            </Switch>
-            <Footer />
-          </main>
-        </Router>
-      </BrowserView>
-      <MobileView>
-        <h2>
-          Not Rendered on Mobile, please visit from desktop/bigger screen.
-        </h2>
-      </MobileView>
+                <Route path="/admin">
+                  <AdminRouteHandler />
+                </Route>
+              </Switch>
+              <Footer />
+            </main>
+          </Router>
+        </div>
+      )}
+
+      {isShowWorkInProgress && <UnsupportedDevice />}
     </main>
   );
 };
