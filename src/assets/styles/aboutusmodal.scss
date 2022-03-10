@@ -6,6 +6,10 @@
   flex-direction: column;
   padding: 60px;
 
+  @media only screen and (max-width: 1380px) {
+    padding: 50px;
+  }
+
   &.modal--dark {
     background-color: $darkGrey4;
 
@@ -44,12 +48,20 @@
     font-weight: 700;
     font-size: 1.5rem;
     margin: 30px 0 5px;
+
+    @media only screen and (max-width: 1380px) {
+      font-size: 1.375rem;
+    }
   }
 
   .developer-subtitle {
     color: $lightGrey3;
     font-weight: 500;
     font-size: 0.875rem;
+
+    @media only screen and (max-width: 1380px) {
+      font-size: 0.8125rem;
+    }
   }
 
   .social-buttons {
@@ -80,6 +92,10 @@
     line-height: 1.8;
     font-size: 0.875rem;
     margin-bottom: 15px;
+
+    @media only screen and (max-width: 1380px) {
+      font-size: 0.8125rem;
+    }
 
     &:last-of-type {
       margin-bottom: 0;
