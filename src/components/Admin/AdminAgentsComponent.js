@@ -64,6 +64,11 @@ const AdminAgentsComponent = (props) => {
     return isHttpsUrl ? file : URL.createObjectURL(file);
   };
 
+  const formatIdText = (id) => {
+    const get8Letter = id.slice(0, 8);
+    return get8Letter + "...";
+  };
+
   // ---------------------
   // < ---- Methods ---- >
   // ---------------------
@@ -259,6 +264,17 @@ const AdminAgentsComponent = (props) => {
             <AdminLoader type="agent" />
           ) : (
             <table cellSpacing={0}>
+              {/* defining width for table-cells. */}
+              <colgroup>
+                <col style={{ width: "5%" }} />
+                <col style={{ width: "10%" }} />
+                <col style={{ width: "10%" }} />
+                <col style={{ width: "20%" }} />
+                <col style={{ width: "10%" }} />
+                <col style={{ width: "15%" }} />
+                <col style={{ width: "10%" }} />
+                <col style={{ width: "20%" }} />
+              </colgroup>
               <thead>
                 <tr>
                   <th scope="col">
@@ -297,7 +313,7 @@ const AdminAgentsComponent = (props) => {
                           <span className="checkmark"></span>
                         </label>
                       </td>
-                      <td>{agent._id}</td>
+                      <td>{formatIdText(agent._id)}</td>
                       <td>{agent.name}</td>
                       <td>{agent.email}</td>
                       <td>
