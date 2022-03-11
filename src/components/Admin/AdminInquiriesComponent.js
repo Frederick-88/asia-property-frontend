@@ -51,6 +51,11 @@ const AdminInquiriesComponent = (props) => {
       : "Inquiries";
   };
 
+  const formatIdText = (id) => {
+    const get8Letter = id.slice(0, 8);
+    return get8Letter + "...";
+  };
+
   // ---------------------
   // < ---- Methods ---- >
   // ---------------------
@@ -177,7 +182,7 @@ const AdminInquiriesComponent = (props) => {
                           <span className="checkmark"></span>
                         </label>
                       </td>
-                      <td>{inquiry._id}</td>
+                      <td>{formatIdText(inquiry._id)}</td>
                       <td>{inquiry.name}</td>
                       <td>{inquiry.type}</td>
                       <td>{inquiry.agent.name}</td>
