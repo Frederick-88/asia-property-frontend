@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import _debounce from "lodash.debounce";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -39,7 +40,12 @@ const App = () => {
   };
 
   useEffect(() => {
+    const handleResize = _debounce(() => detectScreenSize(), 100); // avoid repetitive process, it will hold all the repetitive calls, then if after 0.1s no call, then it will do the process
     detectScreenSize();
+
+    // proper way to handle event listener -> https://stackoverflow.com/questions/19014250/rerender-view-on-browser-resize-with-react
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
