@@ -13,6 +13,8 @@
 9. React-Toastify
 10. Universal-Cookie
 11. Redux-Devtools-Extension
+12. React-Lottie
+13. Lodash-Debounce
 
 #### Frontend & Concept References :
 
@@ -38,6 +40,9 @@
 - Creating Reusable Component similar to Vue Slots in React https://medium.com/@srph/react-imitating-vue-slots-eab8393f96fd
 - React Get Current Path for Class Component https://reactrouter.com/core/api/withRouter
 - React useHistory in class component https://stackoverflow.com/questions/58122219/constructor-props-equivalent-in-react-hooks-for-history-push
+- Adding Animation Json to React App with react-lottie https://github.com/mifi/react-lottie-player
+- Most Common Screen Resolutions - Desktop (December 2021) https://www.hobo-web.co.uk/best-screen-size/
+- Screen Resolution Size Handling https://stackoverflow.com/questions/19014250/rerender-view-on-browser-resize-with-react
 
 #### Content Structure :
 
@@ -113,9 +118,3 @@
 - Add Options ( Listing, Users, Agents, Inquiries etc ) - direct to each page + open the add modal ( can add "?open_create_modal=true" query url )
 - Account Settings - open to account settings page
 - Staff Members - direct to users page
-
-### TODO:
-
-1. Non-Desktop Work In Progress Page
-2. Table Width Structures, for a better appearance on 1366 x 768 screens
-3. Update the SEO, currently when share link, only can see "Web site created using create-react-app"
