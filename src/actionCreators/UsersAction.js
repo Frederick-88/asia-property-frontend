@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-const apiURL = "https://asia-property.herokuapp.com";
+const apiURL = process.env.REACT_APP_HEROKU_BACKEND_URL;
 
 export const getListing = () => {
   return async (dispatch) => {

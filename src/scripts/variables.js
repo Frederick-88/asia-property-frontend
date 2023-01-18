@@ -1,3 +1,5 @@
+const apiUrl = process.env.REACT_APP_HEROKU_BACKEND_URL;
+
 const mockUserList = [
   {
     _id: 8801,
@@ -62,7 +64,7 @@ const mockAgentList = [
     _id: 8801,
     name: "sg-agent01",
     email: "agent01@gmail.com",
-    image: "https://asia-property.herokuapp.com/public/uploads/agent02.png",
+    image: `${apiUrl}/public/uploads/agent02.png`,
     phone_number: "082385529001",
     country: "Indonesia",
     city: "Jakarta",
@@ -71,7 +73,7 @@ const mockAgentList = [
     _id: 8802,
     name: "agent02",
     email: "agent02@gmail.com",
-    image: "https://asia-property.herokuapp.com/public/uploads/agent06.jpg",
+    image: `${apiUrl}/public/uploads/agent06.jpg`,
     phone_number: "082385529002",
     country: "Indonesia",
     city: "Jakarta",
@@ -80,7 +82,7 @@ const mockAgentList = [
     _id: 8803,
     name: "sg-agent03",
     email: "agent03@gmail.com",
-    image: "https://asia-property.herokuapp.com/public/uploads/agent02.png",
+    image: `${apiUrl}/public/uploads/agent02.png`,
     phone_number: "082385529003",
     country: "Indonesia",
     city: "Jakarta",
@@ -89,7 +91,7 @@ const mockAgentList = [
     _id: 8804,
     name: "agent04",
     email: "agent04@gmail.com",
-    image: "https://asia-property.herokuapp.com/public/uploads/agent06.jpg",
+    image: `${apiUrl}/public/uploads/agent06.jpg`,
     phone_number: "082385529004",
     country: "Indonesia",
     city: "Jakarta",
@@ -98,7 +100,7 @@ const mockAgentList = [
     _id: 8805,
     name: "sg-agent05",
     email: "agent05@gmail.com",
-    image: "https://asia-property.herokuapp.com/public/uploads/agent02.png",
+    image: `${apiUrl}/public/uploads/agent02.png`,
     phone_number: "082385529005",
     country: "Indonesia",
     city: "Jakarta",
@@ -107,7 +109,7 @@ const mockAgentList = [
     _id: 8806,
     name: "agent06",
     email: "agent06@gmail.com",
-    image: "https://asia-property.herokuapp.com/public/uploads/agent06.jpg",
+    image: `${apiUrl}/public/uploads/agent06.jpg`,
     phone_number: "082385529006",
     country: "Indonesia",
     city: "Jakarta",
@@ -116,7 +118,7 @@ const mockAgentList = [
     _id: "60bca4fd033e1d38148d6703",
     name: "fred+agent+2",
     email: "fred+agent+2@gmail.com",
-    image: "https://asia-property.herokuapp.com/public/uploads/agent02.jpg",
+    image: `${apiUrl}/public/uploads/agent02.jpg`,
     phone_number: "082385529008",
     country: "indonesia",
     city: "tanjung pinang",
@@ -127,11 +129,10 @@ const mockFeaturedListingList = [
   {
     _id: "60f434d6fbba829a87ff3ffa",
     images: [
-      "https://asia-property.herokuapp.com/public/uploads/apart88-01.webp",
-      "https://asia-property.herokuapp.com/public/uploads/villa-aston01.webp",
+      `${apiUrl}/public/uploads/apart88-01.webp`,
+      `${apiUrl}/public/uploads/villa-aston01.webp`,
     ],
-    image_thumbnail:
-      "https://asia-property.herokuapp.com/public/uploads/villa-aston01.webp",
+    image_thumbnail: `${apiUrl}/public/uploads/villa-aston01.webp`,
     type: "apartment",
     price: "1.000.000",
     is_featured: true,
@@ -147,7 +148,7 @@ const mockFeaturedListingList = [
     name: "sg-featured-listing01",
     agent: {
       _id: "60bca4fd033e1d38148d6703",
-      image: "https://asia-property.herokuapp.com/public/uploads/agent02.jpg",
+      image: `${apiUrl}/public/uploads/agent02.jpg`,
       country: "indonesia",
       city: "tanjung pinang",
       name: "sg-agent01",
@@ -158,11 +159,10 @@ const mockFeaturedListingList = [
   {
     _id: "60f434d6fbba829a87ff3ffb",
     images: [
-      "https://asia-property.herokuapp.com/public/uploads/apart88-01.webp",
-      "https://asia-property.herokuapp.com/public/uploads/villa-aston01.webp",
+      `${apiUrl}/public/uploads/apart88-01.webp`,
+      `${apiUrl}/public/uploads/villa-aston01.webp`,
     ],
-    image_thumbnail:
-      "https://asia-property.herokuapp.com/public/uploads/apart88-01.webp",
+    image_thumbnail: `${apiUrl}/public/uploads/apart88-01.webp`,
     type: "apartment",
     price: "1.000.000",
     is_featured: true,
@@ -178,7 +178,7 @@ const mockFeaturedListingList = [
     name: "featured-listing02",
     agent: {
       _id: "60bca4fd033e1d38148d6703",
-      image: "https://asia-property.herokuapp.com/public/uploads/agent02.jpg",
+      image: `${apiUrl}/public/uploads/agent02.jpg`,
       country: "indonesia",
       city: "tanjung pinang",
       name: "agent08",
@@ -189,11 +189,10 @@ const mockFeaturedListingList = [
   {
     _id: "60f434d6fbba829a87ff3ffc",
     images: [
-      "https://asia-property.herokuapp.com/public/uploads/apart88-01.webp",
-      "https://asia-property.herokuapp.com/public/uploads/villa-aston01.webp",
+      `${apiUrl}/public/uploads/apart88-01.webp`,
+      `${apiUrl}/public/uploads/villa-aston01.webp`,
     ],
-    image_thumbnail:
-      "https://asia-property.herokuapp.com/public/uploads/villa-aston01.webp",
+    image_thumbnail: `${apiUrl}/public/uploads/villa-aston01.webp`,
     type: "apartment",
     price: "1.000.000",
     is_featured: true,
@@ -209,7 +208,7 @@ const mockFeaturedListingList = [
     name: "sg-featured-listing03",
     agent: {
       _id: "60bca4fd033e1d38148d6703",
-      image: "https://asia-property.herokuapp.com/public/uploads/agent02.jpg",
+      image: `${apiUrl}/public/uploads/agent02.jpg`,
       country: "indonesia",
       city: "tanjung pinang",
       name: "sg-agent03",
@@ -220,11 +219,10 @@ const mockFeaturedListingList = [
   {
     _id: "60f434d6fbba829a87ff3ffd",
     images: [
-      "https://asia-property.herokuapp.com/public/uploads/apart88-01.webp",
-      "https://asia-property.herokuapp.com/public/uploads/villa-aston01.webp",
+      `${apiUrl}/public/uploads/apart88-01.webp`,
+      `${apiUrl}/public/uploads/villa-aston01.webp`,
     ],
-    image_thumbnail:
-      "https://asia-property.herokuapp.com/public/uploads/apart88-01.webp",
+    image_thumbnail: `${apiUrl}/public/uploads/apart88-01.webp`,
     type: "apartment",
     price: "1.000.000",
     is_featured: true,
@@ -240,7 +238,7 @@ const mockFeaturedListingList = [
     name: "featured-listing04",
     agent: {
       _id: "60bca4fd033e1d38148d6703",
-      image: "https://asia-property.herokuapp.com/public/uploads/agent02.jpg",
+      image: `${apiUrl}/public/uploads/agent02.jpg`,
       country: "indonesia",
       city: "tanjung pinang",
       name: "agent052",
@@ -254,8 +252,8 @@ const mockListingList = [
   {
     _id: "60f434d6fbba829a87ff3ffa",
     images: [
-      "https://asia-property.herokuapp.com/public/uploads/apart88-01.webp",
-      "https://asia-property.herokuapp.com/public/uploads/villa-aston01.webp",
+      `${apiUrl}/public/uploads/apart88-01.webp`,
+      `${apiUrl}/public/uploads/villa-aston01.webp`,
     ],
     type: "apartment",
     price: "1.000.000",
@@ -272,7 +270,7 @@ const mockListingList = [
     name: "Apartment 01",
     agent: {
       _id: "60bca4fd033e1d38148d6703",
-      image: "https://asia-property.herokuapp.com/public/uploads/agent02.jpg",
+      image: `${apiUrl}/public/uploads/agent02.jpg`,
       country: "indonesia",
       city: "tanjung pinang",
       name: "fred+agent+2",
@@ -283,8 +281,8 @@ const mockListingList = [
   {
     _id: "60f434d6fbba002a87ff3ffa",
     images: [
-      "https://asia-property.herokuapp.com/public/uploads/villa-aston01.webp",
-      "https://asia-property.herokuapp.com/public/uploads/apart88-01.webp",
+      `${apiUrl}/public/uploads/villa-aston01.webp`,
+      `${apiUrl}/public/uploads/apart88-01.webp`,
     ],
     type: "apartment",
     price: "880.000",
@@ -301,7 +299,7 @@ const mockListingList = [
     name: "Apartment 02",
     agent: {
       _id: "60bca4fd033e1d38148d6703",
-      image: "https://asia-property.herokuapp.com/public/uploads/agent02.jpg",
+      image: `${apiUrl}/public/uploads/agent02.jpg`,
       country: "indonesia",
       city: "tanjung pinang",
       name: "fred+agent+2",
@@ -312,8 +310,8 @@ const mockListingList = [
   {
     _id: "60f434d6fbba293a87ff3ffa",
     images: [
-      "https://asia-property.herokuapp.com/public/uploads/apart88-01.webp",
-      "https://asia-property.herokuapp.com/public/uploads/villa-aston01.webp",
+      `${apiUrl}/public/uploads/apart88-01.webp`,
+      `${apiUrl}/public/uploads/villa-aston01.webp`,
     ],
     type: "house",
     price: "3.250.000",
@@ -330,7 +328,7 @@ const mockListingList = [
     name: "House 01",
     agent: {
       _id: "60bca4fd033e1d38148d6703",
-      image: "https://asia-property.herokuapp.com/public/uploads/agent06.jpg",
+      image: `${apiUrl}/public/uploads/agent06.jpg`,
       country: "indonesia",
       city: "tanjung pinang",
       name: "fred+agent+2",
@@ -341,8 +339,8 @@ const mockListingList = [
   {
     _id: "60f434d6fbba828a87ff3ffa",
     images: [
-      "https://asia-property.herokuapp.com/public/uploads/apart88-01.webp",
-      "https://asia-property.herokuapp.com/public/uploads/villa-aston01.webp",
+      `${apiUrl}/public/uploads/apart88-01.webp`,
+      `${apiUrl}/public/uploads/villa-aston01.webp`,
     ],
     type: "apartment",
     price: "1.000.000",
@@ -359,7 +357,7 @@ const mockListingList = [
     name: "Apartment 01",
     agent: {
       _id: "60bca4fd033e1d38148d6703",
-      image: "https://asia-property.herokuapp.com/public/uploads/agent02.jpg",
+      image: `${apiUrl}/public/uploads/agent02.jpg`,
       country: "indonesia",
       city: "tanjung pinang",
       name: "fred+agent+2",
@@ -370,8 +368,8 @@ const mockListingList = [
   {
     _id: "60f434d6fbba008a87ff3ffa",
     images: [
-      "https://asia-property.herokuapp.com/public/uploads/villa-aston01.webp",
-      "https://asia-property.herokuapp.com/public/uploads/apart88-01.webp",
+      `${apiUrl}/public/uploads/villa-aston01.webp`,
+      `${apiUrl}/public/uploads/apart88-01.webp`,
     ],
     type: "apartment",
     price: "880.000",
@@ -388,7 +386,7 @@ const mockListingList = [
     name: "Apartment 02",
     agent: {
       _id: "60bca4fd033e1d38148d6703",
-      image: "https://asia-property.herokuapp.com/public/uploads/agent02.jpg",
+      image: `${apiUrl}/public/uploads/agent02.jpg`,
       country: "indonesia",
       city: "tanjung pinang",
       name: "fred+agent+2",
@@ -399,8 +397,8 @@ const mockListingList = [
   {
     _id: "60f434d6fbba298a87ff3ffa",
     images: [
-      "https://asia-property.herokuapp.com/public/uploads/apart88-01.webp",
-      "https://asia-property.herokuapp.com/public/uploads/villa-aston01.webp",
+      `${apiUrl}/public/uploads/apart88-01.webp`,
+      `${apiUrl}/public/uploads/villa-aston01.webp`,
     ],
     type: "house",
     price: "3.250.000",
@@ -417,7 +415,7 @@ const mockListingList = [
     name: "House 01",
     agent: {
       _id: "60bca4fd033e1d38148d6703",
-      image: "https://asia-property.herokuapp.com/public/uploads/agent06.jpg",
+      image: `${apiUrl}/public/uploads/agent06.jpg`,
       country: "indonesia",
       city: "tanjung pinang",
       name: "fred+agent+2",
