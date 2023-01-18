@@ -1,4 +1,4 @@
-const apiUrl = process.env.REACT_APP_HEROKU_BACKEND_URL;
+const apiUrl = process.env.REACT_APP_API_URL;
 
 const mockUserList = [
   {

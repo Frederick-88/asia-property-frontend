@@ -2,7 +2,7 @@ import axios from "axios";
 import { getWishlists } from "./UsersAction";
 import jwt from "jwt-decode";
 
-const apiURL = process.env.REACT_APP_HEROKU_BACKEND_URL;
+const apiURL = process.env.REACT_APP_API_URL;
 
 /* Full Axios Object Parameters :
     axios({

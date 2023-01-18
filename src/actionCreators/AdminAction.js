@@ -1,7 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const apiURL = process.env.REACT_APP_HEROKU_BACKEND_URL;
+const apiURL = process.env.REACT_APP_API_URL;
 
 const showErrorNotification = () => {
   toast.error(
