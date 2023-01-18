@@ -107,7 +107,7 @@ const AdminSidebar = (props) => {
         <div className="sidebar__user-profile">
           <img
             className="profile-image"
-            src="https://i0.wp.com/thefrontierpost.com/wp-content/uploads/2021/09/13-7.jpg?fit=1110%2C624&ssl=1"
+            src="https://i.pinimg.com/originals/b9/ae/1c/b9ae1c820c0162c268611941084dd614.jpg"
             alt="logo"
           />
           <h4 className="profile-title">{getUserName()}</h4>
