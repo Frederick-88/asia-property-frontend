@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "../utilities/Modal";
 
-import myPicture from "../assets/images/me.jpeg";
+import myPicture from "../assets/images/me.jpg";
 import "../assets/styles/aboutusmodal.scss";
 
 const AboutUsModal = (props) => {
